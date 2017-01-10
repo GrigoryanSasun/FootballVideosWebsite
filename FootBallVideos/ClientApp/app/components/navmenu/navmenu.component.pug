@@ -1,43 +1,20 @@
 .main-nav
-  .navbar.navbar-inverse
-    .navbar-header
-      button.navbar-toggle(type='button',data-toggle='collapse', data-target='.navbar-collapse')
-        span.sr-only('Toggle navigation')
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand([routerLink='']="['/home']") FootBallVideos
-
-<div class='main-nav'>
-  <div class='navbar navbar-inverse'>
-    <div class='navbar-header'>
-      <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
-        <span class='sr-only'>Toggle navigation</span>
-        <span class='icon-bar'></span>
-        <span class='icon-bar'></span>
-        <span class='icon-bar'></span>
-      </button>
-      <a class='navbar-brand' [routerLink='']="['/home']">FootBallVideos</a>
-    </div>
-    <div class='clearfix'></div>
-    <div class='navbar-collapse collapse'>
-      <ul class='nav navbar-nav'>
-        <li [routerLinkActive='']="['link-active']">
-          <a [routerLink=""]="['/home']">
-            <span class='glyphicon glyphicon-home'></span> Home
-          </a>
-        </li>
-        <li [routerLinkActive='']="['link-active']">
-          <a [routerLink=""]="['/counter']">
-            <span class='glyphicon glyphicon-education'></span> Counter
-          </a>
-        </li>
-        <li [routerLinkActive='']="['link-active']">
-          <a [routerLink=""]="['/fetch-data']">
-            <span class='glyphicon glyphicon-th-list'></span> Fetch data
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+    .navbar.navbar-inverse
+        .navbar-header
+            button.navbar-toggle(type='button',data-toggle='collapse', data-target='.navbar-collapse')
+                span.sr-only('Toggle navigation')
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            a.navbar-brand(routerLink='/home') FootBallVideos
+        .navbar-collapse.collapse
+            ul.nav.navbar-nav
+                li(routerLinkActive='link-active')
+                    a(routerLink='/home')           
+                        span.glyphicon.glyphicon-home Home     
+                li(routerLinkActive='link-active')
+                    a(routerLink='/counter')             
+                        span.glyphicon.glyphicon-education Counter 
+                li(routerLinkActive='link-active')
+                    a(routerLink='/fetch-data')
+                        span.glyphicon.glyphicon-th-list Fetch data
