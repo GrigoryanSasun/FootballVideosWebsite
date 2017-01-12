@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DB">
+  <DataContextMoniker Name="/DBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="82b5791e-ad54-4ffe-9667-9d4dc4d26716" absoluteBounds="6.75, 0.75, 2, 1.3862939453125003">
+      <DataClassMoniker Name="/DBDataContext/FullSquadPlayer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e22d5acf-3198-4050-a80b-3e2a5313f913" absoluteBounds="6.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b0c555d2-5977-4d14-801c-28b0c1ff7968" absoluteBounds="0.75, 1, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DBDataContext/Tournament" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c049e5a6-1776-4171-bac6-c81ed99dcf28" absoluteBounds="0.765, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c64eac99-fcb4-4b8c-a6d2-8ee632575937" absoluteBounds="3.5, 3.875, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/DBDataContext/PlayerParticipation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c00894a8-1306-485f-9eee-c1620b16376d" absoluteBounds="3.515, 4.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9eb63cfe-7327-4302-b5c6-35eeba1754b7" absoluteBounds="0.75, 4.25, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/DBDataContext/Player" />
+      <nestedChildShapes>
+        <elementListCompartment Id="024c5643-5d6a-4d20-9c1e-3b057a709a14" absoluteBounds="0.765, 4.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="82a4db6b-60b4-456f-9beb-de77d378461d" absoluteBounds="3.5, 0.875, 2, 1.5785953776041664">
+      <DataClassMoniker Name="/DBDataContext/Season" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d79af0d0-f4b3-44c5-beda-83341683423c" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f40b3a6c-1864-48a1-b574-cdb10d69bdae" absoluteBounds="0.75, 6.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/DBDataContext/Squad" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c3b57adb-dc27-4926-a30e-f16c9f05f9d2" absoluteBounds="0.765, 7.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7af64a1f-e357-4387-90c4-c9390f6b7f9c" absoluteBounds="6.75, 3.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/DBDataContext/Team" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ec2accaa-061c-4673-ae89-ffbda8d6b51c" absoluteBounds="6.765, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 4.94314697265625); (3.5 : 4.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Player/Player_PlayerParticipation" />
+      <nodes>
+        <classShapeMoniker Id="9eb63cfe-7327-4302-b5c6-35eeba1754b7" />
+        <classShapeMoniker Id="c64eac99-fcb4-4b8c-a6d2-8ee632575937" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.69314697265625); (3.5 : 1.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBDataContext/Tournament/Tournament_Season" />
+      <nodes>
+        <classShapeMoniker Id="b0c555d2-5977-4d14-801c-28b0c1ff7968" />
+        <classShapeMoniker Id="82a4db6b-60b4-456f-9beb-de77d378461d" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
