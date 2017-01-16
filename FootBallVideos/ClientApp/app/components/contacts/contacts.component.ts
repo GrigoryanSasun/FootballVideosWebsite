@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 
 @Component({
-    selector: 'fetchdata',
-    template: require('./fetchdata.component.html')
+    selector: 'contacts',
+    template: require('./contacts.component.pug')
 })
-export class FetchDataComponent {
+export class ContactsComponent {
     public forecasts: WeatherForecast[];
 
     constructor(http: Http) {

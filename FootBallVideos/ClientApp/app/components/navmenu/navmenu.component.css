@@ -1,60 +1,35 @@
-li .glyphicon {
-    margin-right: 10px;
-}
-
 /* Highlighting rules for nav menu items */
-li.link-active a,
-li.link-active a:hover,
-li.link-active a:focus {
-    background-color: #4189C7;
-    color: white;
+.navbar {
+     border-radius: 0px;
+}
+.navbar li.link-active a,
+.navbar li.link-active a:hover,
+.navbar li.link-active a:focus {  
+    color: #B52727;
+}
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    float:right;
+    margin-top: 2px;
 }
 
-/* Keep the nav menu independent of scrolling and on top of other items */
-.main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+.navbar li {
+    float: left;
 }
 
-@media (min-width: 768px) {
-    /* On small screens, convert the nav menu to a vertical sidebar */
-    /*.main-nav {
-        height: 100%;
-        width: calc(25% - 20px);
-    }*/
-    .navbar {
-        border-radius: 0px;
-        border-width: 0px;
-        height: 40px;   
-    }
-    .logo {
-        float: none;
-    }
-    .navbar-collapse {
-        border-top: 1px solid #444;
-        padding: 0px;
-    }
-    .navbar ul {
-        margin-top: 5px;
-        /*float: none;*/
-    }
-    .navbar li {
-        /*float: none;
-        font-size: 15px;
-        margin: 6px;*/
-    }
-    .navbar li a {
-        padding: 10px 16px;
-        border-radius: 4px;
-    }
-    .navbar a {
-        /* If a menu item's text is too long, truncate it */
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+.navbar li a {
+    display: block;
+    color: #9d9d9d;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: #222;
+    font-size: 17px;
+}
+
+.navbar li a:hover:not(.active) {
+   color: #B52727;
 }

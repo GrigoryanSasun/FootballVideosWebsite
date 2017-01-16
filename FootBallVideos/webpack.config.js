@@ -7,7 +7,7 @@ var allFilenamesExceptJavaScript = /\.(?!js(\?|$))([^.]+(\?|$))/;
 
 // Configuration in common to both client-side and server-side bundles
 var sharedConfig = {
-    resolve: { extensions: ['', '.ts', '.js', '.json', '.css', '.html', '.pug'] },
+    resolve: { extensions: [ '', '.js', '.ts' , '.pug'] },
     output: {
         filename: '[name].js',
         publicPath: '/dist/' // Webpack dev middleware, if enabled, handles requests for this URL prefix
