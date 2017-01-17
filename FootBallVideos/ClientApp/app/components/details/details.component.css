@@ -1,0 +1,52 @@
+﻿.wrapper {
+	min-height: 100%;
+	height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+	height: 100%;
+	margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
+}
+.push {
+    height: 100px;
+}
+.video-title, .related-title{
+    text-align: center;
+    color: #DC3434;
+}
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.videos-container {
+    margin: 20px auto;
+    height: 100%;
+    padding: 20px 5px;
+    min-width: 300px;
+}
+.videos-img-holder {
+    height: 200px;
+    border: 1px solid #9d9d9d;
+}
+.videos {
+    margin-bottom:20px;
+    position:center;
+    width:300px;
+}
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
