@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { AboutUsComponent } from './components/aboutus/about-us.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { DetailsComponent } from './components/details/details.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FooterComponent } from './components/footer/footer.component';
         AboutUsComponent,
         ContactsComponent,
         HomeComponent,
-        FooterComponent
+        FooterComponent,
+        DetailsComponent
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
@@ -26,7 +28,9 @@ import { FooterComponent } from './components/footer/footer.component';
             { path: 'home', component: HomeComponent },
             { path: 'about-us', component: AboutUsComponent },
             { path: 'contacts', component: ContactsComponent },
-            { path: '**', redirectTo: 'home' }
+            { path: 'videodetails', component: DetailsComponent },
+            { path: '**', redirectTo: 'home' },
+           
         ])
     ]
 })

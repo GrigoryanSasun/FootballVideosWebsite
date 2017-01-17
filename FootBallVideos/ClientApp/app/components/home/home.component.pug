@@ -1,5 +1,5 @@
 .container-fluid
-  .row
+  .row.hidden-xs
     .col-sm-4.categories
       .scrollbar
         h3.categories-title Tournaments & Leugues
@@ -156,97 +156,221 @@
             a(href='#')
               img(src='#')
               | Spain - LaLiga Segunda
+  .row.visible-xs
+    .btns-holder.category-btns
+      .col-sm-4.categories-xs
+        label.btn.btn-danger.text-uppercase Tournaments & Leugues
+        .categories-dropdown-content
+          .scrollbar
+            ul.list-unstyled
+              li
+                a(href='#')
+                  img(src='#')
+                  | UEFA - Champions League
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+
+        label.btn.btn-danger.text-uppercase Clubs
+        .categories-dropdown-content
+          .scrollbar
+            ul.list-unstyled
+              li
+                a(href='#')
+                  img(src='#')
+                  | UEFA - Champions League
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+        label.btn.btn-danger.text-uppercase National Teams
+        .categories-dropdown-content
+          .scrollbar
+            ul.list-unstyled
+              li
+                a(href='#')
+                  img(src='#')
+                  | UEFA - Champions League
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
+              li
+                a(href='#')
+                  img(src='#')
+                  | England - Championship
 .players-content
- h3.team-title Team Name
- .players
-     ul
-       li
-         a(href='#')
-           img(src='#')
-           | UEFA - Champions League
-       li
-         a(href='#')
-           img(src='#')
-           | England - Championship
-       li
-         a(href='#')
-           img(src='#')
-           | Germany - 2nd Bundesliga
-       li
-         a(href='#')
-           img(src='#')
-           | Spain - LaLiga Segunda
-       li
-         a(href='#')
-           img(src='#')
-           | UEFA - Champions League
-       li
-         a(href='#')
-           img(src='#')
-           | England - Championship
-       li
-         a(href='#')
-           img(src='#')
-           | Germany - 2nd Bundesliga
-       li
-         a(href='#')
-           img(src='#')
-           | Spain - LaLiga Segunda
-       li
-         a(href='#')
-           img(src='#')
-           | UEFA - Champions League
-       li
-         a(href='#')
-           img(src='#')
-           | England - Championship
-       li
-         a(href='#')
-           img(src='#')
-           | Germany - 2nd Bundesliga
-       li
-         a(href='#')
-           img(src='#')
-           | Spain - LaLiga Segunda
+  h3.team-title Team Name
+  .players
+    ul
+      li
+        a(href='#')
+          img(src='#')
+          | UEFA - Champions League
+      li
+        a(href='#')
+          img(src='#')
+          | England - Championship
+      li
+        a(href='#')
+          img(src='#')
+          | Germany - 2nd Bundesliga
+      li
+        a(href='#')
+          img(src='#')
+          | Spain - LaLiga Segunda
+      li
+        a(href='#')
+          img(src='#')
+          | UEFA - Champions League
+      li
+        a(href='#')
+          img(src='#')
+          | England - Championship
+      li
+        a(href='#')
+          img(src='#')
+          | Germany - 2nd Bundesliga
+      li
+        a(href='#')
+          img(src='#')
+          | Spain - LaLiga Segunda
+      li
+        a(href='#')
+          img(src='#')
+          | UEFA - Champions League
+      li
+        a(href='#')
+          img(src='#')
+          | England - Championship
+      li
+        a(href='#')
+          img(src='#')
+          | Germany - 2nd Bundesliga
+      li
+        a(href='#')
+          img(src='#')
+          | Spain - LaLiga Segunda
 .videos-content
   .row.row-centered
     .videos.col-lg-4.col-md-4.col-sm-6.col-xs-12.col-centered
       div
         .videos-img-holder
-          a(href='#')
+          a(routerlink='/videodetails')
             img(src='#')
     .videos.col-lg-4.col-md-4.col-sm-6.col-xs-12.col-centered
       div
         .videos-img-holder
-          a(href='#')
+          a(routerlink='/videodetails')
             img(src='#')
     .videos.col-lg-4.col-md-4.col-sm-6.col-xs-12.col-centered
       div
         .videos-img-holder
-          a(href='#')
+          a(routerlink='/videodetails')
             img(src='#')
     .videos.col-lg-4.col-md-4.col-sm-6.col-xs-12.col-centered
       div
         .videos-img-holder
-          a(href='#')
+          a(routerlink='/videodetails')
             img(src='#')
     .videos.col-lg-4.col-md-4.col-sm-6.col-xs-12.col-centered
       div
         .videos-img-holder
-          a(href='#')
+          a(routerlink='/videodetails')
             img(src='#')
     .videos.col-lg-4.col-md-4.col-sm-6.col-xs-12.col-centered
       div
         .videos-img-holder
-          a(href='#')
+          a(routerlink='/videodetails')
             img(src='#')
     .videos.col-lg-4.col-md-4.col-sm-6.col-xs-12.col-centered
       div
         .videos-img-holder
-          a(href='#')
+          a(routerlink='/videodetails')
             img(src='#')
     .videos.col-lg-4.col-md-4.col-sm-6.col-xs-12.col-centered
       div
         .videos-img-holder
-          a(href='#')
+          a(routerlink='/videodetails')
             img(src='#')

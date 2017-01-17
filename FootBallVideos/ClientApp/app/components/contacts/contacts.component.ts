@@ -3,7 +3,8 @@ import { Http } from '@angular/http';
 
 @Component({
     selector: 'contacts',
-    template: require('./contacts.component.pug')
+    template: require('./contacts.component.pug'),
+    styles: [require('./contacts.component.css')]
 })
 export class ContactsComponent {
     public forecasts: WeatherForecast[];
