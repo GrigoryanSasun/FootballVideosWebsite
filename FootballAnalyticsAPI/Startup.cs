@@ -43,6 +43,11 @@ namespace FootballAnalyticsAPI
             var connection = @"Server=DESKTOP-EPNJ61I;Database=FootballAnalytics;Trusted_Connection=True;";
             services.AddDbContext<FootballAnalyticsContext>(options => options.UseSqlServer(connection));
             services.AddSingleton<IPlayersRepository, PlayersRepository>();
+            services.AddSingleton<ITeamRepository, TeamRepository>();
+            services.AddSingleton<ITournamentRepository, TournamentRepository>();
+            services.AddSingleton<ISeasonRepository, SeasonRepository>();
+            services.AddSingleton<IPlayerParticipiationRepository, PlayerParticipiationRepository>();
+            services.AddSingleton<IMatchRepository, MatchRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -50,6 +55,7 @@ namespace FootballAnalyticsAPI
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            app.UseDeveloperExceptionPage();
 
             app.UseApplicationInsightsRequestTelemetry();
 

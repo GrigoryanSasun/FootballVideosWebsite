@@ -2,7 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace FootballAnalyticsAPI.Models
 {
@@ -26,19 +27,16 @@ namespace FootballAnalyticsAPI.Models
             _context.SaveChanges();
         }
 
-        public Players Find(int key)
+        public Players Find(int id)
         {
-            using (_context)
-            {  
-                return (from b in _context.Players
-                       where b.WhoScoredPlayerId == key
-                       select b).FirstOrDefault();
-            }
+            return (from b in _context.Players
+                    where b.WhoScoredPlayerId == id
+                    select b).FirstOrDefault();
         }
 
-        public void Remove(int key)
+        public void Remove(int id)
         {
-            var player = new Players { WhoScoredPlayerId = key };
+            var player = new Players { WhoScoredPlayerId = id };
             _context.Players.Attach(player);
             _context.Players.Remove(player);
             _context.SaveChanges();
@@ -53,5 +51,10 @@ namespace FootballAnalyticsAPI.Models
             entry.Property(e => e.PlayerParticipation).IsModified = true;
             _context.SaveChanges();
         }
+        public int GetByTeamId(int id)
+        {
+            return id;
+        }
+
     }
 }

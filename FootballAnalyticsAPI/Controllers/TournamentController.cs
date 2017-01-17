@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 namespace FootballAnalyticsAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class PlayersController : Controller
+    public class TournamentController : Controller
     {
-        public PlayersController(IPlayersRepository players)
+        public TournamentController(ITournamentRepository tournaments)
         {
-            Players = players;
+            Tournaments = tournaments;
         }
-        public IPlayersRepository Players { get; set; }
+        public ITournamentRepository Tournaments { get; set; }
 
         [HttpGet]
-        public IEnumerable<Players> GetAll()
+        public IEnumerable<Tournaments> GetAll()
         {
-            return Players.GetAll();
+            return Tournaments.GetAll();
         }
 
-        [HttpGet("{id}", Name = "GetPlayer")]
+        [HttpGet("{id}", Name = "GetTournaments")]
         public IActionResult GetById(int id)
         {
-            var item = Players.Find(id);
+            var item = Tournaments.Find(id);
             if (item == null)
             {
                 return NotFound();

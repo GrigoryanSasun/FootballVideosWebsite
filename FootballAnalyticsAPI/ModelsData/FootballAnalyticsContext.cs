@@ -6,24 +6,60 @@ namespace FootballAnalyticsAPI.ModelsData
 {
     public partial class FootballAnalyticsContext : DbContext
     {
+        public virtual DbSet<Match> Match { get; set; }
+        public virtual DbSet<MatchDataTable> MatchDataTable { get; set; }
         public virtual DbSet<PlayerParticipation> PlayerParticipation { get; set; }
         public virtual DbSet<Players> Players { get; set; }
         public virtual DbSet<Season> Season { get; set; }
         public virtual DbSet<Team> Team { get; set; }
         public virtual DbSet<Tournaments> Tournaments { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-        //    optionsBuilder.UseSqlServer(@"Server=DESKTOP-EPNJ61I;Database=FootballAnalytics;Trusted_Connection=True;");
-        //}
-
-        public FootballAnalyticsContext(DbContextOptions<FootballAnalyticsContext> options)
-        : base(options)
-            { }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-EPNJ61I;Database=FootballAnalytics;Trusted_Connection=True;");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Match>(entity =>
+            {
+                entity.HasIndex(e => e.WhoScoredMatchId)
+                    .HasName("IX_Match_1")
+                    .IsUnique();
+
+                entity.Property(e => e.WhoScoredDate).HasColumnType("date");
+
+                entity.HasOne(d => d.AwayTeam)
+                    .WithMany(p => p.MatchAwayTeam)
+                    .HasForeignKey(d => d.AwayTeamId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Match_Team");
+
+                entity.HasOne(d => d.HomeTeam)
+                    .WithMany(p => p.MatchHomeTeam)
+                    .HasForeignKey(d => d.HomeTeamId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Match_Team1");
+
+                entity.HasOne(d => d.Season)
+                    .WithMany(p => p.Match)
+                    .HasForeignKey(d => d.SeasonId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Match_Season");
+            });
+
+            modelBuilder.Entity<MatchDataTable>(entity =>
+            {
+                entity.Property(e => e.MatchData).IsRequired();
+
+                entity.HasOne(d => d.Match)
+                    .WithMany(p => p.MatchDataTable)
+                    .HasForeignKey(d => d.MatchId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_MatchDataTable_Match");
+            });
+
             modelBuilder.Entity<PlayerParticipation>(entity =>
             {
                 entity.Property(e => e.Played)
@@ -37,6 +73,12 @@ namespace FootballAnalyticsAPI.ModelsData
                 entity.Property(e => e.Score)
                     .IsRequired()
                     .HasColumnType("nchar(10)");
+
+                entity.HasOne(d => d.Match)
+                    .WithMany(p => p.PlayerParticipation)
+                    .HasForeignKey(d => d.MatchId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_PlayerParticipation_Match");
 
                 entity.HasOne(d => d.Player)
                     .WithMany(p => p.PlayerParticipation)
