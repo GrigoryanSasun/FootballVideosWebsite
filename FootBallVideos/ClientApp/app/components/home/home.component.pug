@@ -4,54 +4,10 @@
       .scrollbar
         h3.categories-title Tournaments & Leugues
         ul.list-unstyled
-          li
+          li( *ngfor='let tour of tournaments')
             a(href='#')
               img(src='#')
-              | UEFA - Champions League
-          li
-            a(href='#')
-              img(src='#')
-              | England - Championship
-          li
-            a(href='#')
-              img(src='#')
-              | Germany - 2nd Bundesliga
-          li
-            a(href='#')
-              img(src='#')
-              | Spain - LaLiga Segunda
-          li
-            a(href='#')
-              img(src='#')
-              | UEFA - Champions League
-          li
-            a(href='#')
-              img(src='#')
-              | England - Championship
-          li
-            a(href='#')
-              img(src='#')
-              | Germany - 2nd Bundesliga
-          li
-            a(href='#')
-              img(src='#')
-              | Spain - LaLiga Segunda
-          li
-            a(href='#')
-              img(src='#')
-              | UEFA - Champions League
-          li
-            a(href='#')
-              img(src='#')
-              | England - Championship
-          li
-            a(href='#')
-              img(src='#')
-              | Germany - 2nd Bundesliga
-          li
-            a(href='#')
-              img(src='#')
-              | Spain - LaLiga Segunda
+              |  {{tour.name}}
     .col-sm-4.categories
       .scrollbar
         h3.categories-title Clubs
