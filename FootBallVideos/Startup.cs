@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using FootballAnalyticsAPI.ModelsData;
+using FootballAnalyticsAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FootBallVideos
 {
@@ -29,7 +32,16 @@ namespace FootBallVideos
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddApplicationInsightsTelemetry(Configuration);
             services.AddMvc();
+            services.AddDbContext<FootballAnalyticsContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("FootballAnalyticsDatabase")));
+            services.AddSingleton<IPlayersRepository, PlayersRepository>();
+            services.AddSingleton<ITeamRepository, TeamRepository>();
+            services.AddSingleton<ITournamentRepository, TournamentRepository>();
+            services.AddSingleton<ISeasonRepository, SeasonRepository>();
+            services.AddSingleton<IPlayerParticipiationRepository, PlayerParticipiationRepository>();
+            services.AddSingleton<IMatchRepository, MatchRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

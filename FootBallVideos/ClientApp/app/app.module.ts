@@ -9,8 +9,6 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { AboutUsComponent } from './components/aboutus/about-us.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DetailsComponent } from './components/details/details.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -24,10 +22,7 @@ import { CommonModule } from '@angular/common';
         DetailsComponent
     ],
     imports: [
-        UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
-        HttpModule,
-        BrowserModule,
-        CommonModule,
+        UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
