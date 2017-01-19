@@ -1,26 +1,26 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 //import { Headers, RequestOptions } from '@angular/http';
-import { Tournaments } from './tournaments';
+import { Teams } from './teams';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class TournamentsService {
+export class TeamsService {
     // URL to web api
-    private tournamentsUrl = '/api/tournament';
+    private teamsUrl = '/api/team/';
 
     constructor(private http: Http) { }
 
-    getTournaments(): Promise<Tournaments[]> {
-        return this.http.get(this.tournamentsUrl)
+    getTeams(): Promise<Teams[]> {
+        return this.http.get(this.teamsUrl)
             .toPromise()
             .then(this.extractData)
             .catch(this.handleError);
     }
 
     private extractData(res: Response) {
-        let body = res.json();
-        return body || {};
+        //let body = res.json();
+        return res.json() || [];
     }
 
     private handleError(error: Response | any) {

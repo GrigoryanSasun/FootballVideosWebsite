@@ -12,54 +12,10 @@
       .scrollbar
         h3.categories-title Clubs
         ul.list-unstyled
-          li
+          li( *ngFor='let team of teams')
             a(href='#')
               img(src='#')
-              | UEFA - Champions League
-          li
-            a(href='#')
-              img(src='#')
-              | England - Championship
-          li
-            a(href='#')
-              img(src='#')
-              | Germany - 2nd Bundesliga
-          li
-            a(href='#')
-              img(src='#')
-              | Spain - LaLiga Segunda
-          li
-            a(href='#')
-              img(src='#')
-              | UEFA - Champions League
-          li
-            a(href='#')
-              img(src='#')
-              | England - Championship
-          li
-            a(href='#')
-              img(src='#')
-              | Germany - 2nd Bundesliga
-          li
-            a(href='#')
-              img(src='#')
-              | Spain - LaLiga Segunda
-          li
-            a(href='#')
-              img(src='#')
-              | UEFA - Champions League
-          li
-            a(href='#')
-              img(src='#')
-              | England - Championship
-          li
-            a(href='#')
-              img(src='#')
-              | Germany - 2nd Bundesliga
-          li
-            a(href='#')
-              img(src='#')
-              | Spain - LaLiga Segunda
+              |  {{team.teamName}}
     .col-sm-4.categories
       .scrollbar
         h3.categories-title National Teams
