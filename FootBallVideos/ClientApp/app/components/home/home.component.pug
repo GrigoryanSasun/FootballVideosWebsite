@@ -75,83 +75,18 @@
         .categories-dropdown-content
           .scrollbar
             ul.list-unstyled
-              li
+              li( *ngFor='let tour of tournaments')
                 a(href='#')
                   img(src='#')
-                  | UEFA - Champions League
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-
+                  | {{tour.whoScoredTourName}}
         label.btn.btn-danger.text-uppercase Clubs
         .categories-dropdown-content
           .scrollbar
             ul.list-unstyled
-              li
+              li( *ngFor='let team of teams')
                 a(href='#')
                   img(src='#')
-                  | UEFA - Champions League
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
+                  | {{team.teamName}}
         label.btn.btn-danger.text-uppercase National Teams
         .categories-dropdown-content
           .scrollbar
