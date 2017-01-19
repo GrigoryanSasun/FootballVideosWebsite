@@ -1,3 +1,5 @@
+
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using FootballAnalyticsAPI.ModelsData;
 using FootballAnalyticsAPI.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace FootBallVideos
 {
@@ -34,8 +35,9 @@ namespace FootBallVideos
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             services.AddMvc();
-            services.AddDbContext<FootballAnalyticsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("FootballAnalyticsDatabase")));
+          
+            var connection = @"Server=Edgar-PC;Database=FootballAnalytics;Trusted_Connection=True;";
+            services.AddDbContext<FootballAnalyticsContext>(options => options.UseSqlServer(connection));
             services.AddSingleton<IPlayersRepository, PlayersRepository>();
             services.AddSingleton<ITeamRepository, TeamRepository>();
             services.AddSingleton<ITournamentRepository, TournamentRepository>();

@@ -6,6 +6,7 @@ namespace FootballAnalyticsAPI.ModelsData
 {
     public partial class FootballAnalyticsContext : DbContext
     {
+        
         public virtual DbSet<Match> Match { get; set; }
         public virtual DbSet<MatchDataTable> MatchDataTable { get; set; }
         public virtual DbSet<PlayerParticipation> PlayerParticipation { get; set; }
@@ -14,11 +15,10 @@ namespace FootballAnalyticsAPI.ModelsData
         public virtual DbSet<Team> Team { get; set; }
         public virtual DbSet<Tournaments> Tournaments { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-EPNJ61I;Database=FootballAnalytics;Trusted_Connection=True;");
-        }
+        
+            public FootballAnalyticsContext(DbContextOptions<FootballAnalyticsContext> options)
+           : base(options)
+             { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

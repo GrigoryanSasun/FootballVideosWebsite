@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
     errorMessage: string;
     tournaments: Tournaments[];
-    mode = 'Promise';
+
         constructor(private tournamentsService: TournamentsService) { }
 
     ngOnInit() { this.getTournaments(); }
