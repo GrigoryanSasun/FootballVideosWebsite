@@ -6,7 +6,7 @@ namespace FootballAnalyticsAPI.ModelsData
 {
     public partial class FootballAnalyticsContext : DbContext
     {
-        
+
         public virtual DbSet<Match> Match { get; set; }
         public virtual DbSet<MatchDataTable> MatchDataTable { get; set; }
         public virtual DbSet<PlayerParticipation> PlayerParticipation { get; set; }
@@ -15,10 +15,10 @@ namespace FootballAnalyticsAPI.ModelsData
         public virtual DbSet<Team> Team { get; set; }
         public virtual DbSet<Tournaments> Tournaments { get; set; }
 
-        
-            public FootballAnalyticsContext(DbContextOptions<FootballAnalyticsContext> options)
-           : base(options)
-             { }
+
+        public FootballAnalyticsContext(DbContextOptions<FootballAnalyticsContext> options)
+        : base(options)
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

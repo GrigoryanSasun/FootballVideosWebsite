@@ -32,12 +32,12 @@ namespace FootBallVideos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<FootballAnalyticsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FootballAnalyticsDatabase")));
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             services.AddMvc();
           
-            var connection = @"Server=Edgar-PC;Database=FootballAnalytics;Trusted_Connection=True;";
-            services.AddDbContext<FootballAnalyticsContext>(options => options.UseSqlServer(connection));
+            //var connection = @";Database=FootballAnalytics;Trusted_Connection=True;";
             services.AddSingleton<IPlayersRepository, PlayersRepository>();
             services.AddSingleton<ITeamRepository, TeamRepository>();
             services.AddSingleton<ITournamentRepository, TournamentRepository>();

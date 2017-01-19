@@ -1,6 +1,8 @@
 /* Highlighting rules for nav menu items */
 .navbar {
      border-radius: 0px;
+     margin: 0;
+     border-bottom: 1px solid white;
 }
 .navbar li.link-active a,
 .navbar li.link-active a:hover,
