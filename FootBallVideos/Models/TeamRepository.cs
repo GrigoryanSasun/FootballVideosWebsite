@@ -52,8 +52,18 @@ namespace FootballAnalyticsAPI.Models
 
         public IEnumerable<Players> GetPlayers(int id)
         {
+            var seasons = (from q in _context.Match
+                           where q.AwayTeamId == id || q.HomeTeamId == id
+                           select q.SeasonId).ToList();
+            var seasonId = (from q in _context.Season
+                            where seasons.Any(x=>x == q.Id)
+                            orderby q.SeasonTitle descending
+                            select q.Id).FirstOrDefault();
+            var matches = (from q in _context.Match
+                           where q.SeasonId == seasonId
+                           select q.Id);
             var playerParticipationId = (from q in _context.PlayerParticipation
-                                         where q.TeamId == id
+                                         where q.TeamId == id && matches.Any(x=>x == q.MatchId)
                                          select q.PlayerId);
             return (from q in _context.Players
                     where playerParticipationId.Any(x=>x == q.Id) 
