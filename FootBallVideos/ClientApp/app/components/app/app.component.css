@@ -25,20 +25,9 @@ html, body {
 .push {
     height: 100px;
 }
-@font-face {
-    font-family: 'Vertigo';
-    src: url('../../fonts/vertigoflf.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'VertigoPlus';
-    src: url('../../fonts/vertigoplusflf.ttf') format('truetype');
-}
 
 .content{
     background-color: black;
-    font-family: VertigoPlus;
-    font-size: 26px;
-    font-stretch:expanded;
 }
 
 
