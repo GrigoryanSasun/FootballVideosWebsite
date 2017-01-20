@@ -52,11 +52,11 @@ namespace FootballAnalyticsAPI.Models
 
         public IEnumerable<Players> GetPlayers(int id)
         {
-            //var playerParticipationId = (from q in _context.PlayerParticipation
-            //                             where q.TeamId == id
-            //                             select q.PlayerId);
+            var playerParticipationId = (from q in _context.PlayerParticipation
+                                         where q.TeamId == id
+                                         select q.PlayerId);
             return (from q in _context.Players
-                    where /*playerParticipationId.Any(x=>x == q.Id)*/ q.Id == 34876 //temporary
+                    where playerParticipationId.Any(x=>x == q.Id) 
                     select q);
 
         }

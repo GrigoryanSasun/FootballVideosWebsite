@@ -11,6 +11,7 @@ namespace FootballAnalyticsAPI.ModelsData
         public string Played { get; set; }
         public string Score { get; set; }
         public string Position { get; set; }
+        public int TeamId { get; set; }
 
         public virtual Match Match { get; set; }
         public virtual Players Player { get; set; }
