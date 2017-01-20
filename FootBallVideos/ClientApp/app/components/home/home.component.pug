@@ -71,24 +71,24 @@
   .row.visible-xs
     .btns-holder.category-btns
       .col-sm-4.categories-xs
-        label.btn.btn-danger.text-uppercase Tournaments & Leugues
-        .categories-dropdown-content
+        label.btn.btn-danger.text-uppercase((click)='hideTournamentsDropdown=!hideTournamentsDropdown') Tournaments & Leugues
+        .categories-dropdown-content([hidden]='hideTournamentsDropdown')
           .scrollbar
             ul.list-unstyled
               li( *ngFor='let tour of tournaments')
                 a(href='#')
                   img(src='#')
                   | {{tour.whoScoredTourName}}
-        label.btn.btn-danger.text-uppercase Clubs
-        .categories-dropdown-content
+        label.btn.btn-danger.text-uppercase((click)='hideClubsDropdown=!hideClubsDropdown') Clubs
+        .categories-dropdown-content([hidden]='hideClubsDropdown')
           .scrollbar
             ul.list-unstyled
               li( *ngFor='let team of teams')
                 a(href='#')
                   img(src='#')
                   | {{team.teamName}}
-        label.btn.btn-danger.text-uppercase National Teams
-        .categories-dropdown-content
+        label.btn.btn-danger.text-uppercase((click)='hideTeamsDropdown=!hideTeamsDropdown') National Teams
+        .categories-dropdown-content([hidden]='hideTeamsDropdown')
           .scrollbar
             ul.list-unstyled
               li

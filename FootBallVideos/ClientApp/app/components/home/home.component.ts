@@ -14,7 +14,10 @@ export class HomeComponent implements OnInit {
     errorMessage: string;
     tournaments: Tournaments[];
     teams: Teams[];
-    
+    hideTournamentsDropdown: boolean = true;
+    hideClubsDropdown: boolean = true;
+    hideTeamsDropdown: boolean = true;
+
     constructor(private tournamentsService: TournamentsService, private teamsService: TeamsService) { }
 
     ngOnInit() { this.getTournaments(); this.getTeams(); }

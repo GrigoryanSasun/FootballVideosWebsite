@@ -41,10 +41,12 @@
 }
 .categories ul {
    margin-left:50px;
+   text-align:left;
 }
 .categories-dropdown-content {
     height:150px;
-    text-align:center;
+    text-align:left;
+    padding-left:20px;
 }
 .btn.btn-danger {
     min-width: 300px;
