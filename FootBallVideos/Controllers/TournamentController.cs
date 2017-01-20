@@ -33,5 +33,11 @@ namespace FootballAnalyticsAPI.Controllers
             }
             return new ObjectResult(item);
         }
+
+        [HttpGet("{id}/teams", Name = "GetTeamsByTournamentId")]
+        public IEnumerable<Team> GetPlayersByTeamId(int id)
+        {
+            return Tournaments.GetTeams(id);
+        }
     }
 }

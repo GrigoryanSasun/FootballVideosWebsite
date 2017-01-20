@@ -10,8 +10,10 @@ namespace FootballAnalyticsAPI.Models
     {
         void Add(Tournaments item);
         IEnumerable<Tournaments> GetAll();
+        IEnumerable<Team> GetTeams(int id);
         Tournaments Find(int key);
         void Remove(int key);
         void Update(Tournaments item);
+
     }
 }
