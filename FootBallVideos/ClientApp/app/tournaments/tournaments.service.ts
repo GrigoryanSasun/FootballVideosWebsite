@@ -8,8 +8,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class TournamentsService {
     // URL to web api
-    private tournamentsUrl = '/api/tournament';
-   
+    private tournamentsUrl = '/api/tournament/';
+
     constructor(private http: Http) { }
 
     getTournaments(): Promise<Tournaments[]> {
