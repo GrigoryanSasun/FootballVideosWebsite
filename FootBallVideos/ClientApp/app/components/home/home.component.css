@@ -33,8 +33,14 @@
 .categories a, .categories-xs a {
    color: #9d9d9d; 
 }
-.categories a > img {
-  padding-right: 5px;
+.categories a > span {
+    padding-right: 5px;
+    background-image: url(/Content/images/CountryFlag.png);
+    height: 16px;
+    width: 16px;
+    display: block;
+    float: left;   
+    z-index: 10;
 }
 .categories a:hover {
   color: #DC3434;
