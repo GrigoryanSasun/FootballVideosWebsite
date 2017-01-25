@@ -44,6 +44,7 @@
 }
 .categories a:hover {
   color: #DC3434;
+  cursor: pointer;
 }
 .categories ul {
    margin-left:50px;

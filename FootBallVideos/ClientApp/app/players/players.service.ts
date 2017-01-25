@@ -6,12 +6,12 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class PlayersService {
     // URL to web api
-    private playersUrl = '/api/team/32/players';
+    private playersUrl = '/api/team/';
 
     constructor(private http: Http) { }
 
-    getPlayers(): Promise<Players[]> {
-        return this.http.get(this.playersUrl)
+    getPlayers(id): Promise<Players[]> {
+        return this.http.get(this.playersUrl+id+'/players')
             .toPromise()
             .then(this.extractData)
             .catch(this.handleError);

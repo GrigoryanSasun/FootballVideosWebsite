@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
     constructor(private tournamentsService: TournamentsService, private teamsService: TeamsService, private playersService: PlayersService) { }
 
-    ngOnInit() { this.getTournaments(); this.getTeams(); this.getPlayers() }
+    ngOnInit() { this.getTournaments(); this.getTeams() }
 
     getTournaments() {
         this.tournamentsService.getTournaments()
@@ -39,8 +39,8 @@ export class HomeComponent implements OnInit {
             teams => this.teams = teams,
             error => this.errorMessage = <any>error);
     }
-    getPlayers() {
-        this.playersService.getPlayers()
+    getPlayers(id) {
+        this.playersService.getPlayers(id)
             .then(
             players => this.players = players,
             error => this.errorMessage = <any>error);

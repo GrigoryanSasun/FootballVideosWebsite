@@ -13,7 +13,7 @@
         h3.categories-title Clubs
         ul.list-unstyled
           li( *ngFor='let team of teams')
-            a(href='#')
+            a((click)='getPlayers(team.whoScoredTeamId)')
               span(style="background-position:0 -176px;")
               |  {{team.teamName}}
     .col-sm-4.categories

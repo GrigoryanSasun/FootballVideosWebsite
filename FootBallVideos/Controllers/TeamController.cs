@@ -35,9 +35,9 @@ namespace FootballAnalyticsAPI.Controllers
         }
 
         [HttpGet("{id}/players", Name = "GetPlayersByTeamId")]
-        public IEnumerable<Players> GetPlayersByTeamId(int id)
+        public async Task<IEnumerable<Players>> GetPlayersByTeamId(int id)
         {
-            return Team.GetPlayers(id);
+            return await Team.GetPlayersAsync(id);
         }
     }
 }
