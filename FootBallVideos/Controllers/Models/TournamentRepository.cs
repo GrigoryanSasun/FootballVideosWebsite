@@ -62,7 +62,7 @@ namespace FootballAnalyticsAPI.Models
 
             var matches = (from q in _context.Match
                            where seasons.Any(x => x == q.SeasonId)
-                           select  q).ToList();
+                           select q).ToList();
 
             var teams = (from q in _context.Team
                          join m1 in matches on q.Id equals m1.HomeTeamId

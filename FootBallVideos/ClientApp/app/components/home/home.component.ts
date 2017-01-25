@@ -50,4 +50,11 @@ export class HomeComponent implements OnInit {
         this.hideplayersList = false;
         this.teamName = teamName;
     }
+    getTeamsByTournamentId(id) {
+        this.teams = [];
+        this.tournamentsService.getTeamsByTournamentId(id)
+            .then(
+            teams => this.teams = teams,
+            error => this.errorMessage = <any>error);
+    }
 }

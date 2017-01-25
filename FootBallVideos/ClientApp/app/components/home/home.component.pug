@@ -5,7 +5,7 @@
         h3.categories-title Tournaments & Leugues
         ul.list-unstyled
           li( *ngFor='let tour of tournaments')
-            a(href='#')
+            a((click)='getTeamsByTournamentId(tour.id)')
               span(style="background-position:0 -176px;")
               |  {{tour.whoScoredTourName}}
     .col-sm-4.categories
