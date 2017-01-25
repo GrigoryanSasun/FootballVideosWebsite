@@ -14,5 +14,8 @@ namespace FootballAnalyticsAPI.Models
         void Remove(int key);
         void Update(Players item);
         int GetByTeamId(int id);
+
+        Task<IEnumerable<Players>> GetAllAsync();
+        Task<Players> FindAsync(int key);
     }
 }

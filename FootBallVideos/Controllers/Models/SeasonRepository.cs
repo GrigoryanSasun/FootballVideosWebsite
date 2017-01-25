@@ -1,4 +1,5 @@
 ﻿using FootballAnalyticsAPI.ModelsData;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,11 @@ namespace FootballAnalyticsAPI.Models
             return _context.Season;
         }
 
+        public async Task<IEnumerable<Season>> GetAllAsync()
+        {
+            return await _context.Season.ToListAsync();
+        }
+
         public void Add(Season item)
         {
             _context.Season.Add(item);
@@ -31,6 +37,13 @@ namespace FootballAnalyticsAPI.Models
             return (from b in _context.Season
                     where b.WhoScoredSeasonId == key
                     select b).FirstOrDefault();
+        }
+
+        public async Task<Season> FindAsync(int key)
+        {
+            return await (from b in _context.Season
+                          where b.WhoScoredSeasonId == key
+                          select b).FirstOrDefaultAsync();
         }
 
         public void Remove(int key)

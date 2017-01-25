@@ -1,9 +1,8 @@
 ﻿using FootballAnalyticsAPI.ModelsData;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace FootballAnalyticsAPI.Models
 {
@@ -21,6 +20,11 @@ namespace FootballAnalyticsAPI.Models
             return _context.Players;
         }
 
+        public async Task<IEnumerable<Players>> GetAllAsync()
+        {
+            return await _context.Players.ToListAsync();
+        }
+
         public void Add(Players item)
         {
             _context.Players.Add(item);
@@ -32,6 +36,13 @@ namespace FootballAnalyticsAPI.Models
             return (from b in _context.Players
                     where b.WhoScoredPlayerId == id
                     select b).FirstOrDefault();
+        }
+
+        public async Task<Players> FindAsync(int id)
+        {
+            return await (from b in _context.Players
+                          where b.WhoScoredPlayerId == id
+                          select b).FirstOrDefaultAsync();
         }
 
         public void Remove(int id)

@@ -13,5 +13,8 @@ namespace FootballAnalyticsAPI.Models
         Match Find(int key);
         void Remove(int key);
         void Update(Match item);
+
+        Task<IEnumerable<Match>> GetAllAsync();
+        Task<Match> FindAsync(int key);
     }
 }

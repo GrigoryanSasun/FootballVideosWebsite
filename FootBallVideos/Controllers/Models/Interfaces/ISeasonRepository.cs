@@ -13,5 +13,8 @@ namespace FootballAnalyticsAPI.Models
         Season Find(int key);
         void Remove(int key);
         void Update(Season item);
+
+        Task<IEnumerable<Season>> GetAllAsync();
+        Task<Season> FindAsync(int key);
     }
 }

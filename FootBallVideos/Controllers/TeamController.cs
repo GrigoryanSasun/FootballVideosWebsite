@@ -18,10 +18,16 @@ namespace FootballAnalyticsAPI.Controllers
         public ITeamRepository Team { get; set; }
 
         [HttpGet]
-        public IEnumerable<Team> GetAll()
+        public async Task<IEnumerable<Team>> GetAllAsync()
         {
-            return Team.GetAll();
+            return await Team.GetAllAsync();
         }
+
+        //[HttpGet]
+        //public IEnumerable<Team> GetAll()
+        //{
+        //    return Team.GetAll();
+        //}
 
         [HttpGet("{id}", Name = "GetTeam")]
         public IActionResult GetById(int id)
@@ -33,6 +39,17 @@ namespace FootballAnalyticsAPI.Controllers
             }
             return new ObjectResult(item);
         }
+
+        //[HttpGet("{id}", Name = "GetTeam")]
+        //public IActionResult GetByIdAsync(int id)
+        //{
+        //    var item = Team.Find(id);
+        //    if (item == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return new ObjectResult(item);
+        //}
 
         [HttpGet("{id}/players", Name = "GetPlayersByTeamId")]
         public async Task<IEnumerable<Players>> GetPlayersByTeamId(int id)

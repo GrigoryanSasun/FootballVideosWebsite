@@ -18,9 +18,9 @@ namespace FootballAnalyticsAPI.Controllers
         public ITournamentRepository Tournaments { get; set; }
 
         [HttpGet]
-        public IEnumerable<Tournaments> GetAll()
+        public async Task<IEnumerable<Tournaments>> GetAllAsync()
         {
-            return Tournaments.GetAll();
+            return await Tournaments.GetAllAsync();
         }
 
         [HttpGet("{id}", Name = "GetTournaments")]
@@ -35,9 +35,9 @@ namespace FootballAnalyticsAPI.Controllers
         }
 
         [HttpGet("{id}/teams", Name = "GetTeamsByTournamentId")]
-        public IEnumerable<Team> GetPlayersByTeamId(int id)
+        public async Task<IEnumerable<Team>> GetPlayersByTeamId(int id)
         {
-            return Tournaments.GetTeams(id);
+            return await Tournaments.GetTeamsAsync(id);
         }
     }
 }

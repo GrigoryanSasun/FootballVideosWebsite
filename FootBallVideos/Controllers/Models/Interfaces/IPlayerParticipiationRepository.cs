@@ -13,5 +13,8 @@ namespace FootballAnalyticsAPI.Models
         PlayerParticipation Find(int key);
         void Remove(int key);
         void Update(PlayerParticipation item);
+
+        Task<IEnumerable<PlayerParticipation>> GetAllAsync();
+        Task<PlayerParticipation> FindAsync(int key);
     }
 }
