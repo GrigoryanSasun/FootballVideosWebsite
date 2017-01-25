@@ -13,7 +13,7 @@
         h3.categories-title Clubs
         ul.list-unstyled
           li( *ngFor='let team of teams')
-            a((click)='getPlayers(team.whoScoredTeamId)')
+            a((click)='getPlayers(team.whoScoredTeamId, team.teamName)')
               span(style="background-position:0 -176px;")
               |  {{team.teamName}}
     .col-sm-4.categories
@@ -40,7 +40,7 @@
           .scrollbar
             ul.list-unstyled
               li( *ngFor='let team of teams')
-                a(href='#')
+                a((click)='getPlayers(team.whoScoredTeamId, team.teamName)')
                   img(src='#')
                   | {{team.teamName}}
         label.btn.btn-danger.text-uppercase((click)='hideTeamsDropdown=!hideTeamsDropdown') National Teams
@@ -83,8 +83,8 @@
                 a(href='#')
                   img(src='#')
                   | England - Championship
-.players-content
-  h3.team-title Team Name
+.players-content([hidden]='hideplayersList')
+  h3.team-title {{teamName}}
   .players
     ul
       li( *ngFor='let player of players')

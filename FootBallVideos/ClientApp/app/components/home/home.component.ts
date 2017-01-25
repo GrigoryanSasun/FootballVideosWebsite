@@ -17,10 +17,12 @@ export class HomeComponent implements OnInit {
     errorMessage: string;
     tournaments: Tournaments[];
     teams: Teams[];
+    teamName: string;
     players: Players[];
     hideTournamentsDropdown: boolean = true;
     hideClubsDropdown: boolean = true;
     hideTeamsDropdown: boolean = true;
+    hideplayersList: boolean = true;
 
     constructor(private tournamentsService: TournamentsService, private teamsService: TeamsService, private playersService: PlayersService) { }
 
@@ -39,10 +41,13 @@ export class HomeComponent implements OnInit {
             teams => this.teams = teams,
             error => this.errorMessage = <any>error);
     }
-    getPlayers(id) {
+    getPlayers(id, teamName) {
+        this.players = [];
         this.playersService.getPlayers(id)
             .then(
             players => this.players = players,
             error => this.errorMessage = <any>error);
+        this.hideplayersList = false;
+        this.teamName = teamName;
     }
 }

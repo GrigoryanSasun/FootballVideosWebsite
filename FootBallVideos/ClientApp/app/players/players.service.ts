@@ -11,7 +11,8 @@ export class PlayersService {
     constructor(private http: Http) { }
 
     getPlayers(id): Promise<Players[]> {
-        return this.http.get(this.playersUrl+id+'/players')
+        let playersFullUrl = this.playersUrl + id + '/players';
+        return this.http.get(playersFullUrl)
             .toPromise()
             .then(this.extractData)
             .catch(this.handleError);

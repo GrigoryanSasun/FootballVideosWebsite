@@ -30,7 +30,7 @@
    text-align:center;
    color: #DC3434;
 }
-.categories a, .categories-xs a {
+.categories a,  {
    color: #9d9d9d; 
 }
 .categories a > span {
@@ -42,7 +42,7 @@
     float: left;   
     z-index: 10;
 }
-.categories a:hover {
+.categories a:hover, .categories-xs a:hover {
   color: #DC3434;
   cursor: pointer;
 }
