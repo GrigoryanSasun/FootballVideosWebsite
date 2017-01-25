@@ -19,7 +19,7 @@ export class TournamentsService {
             .catch(this.handleError);
     }
     getTeamsByTournamentId(id): Promise<Teams[]> {
-        let teamsByTournamentIdUrl = this.tournamentsUrl+'/'+id+'/teams';
+        let teamsByTournamentIdUrl = this.tournamentsUrl + id + '/teams';
         return this.http.get(teamsByTournamentIdUrl)
             .toPromise()
             .then(this.extractData)
