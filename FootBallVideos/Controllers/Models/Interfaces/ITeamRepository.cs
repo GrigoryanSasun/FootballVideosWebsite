@@ -10,7 +10,7 @@ namespace FootballAnalyticsAPI.Models
     {
         void Add(Team item);
         IEnumerable<Team> GetAll();
-        IEnumerable<Players> GetPlayers(int id);
+        Task<IEnumerable<Players>> GetPlayersAsync(int id);
         Team Find(int id);
         void Remove(int id);
         void Update(Team item);

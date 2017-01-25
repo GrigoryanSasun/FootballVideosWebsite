@@ -1,4 +1,5 @@
 ﻿using FootballAnalyticsAPI.ModelsData;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,11 +51,12 @@ namespace FootballAnalyticsAPI.Models
             _context.SaveChanges();
         }
 
-        public IEnumerable<Players> GetPlayers(int id)
+        public async Task<IEnumerable<Players>> GetPlayersAsync(int id)
         {
             var teamId = (from q in _context.Team
-                        where q.WhoScoredTeamId == id
-                        select q.Id).FirstOrDefault();
+                            where q.WhoScoredTeamId == id
+                            select q.Id).FirstOrDefault();
+            
             var seasons = (from q in _context.Match
                            where q.AwayTeamId == teamId || q.HomeTeamId == teamId
                            select q.SeasonId).ToList();
@@ -68,9 +70,10 @@ namespace FootballAnalyticsAPI.Models
             var playerParticipationId = (from q in _context.PlayerParticipation
                                          where matches.Any(x => x == q.MatchId) && q.TeamId == id
                                          select q.PlayerId).ToList();
-            return (from q in _context.Players
-                    where playerParticipationId.Any(x=>x == q.Id) 
-                    select q);
+            var players = (from q in _context.Players
+                           where playerParticipationId.Any(x => x == q.Id)
+                           select q).ToListAsync();
+            return await players;
 
         }
     }
