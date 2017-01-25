@@ -26,7 +26,8 @@
     z-index: 10;
     color: #9d9d9d; 
 }
-.categories a:hover, .categories-xs a:hover {
+.categories li > a:hover, .categories-xs li > a:hover
+.categories li > a:focus, .categories-xs li > a:focus {
   color: #DC3434;
   cursor: pointer;
 }

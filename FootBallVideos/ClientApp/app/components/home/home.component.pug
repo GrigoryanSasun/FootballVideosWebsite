@@ -12,7 +12,7 @@
       .scrollbar
         h3.categories-title Clubs
         ul.list-unstyled
-          li( *ngFor='let team of teams')
+          li(*ngFor='let team of teams')
             a((click)='getPlayers(team.whoScoredTeamId, team.teamName)')
               span(style="background-position:0 -176px;")
               |  {{team.teamName}}
