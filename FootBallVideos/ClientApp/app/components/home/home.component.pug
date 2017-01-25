@@ -33,7 +33,7 @@
             ul.list-unstyled
               li( *ngFor='let tour of tournaments')
                 a(href='#')
-                  img(src='#')
+                  span(style="background-position:0 -176px;")
                   | {{tour.whoScoredTourName}}
         label.btn.btn-danger.text-uppercase((click)='hideClubsDropdown=!hideClubsDropdown') Clubs
         .categories-dropdown-content([hidden]='hideClubsDropdown')
@@ -41,7 +41,7 @@
             ul.list-unstyled
               li( *ngFor='let team of teams')
                 a((click)='getPlayers(team.whoScoredTeamId, team.teamName)')
-                  img(src='#')
+                  span(style="background-position:0 -176px;")
                   | {{team.teamName}}
         label.btn.btn-danger.text-uppercase((click)='hideTeamsDropdown=!hideTeamsDropdown') National Teams
         .categories-dropdown-content([hidden]='hideTeamsDropdown')
@@ -49,7 +49,7 @@
             ul.list-unstyled
               li
                 a(href='#')
-                  img(src='#')
+                  span(style="background-position:0 -176px;")
                   | UEFA - Champions League
               li
                 a(href='#')

@@ -8,6 +8,37 @@
   background-color: #222;
   color: #9d9d9d;
 }
+
+.categories-title {
+   text-align:center;
+   color: #DC3434;
+}
+.categories li > a, .categories-xs li > a {
+   color: #9d9d9d; 
+}
+.categories a > span, .categories-xs a > span {
+    padding-right: 5px;
+    background-image: url(/Content/images/CountryFlag.png);
+    height: 16px;
+    width: 16px;
+    display: block;
+    float: left;   
+    z-index: 10;
+    color: #9d9d9d; 
+}
+.categories a:hover, .categories-xs a:hover {
+  color: #DC3434;
+  cursor: pointer;
+}
+.categories ul {
+   margin-left:50px;
+   text-align:left;
+}
+.categories-dropdown-content {
+    height:150px;
+    text-align:left;
+    padding-left:20px;
+}
 .scrollbar {
 	float: left;
 	height: 100%;
@@ -25,35 +56,6 @@
 }
 .scrollbar::-webkit-scrollbar-thumb {
 	background-color: #DC3434;
-}
-.categories-title {
-   text-align:center;
-   color: #DC3434;
-}
-.categories a,  {
-   color: #9d9d9d; 
-}
-.categories a > span {
-    padding-right: 5px;
-    background-image: url(/Content/images/CountryFlag.png);
-    height: 16px;
-    width: 16px;
-    display: block;
-    float: left;   
-    z-index: 10;
-}
-.categories a:hover, .categories-xs a:hover {
-  color: #DC3434;
-  cursor: pointer;
-}
-.categories ul {
-   margin-left:50px;
-   text-align:left;
-}
-.categories-dropdown-content {
-    height:150px;
-    text-align:left;
-    padding-left:20px;
 }
 .btn.btn-danger {
     min-width: 300px;
