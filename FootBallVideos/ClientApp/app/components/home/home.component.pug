@@ -1,6 +1,6 @@
 .container-fluid
   .row.hidden-xs
-    .col-sm-4.categories
+    .col-sm-6.categories
       .scrollbar
         h3.categories-title Tournaments & Leugues
         ul.list-unstyled
@@ -8,7 +8,7 @@
             a((click)='getTeamsByTournamentId(tour.id)')
               span(style="background-position:0 -176px;")
               |  {{tour.whoScoredTourName}}
-    .col-sm-4.categories
+    .col-sm-6.categories
       .scrollbar
         h3.categories-title Clubs
         ul.list-unstyled
@@ -16,14 +16,15 @@
             a((click)='getPlayers(team.whoScoredTeamId, team.teamName)')
               span(style="background-position:0 -176px;")
               |  {{team.teamName}}
-    .col-sm-4.categories
-      .scrollbar
-        h3.categories-title National Teams
-        ul.list-unstyled
-          li
-            a(href='#')
-              span(style="background-position:0 -176px;")
-              | UEFA - Champions League
+    //
+     .col-sm-4.categories
+          .scrollbar
+            h3.categories-title National Teams
+            ul.list-unstyled
+              li
+                a(href='#')
+                  span(style="background-position:0 -176px;")
+                  | UEFA - Champions League 
   .row.visible-xs
     .btns-holder.category-btns
       .col-sm-4.categories-xs
@@ -32,7 +33,7 @@
           .scrollbar
             ul.list-unstyled
               li( *ngFor='let tour of tournaments')
-                a(href='#')
+                a((click)='getTeamsByTournamentId(tour.id)')
                   span(style="background-position:0 -176px;")
                   | {{tour.whoScoredTourName}}
         label.btn.btn-danger.text-uppercase((click)='hideClubsDropdown=!hideClubsDropdown') Clubs
@@ -43,46 +44,15 @@
                 a((click)='getPlayers(team.whoScoredTeamId, team.teamName)')
                   span(style="background-position:0 -176px;")
                   | {{team.teamName}}
-        label.btn.btn-danger.text-uppercase((click)='hideTeamsDropdown=!hideTeamsDropdown') National Teams
-        .categories-dropdown-content([hidden]='hideTeamsDropdown')
-          .scrollbar
-            ul.list-unstyled
-              li
-                a(href='#')
-                  span(style="background-position:0 -176px;")
-                  | UEFA - Champions League
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
-              li
-                a(href='#')
-                  img(src='#')
-                  | England - Championship
+        //
+          label.btn.btn-danger.text-uppercase((click)='hideTeamsDropdown=!hideTeamsDropdown') National Teams
+          .categories-dropdown-content([hidden]='hideTeamsDropdown')
+            .scrollbar
+              ul.list-unstyled
+                li
+                  a(href='#')
+                    span(style="background-position:0 -176px;")
+                    | UEFA - Champions League
 .players-content([hidden]='hideplayersList')
   h3.team-title {{teamName}}
   .players

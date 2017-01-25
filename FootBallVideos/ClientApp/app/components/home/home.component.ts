@@ -52,6 +52,7 @@ export class HomeComponent implements OnInit {
     }
     getTeamsByTournamentId(id) {
         this.teams = [];
+        this.hideClubsDropdown = false;
         this.tournamentsService.getTeamsByTournamentId(id)
             .then(
             teams => this.teams = teams,
