@@ -50,7 +50,7 @@ namespace FootBallVideos.Controllers
         //}
 
         [HttpGet("{id}/players", Name = "GetPlayersByTeamId")]
-        public async Task<IEnumerable<Players>> GetPlayersByTeamId(int id)
+        public async Task<IEnumerable<PlayerDetails>> GetPlayersByTeamId(int id)
         {
             return await Team.GetPlayersAsync(id);
         }

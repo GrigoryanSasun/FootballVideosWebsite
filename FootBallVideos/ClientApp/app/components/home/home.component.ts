@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
     hideClubsDropdown: boolean = true;
     hideTeamsDropdown: boolean = true;
     hidePlayersList: boolean = true;
-    flagPosition: string = '0 -176px';
     currentTournamentIndex: number = null;
     currentTeamIndex: number = null;
     tournamentClick: boolean = false;

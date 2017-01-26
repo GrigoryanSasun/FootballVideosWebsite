@@ -34,8 +34,8 @@ namespace FootBallVideos.Models
         public Team Find(int key)
         {
             return (from b in _context.Team
-                        where b.WhoScoredTeamId == key
-                        select b).FirstOrDefault();
+                    where b.WhoScoredTeamId == key
+                    select b).FirstOrDefault();
         }
 
         public async Task<Team> FindAsync(int key)
@@ -62,22 +62,30 @@ namespace FootBallVideos.Models
             _context.SaveChanges();
         }
 
-        public async Task<IEnumerable<Players>> GetPlayersAsync(int id)
+        public async Task<IEnumerable<PlayerDetails>> GetPlayersAsync(int id)
         {
             var players = (from p in _context.Players
                            join pp in _context.PlayerProfile on p.Id equals pp.PlayersId
                            where pp.CurrentTeamId == id
-                           select p).ToListAsync();
+                           select new PlayerDetails
+                           {
+                               name = p.PlayerName,
+                               nationalityFlagUrl = pp.NationalityFlagUrl
+                           }).ToListAsync();
             return await players;
 
         }
 
-        public IEnumerable<Players> GetPlayers(int id)
+        public IEnumerable<PlayerDetails> GetPlayers(int id)
         {
             var players = (from p in _context.Players
                            join pp in _context.PlayerProfile on p.Id equals pp.PlayersId
                            where pp.CurrentTeamId == id
-                           select p).ToList();
+                           select new PlayerDetails
+                           {
+                               name = p.PlayerName,
+                               nationalityFlagUrl = pp.NationalityFlagUrl
+                           }).ToList();
             return players.ToList();
 
         }

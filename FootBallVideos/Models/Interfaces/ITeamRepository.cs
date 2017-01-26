@@ -8,12 +8,12 @@ namespace FootBallVideos.Models
     {
         void Add(Team item);
         IEnumerable<Team> GetAll();
-        IEnumerable<Players> GetPlayers(int id);
+        IEnumerable<PlayerDetails> GetPlayers(int id);
         Team Find(int id);
         void Remove(int id);
         void Update(Team item);
 
-        Task<IEnumerable<Players>> GetPlayersAsync(int id);
+        Task<IEnumerable<PlayerDetails>> GetPlayersAsync(int id);
         Task<IEnumerable<Team>> GetAllAsync();
         Task<Team> FindAsync(int key);
     }
