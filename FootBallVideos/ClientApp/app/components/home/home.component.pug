@@ -13,8 +13,8 @@
         h3.categories-title Clubs
         ul.list-unstyled.category-item
           li(*ngFor='let team of teams; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTeamIndex')
-            a((click)='getPlayers(team.whoScoredTeamId, team.teamName);teamClick=true')
-              span([ngStyle]="{'background-position':flagPosition}")
+            a((click)='getPlayers(team.id, team.teamName);teamClick=true')
+              img(src="{{team.teamLogoUrl}}" height="16px" width="16px")
               |  {{team.teamName}}
     //
      .col-sm-4.categories
@@ -41,7 +41,7 @@
           .scrollbar
             ul.list-unstyled.category-item
               li( *ngFor='let team of teams; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTeamIndex')
-                a((click)='getPlayers(team.whoScoredTeamId, team.teamName)')
+                a((click)='getPlayers(team.id, team.teamName)')
                   span([ngStyle]="{'background-position':flagPosition}")
                   | {{team.teamName}}
         //

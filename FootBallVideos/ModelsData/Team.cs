@@ -15,6 +15,7 @@ namespace FootBallVideos.ModelsData
         public int? WhoScoredTeamId { get; set; }
         public string TeamName { get; set; }
         public int? TeamAlternativeId { get; set; }
+        public string TeamLogoUrl { get; set; }
 
         public virtual ICollection<Players> Players { get; set; }
         public virtual ICollection<TeamTournamentMap> TeamTournamentMap { get; set; }
