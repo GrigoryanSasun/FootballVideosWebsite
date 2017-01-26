@@ -3,24 +3,24 @@
     .col-sm-6.categories
       .scrollbar
         h3.categories-title Tournaments & Leugues
-        ul.list-unstyled
-          li( *ngFor='let tour of tournaments')
-            a((click)='getTeamsByTournamentId(tour.id)')
+        ul.list-unstyled.category-item
+          li( *ngFor='let tour of tournaments; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTournamentIndex')
+            a((click)='getTeamsByTournamentId(tour.id); tournamentClick=true')
               span([ngStyle]="{'background-position':flagPosition}")
               |  {{tour.whoScoredTourName}}
     .col-sm-6.categories
       .scrollbar
         h3.categories-title Clubs
-        ul.list-unstyled
-          li(*ngFor='let team of teams')
-            a((click)='getPlayers(team.whoScoredTeamId, team.teamName)')
+        ul.list-unstyled.category-item
+          li(*ngFor='let team of teams; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTeamIndex')
+            a((click)='getPlayers(team.whoScoredTeamId, team.teamName);teamClick=true')
               span([ngStyle]="{'background-position':flagPosition}")
               |  {{team.teamName}}
     //
      .col-sm-4.categories
           .scrollbar
             h3.categories-title National Teams
-            ul.list-unstyled
+            ul.list-unstyled.category-item
               li
                 a(href='#')
                   span([ngStyle]="{'background-position':flagPosition}")
@@ -31,16 +31,16 @@
         label.btn.btn-danger.text-uppercase((click)='hideTournamentsDropdown=!hideTournamentsDropdown') Tournaments & Leugues
         .categories-dropdown-content([hidden]='hideTournamentsDropdown')
           .scrollbar
-            ul.list-unstyled
-              li( *ngFor='let tour of tournaments')
+            ul.list-unstyled.category-item
+              li( *ngFor='let tour of tournaments; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTournamentIndex')
                 a((click)='getTeamsByTournamentId(tour.id)')
                   span([ngStyle]="{'background-position':flagPosition}")
                   | {{tour.whoScoredTourName}}
         label.btn.btn-danger.text-uppercase((click)='hideClubsDropdown=!hideClubsDropdown') Clubs
         .categories-dropdown-content([hidden]='hideClubsDropdown')
           .scrollbar
-            ul.list-unstyled
-              li( *ngFor='let team of teams')
+            ul.list-unstyled.category-item
+              li( *ngFor='let team of teams; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTeamIndex')
                 a((click)='getPlayers(team.whoScoredTeamId, team.teamName)')
                   span([ngStyle]="{'background-position':flagPosition}")
                   | {{team.teamName}}
@@ -48,18 +48,18 @@
           label.btn.btn-danger.text-uppercase((click)='hideTeamsDropdown=!hideTeamsDropdown') National Teams
           .categories-dropdown-content([hidden]='hideTeamsDropdown')
             .scrollbar
-              ul.list-unstyled
+              ul.list-unstyled.category-item
                 li
                   a(href='#')
                     span([ngStyle]="{'background-position':flagPosition}")
                     | UEFA - Champions League
-.players-content([hidden]='hideplayersList')
+.players-content([hidden]='hidePlayersList')
   h3.team-title {{teamName}}
   .players
     ul
       li( *ngFor='let player of players')
         a(href='#')
-          img(src='#')
+          span([ngStyle]="{'background-position':flagPosition}")
           | {{player.playerName}}
 .videos-content
   .row.row-centered

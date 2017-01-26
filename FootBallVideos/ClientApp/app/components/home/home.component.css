@@ -1,4 +1,7 @@
-﻿.categories {
+﻿.category-item li.active a {  
+    color: #DC3434;
+}
+.categories {
   height:210px;
   background-color: #222;
   color: #9d9d9d;
@@ -15,7 +18,7 @@
 .categories li > a, .categories-xs li > a {
    color: #9d9d9d; 
 }
-.categories a > span, .categories-xs a > span {
+.categories a > span, .categories-xs a > span, .players a > span {
     padding-right: 5px;
     background-image: url(/Content/images/CountryFlag.png);
     height: 16px;
@@ -80,6 +83,7 @@
     -webkit-column-width: 400px; 
     column-width: 400px; 
     margin: 0 auto;  
+    
 }
 .players a {
    color: #9d9d9d; 

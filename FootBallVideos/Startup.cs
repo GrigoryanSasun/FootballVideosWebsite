@@ -30,7 +30,7 @@ namespace FootBallVideos
         {
             services.AddDbContext<FootballAnalyticsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FootballAnalyticsDatabase")));
             // Add framework services.
-            services.AddApplicationInsightsTelemetry(Configuration);
+            //services.AddApplicationInsightsTelemetry(Configuration);
             services.AddMvc();
           
             //var connection = @";Database=FootballAnalytics;Trusted_Connection=True;";

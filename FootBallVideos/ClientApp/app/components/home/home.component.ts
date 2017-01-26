@@ -22,9 +22,12 @@ export class HomeComponent implements OnInit {
     hideTournamentsDropdown: boolean = true;
     hideClubsDropdown: boolean = true;
     hideTeamsDropdown: boolean = true;
-    hideplayersList: boolean = true;
+    hidePlayersList: boolean = true;
     flagPosition: string = '0 -176px';
-
+    currentTournamentIndex: number = null;
+    currentTeamIndex: number = null;
+    tournamentClick: boolean = false;
+    teamClick: boolean = false;
     constructor(private tournamentsService: TournamentsService, private teamsService: TeamsService, private playersService: PlayersService) { }
 
     ngOnInit() { this.getTournaments(); this.getTeams() }
@@ -48,10 +51,13 @@ export class HomeComponent implements OnInit {
             .then(
             players => this.players = players,
             error => this.errorMessage = <any>error);
-        this.hideplayersList = false;
+        this.hidePlayersList = false;
         this.teamName = teamName;
     }
     getTeamsByTournamentId(id) {
+        this.hidePlayersList = true;
+        this.teamClick == false;
+        this.currentTeamIndex = null;
         this.teams = [];
         this.hideClubsDropdown = false;
         this.tournamentsService.getTeamsByTournamentId(id)
@@ -59,11 +65,15 @@ export class HomeComponent implements OnInit {
             teams => this.teams = teams,
             error => this.errorMessage = <any>error);
     }
-    setFlag() {
-        let styles = {
-            'background-position': '0 -6928px',
-            
-        };
-        return styles;
+    selectedItem(index) {
+        if (this.tournamentClick == true) {
+            this.currentTournamentIndex = index;
+            this.tournamentClick = false;
+        }
+        if (this.teamClick == true) {
+            this.currentTeamIndex = index;
+            this.teamClick = false;
+        }
     }
+    
 }
