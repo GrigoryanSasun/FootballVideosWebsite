@@ -6,7 +6,7 @@
         ul.list-unstyled
           li( *ngFor='let tour of tournaments')
             a((click)='getTeamsByTournamentId(tour.id)')
-              span(style="background-position:0 -176px;")
+              span([ngStyle]="{'background-position':flagPosition}")
               |  {{tour.whoScoredTourName}}
     .col-sm-6.categories
       .scrollbar
@@ -14,7 +14,7 @@
         ul.list-unstyled
           li(*ngFor='let team of teams')
             a((click)='getPlayers(team.whoScoredTeamId, team.teamName)')
-              span(style="background-position:0 -176px;")
+              span([ngStyle]="{'background-position':flagPosition}")
               |  {{team.teamName}}
     //
      .col-sm-4.categories
@@ -23,7 +23,7 @@
             ul.list-unstyled
               li
                 a(href='#')
-                  span(style="background-position:0 -176px;")
+                  span([ngStyle]="{'background-position':flagPosition}")
                   | UEFA - Champions League 
   .row.visible-xs
     .btns-holder.category-btns
@@ -34,7 +34,7 @@
             ul.list-unstyled
               li( *ngFor='let tour of tournaments')
                 a((click)='getTeamsByTournamentId(tour.id)')
-                  span(style="background-position:0 -176px;")
+                  span([ngStyle]="{'background-position':flagPosition}")
                   | {{tour.whoScoredTourName}}
         label.btn.btn-danger.text-uppercase((click)='hideClubsDropdown=!hideClubsDropdown') Clubs
         .categories-dropdown-content([hidden]='hideClubsDropdown')
@@ -42,7 +42,7 @@
             ul.list-unstyled
               li( *ngFor='let team of teams')
                 a((click)='getPlayers(team.whoScoredTeamId, team.teamName)')
-                  span(style="background-position:0 -176px;")
+                  span([ngStyle]="{'background-position':flagPosition}")
                   | {{team.teamName}}
         //
           label.btn.btn-danger.text-uppercase((click)='hideTeamsDropdown=!hideTeamsDropdown') National Teams
@@ -51,7 +51,7 @@
               ul.list-unstyled
                 li
                   a(href='#')
-                    span(style="background-position:0 -176px;")
+                    span([ngStyle]="{'background-position':flagPosition}")
                     | UEFA - Champions League
 .players-content([hidden]='hideplayersList')
   h3.team-title {{teamName}}

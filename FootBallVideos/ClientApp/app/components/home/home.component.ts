@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     hideClubsDropdown: boolean = true;
     hideTeamsDropdown: boolean = true;
     hideplayersList: boolean = true;
+    flagPosition: string = '0 -176px';
 
     constructor(private tournamentsService: TournamentsService, private teamsService: TeamsService, private playersService: PlayersService) { }
 
@@ -57,5 +58,12 @@ export class HomeComponent implements OnInit {
             .then(
             teams => this.teams = teams,
             error => this.errorMessage = <any>error);
+    }
+    setFlag() {
+        let styles = {
+            'background-position': '0 -6928px',
+            
+        };
+        return styles;
     }
 }
