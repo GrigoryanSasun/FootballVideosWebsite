@@ -1,9 +1,9 @@
-﻿using FootballAnalyticsAPI.Models;
+﻿using FootBallVideos.Models;
 using FootBallVideos.ModelsData;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace FootballAnalyticsAPI.Controllers
+namespace FootBallVideos.Controllers
 {
     [Route("api/[controller]")]
     public class PlayerParticipiationController : Controller

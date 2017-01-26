@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using FootballAnalyticsAPI.Models;
 using FootBallVideos.ModelsData;
+using FootBallVideos.Models;
 
 namespace FootBallVideos
 {

@@ -1,12 +1,10 @@
-﻿using FootballAnalyticsAPI.Models;
-using FootballAnalyticsAPI.ModelsData;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FootballAnalyticsAPI.Controllers
+namespace FootBallVideos.Controllers
 {
     [Route("api/[controller]")]
     public class MatchController : Controller

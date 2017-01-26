@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FootballAnalyticsAPI.Models
+namespace FootBallVideos.Models
 {
     public interface ITournamentRepository
     {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FootballAnalyticsAPI.Models
+namespace FootBallVideos.Models
 {
     public class SeasonRepository : ISeasonRepository
     {

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using FootBallVideos.ModelsData;
 
-namespace FootballAnalyticsAPI.Models
+namespace FootBallVideos.Models
 {
     public class TournamentRepository : ITournamentRepository
     {

@@ -1,11 +1,10 @@
-﻿using FootballAnalyticsAPI.ModelsData;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using FootBallVideos.ModelsData;
 
-namespace FootballAnalyticsAPI.Models
+namespace FootBallVideos.Models
 {
     public class PlayersRepository : IPlayersRepository
     {

@@ -1,8 +1,7 @@
-﻿using FootBallVideos.ModelsData;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace FootballAnalyticsAPI.ModelsData
+namespace FootBallVideos.ModelsData
 {
     public partial class Match
     {
