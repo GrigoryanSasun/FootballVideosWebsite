@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FootballAnalyticsAPI.ModelsData
+namespace FootBallVideos.ModelsData
 {
     public partial class PlayerParticipation
     {
@@ -11,9 +11,8 @@ namespace FootballAnalyticsAPI.ModelsData
         public string Played { get; set; }
         public string Score { get; set; }
         public string Position { get; set; }
-        public int TeamId { get; set; }
+        public int? TeamId { get; set; }
 
-        public virtual Match Match { get; set; }
         public virtual Players Player { get; set; }
     }
 }

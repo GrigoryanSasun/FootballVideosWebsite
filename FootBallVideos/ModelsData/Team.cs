@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FootballAnalyticsAPI.ModelsData
+namespace FootBallVideos.ModelsData
 {
     public partial class Team
     {
         public Team()
         {
-            MatchAwayTeam = new HashSet<Match>();
-            MatchHomeTeam = new HashSet<Match>();
+            Players = new HashSet<Players>();
+            TeamTournamentMap = new HashSet<TeamTournamentMap>();
         }
 
         public int Id { get; set; }
-        public int WhoScoredTeamId { get; set; }
+        public int? WhoScoredTeamId { get; set; }
         public string TeamName { get; set; }
+        public int? TeamAlternativeId { get; set; }
 
-        public virtual ICollection<Match> MatchAwayTeam { get; set; }
-        public virtual ICollection<Match> MatchHomeTeam { get; set; }
+        public virtual ICollection<Players> Players { get; set; }
+        public virtual ICollection<TeamTournamentMap> TeamTournamentMap { get; set; }
+        public virtual TeamsAlternative TeamAlternative { get; set; }
     }
 }

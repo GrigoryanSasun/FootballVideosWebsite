@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FootBallVideos.ModelsData;
+using System;
 using System.Collections.Generic;
 
 namespace FootballAnalyticsAPI.ModelsData

@@ -1,4 +1,4 @@
-﻿using FootballAnalyticsAPI.ModelsData;
+﻿using FootBallVideos.ModelsData;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -62,6 +62,26 @@ namespace FootballAnalyticsAPI.Models
             entry.Property(e => e.WhoScoredSeasonId).IsModified = true;
             entry.Property(e => e.TournamentsId).IsModified = true;
             _context.SaveChanges();
+        }
+
+        IEnumerable<Season> ISeasonRepository.GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        Season ISeasonRepository.Find(int key)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<IEnumerable<Season>> ISeasonRepository.GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Season> ISeasonRepository.FindAsync(int key)
+        {
+            throw new NotImplementedException();
         }
     }
 }

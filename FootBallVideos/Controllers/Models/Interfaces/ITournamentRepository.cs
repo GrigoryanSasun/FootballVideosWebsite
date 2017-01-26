@@ -1,7 +1,5 @@
-﻿using FootballAnalyticsAPI.ModelsData;
-using System;
+﻿using FootBallVideos.ModelsData;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FootballAnalyticsAPI.Models

@@ -1,6 +1,5 @@
-﻿using FootballAnalyticsAPI.ModelsData;
+﻿using FootBallVideos.ModelsData;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -65,53 +64,21 @@ namespace FootballAnalyticsAPI.Models
 
         public async Task<IEnumerable<Players>> GetPlayersAsync(int id)
         {
-            var teamId = (from q in _context.Team
-                            where q.WhoScoredTeamId == id
-                            select q.Id).FirstOrDefault();
-            
-            var seasons = (from q in _context.Match
-                           where q.AwayTeamId == teamId || q.HomeTeamId == teamId
-                           select q.SeasonId).ToList();
-            var seasonId = (from q in _context.Season
-                            where seasons.Any(x=>x == q.Id)
-                            orderby q.SeasonTitle descending
-                            select q).FirstOrDefault();
-            var matches = (from q in _context.Match
-                           where q.SeasonId == seasonId.Id && (q.AwayTeamId == teamId || q.HomeTeamId == teamId)
-                           select q.Id).ToList();
-            var playerParticipationId = (from q in _context.PlayerParticipation
-                                         where matches.Any(x => x == q.MatchId) && q.TeamId == id
-                                         select q.PlayerId).ToList();
-            var players = (from q in _context.Players
-                           where playerParticipationId.Any(x => x == q.Id)
-                           select q).ToListAsync();
+            var players = (from p in _context.Players
+                           join pp in _context.PlayerProfile on p.Id equals pp.PlayersId
+                           where pp.CurrentTeamId == id
+                           select p).ToListAsync();
             return await players;
 
         }
 
         public IEnumerable<Players> GetPlayers(int id)
         {
-            var teamId = (from q in _context.Team
-                          where q.WhoScoredTeamId == id
-                          select q.Id).FirstOrDefault();
-
-            var seasons = (from q in _context.Match
-                           where q.AwayTeamId == teamId || q.HomeTeamId == teamId
-                           select q.SeasonId).ToList();
-            var seasonId = (from q in _context.Season
-                            where seasons.Any(x => x == q.Id)
-                            orderby q.SeasonTitle descending
-                            select q).FirstOrDefault();
-            var matches = (from q in _context.Match
-                           where q.SeasonId == seasonId.Id && (q.AwayTeamId == teamId || q.HomeTeamId == teamId)
-                           select q.Id).ToList();
-            var playerParticipationId = (from q in _context.PlayerParticipation
-                                         where matches.Any(x => x == q.MatchId) && q.TeamId == id
-                                         select q.PlayerId).ToList();
-            var players = (from q in _context.Players
-                           where playerParticipationId.Any(x => x == q.Id)
-                           select q).ToList();
-            return players;
+            var players = (from p in _context.Players
+                           join pp in _context.PlayerProfile on p.Id equals pp.PlayersId
+                           where pp.CurrentTeamId == id
+                           select p).ToList();
+            return players.ToList();
 
         }
     }
