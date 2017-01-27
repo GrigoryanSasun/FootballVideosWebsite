@@ -5,7 +5,7 @@ import { TeamsService } from '../../teams/teams.service';
 import { Players } from '../../players/players';
 import { PlayersService } from '../../players/players.service';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'home',
@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
     currentTeamIndex: number = null;
     tournamentClick: boolean = false;
     teamClick: boolean = false;
+    videoImages = [1,2,3,4,5,6,7,8]; 
+   
     constructor(private tournamentsService: TournamentsService, private teamsService: TeamsService, private playersService: PlayersService) { }
 
     ngOnInit() { this.getTournaments(); this.getTeams() }
@@ -74,5 +76,10 @@ export class HomeComponent implements OnInit {
             this.teamClick = false;
         }
     }
-    
+    onScrollDown() {
+        let last = this.videoImages[this.videoImages.length - 1];
+        for (let i = 0; i < 8; i++) {
+            this.videoImages.push(last + i);
+        }
+    }
 }

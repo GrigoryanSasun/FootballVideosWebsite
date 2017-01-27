@@ -9,9 +9,10 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { AboutUsComponent } from './components/aboutus/about-us.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DetailsComponent } from './components/details/details.component';
+import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 
 @NgModule({
-    bootstrap: [ AppComponent ],
+    bootstrap: [AppComponent],
     declarations: [
         AppComponent,
         NavMenuComponent,
@@ -23,6 +24,7 @@ import { DetailsComponent } from './components/details/details.component';
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too
+        InfiniteScrollModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
@@ -30,9 +32,10 @@ import { DetailsComponent } from './components/details/details.component';
             { path: 'contacts', component: ContactsComponent },
             { path: 'videodetails', component: DetailsComponent },
             { path: '**', redirectTo: 'home' },
-           
+
         ])
     ]
 })
 export class AppModule {
+   
 }
