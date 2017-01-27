@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 
 namespace FootBallVideos.Models
 {
-    public class PlayerDetails
+    public class TournamentDetail
     {
-        public PlayerDetails() { }
+        public TournamentDetail() { }
 
+        public int id { get; set; }
         public string name { get; set; }
         public string nationalityFlagPosition { get; set; }
         public int videoCount { get; set; }
     }
+
 }

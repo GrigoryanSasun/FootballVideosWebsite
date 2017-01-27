@@ -15,14 +15,30 @@ namespace FootBallVideos.Models
             _context = context;
         }
 
-        public IEnumerable<Tournaments> GetAll()
+        public IEnumerable<TournamentDetail> GetAll()
         {
-            return _context.Tournaments;
+            var tournaments = (from t in _context.Tournaments
+                               join f in _context.Flags on t.FlagId equals f.Id
+                               select new TournamentDetail
+                               {
+                                   id = t.Id,
+                                   name = t.WhoScoredTourName,
+                                   nationalityFlagPosition = f.FlagLocation
+                               }).ToList();
+            return tournaments;
         }
 
-        public async Task<IEnumerable<Tournaments>> GetAllAsync()
+        public async Task<IEnumerable<TournamentDetail>> GetAllAsync()
         {
-            return await _context.Tournaments.ToListAsync();
+            var tournaments = (from t in _context.Tournaments
+                           join f in _context.Flags on t.FlagId equals f.Id
+                           select new TournamentDetail
+                           {
+                               id = t.Id,
+                               name = t.WhoScoredTourName,
+                               nationalityFlagPosition = f.FlagLocation
+                           }).ToListAsync();
+            return await tournaments;
         }
 
         public void Add(Tournaments item)

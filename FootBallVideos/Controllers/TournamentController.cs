@@ -16,7 +16,7 @@ namespace FootBallVideos.Controllers
         public ITournamentRepository Tournaments { get; set; }
 
         [HttpGet]
-        public async Task<IEnumerable<Tournaments>> GetAllAsync()
+        public async Task<IEnumerable<TournamentDetail>> GetAllAsync()
         {
             return await Tournaments.GetAllAsync();
         }

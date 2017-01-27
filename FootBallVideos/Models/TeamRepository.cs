@@ -70,7 +70,7 @@ namespace FootBallVideos.Models
                            select new PlayerDetails
                            {
                                name = p.PlayerName,
-                               nationalityFlagUrl = pp.NationalityFlagUrl
+                               nationalityFlagPosition = pp.NationalityFlagUrl
                            }).ToListAsync();
             return await players;
 
@@ -84,7 +84,7 @@ namespace FootBallVideos.Models
                            select new PlayerDetails
                            {
                                name = p.PlayerName,
-                               nationalityFlagUrl = pp.NationalityFlagUrl
+                               nationalityFlagPosition = pp.NationalityFlagUrl
                            }).ToList();
             return players.ToList();
 
