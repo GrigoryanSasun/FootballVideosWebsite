@@ -6,8 +6,8 @@
         ul.list-unstyled.category-item
           li( *ngFor='let tour of tournaments; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTournamentIndex')
             a((click)='getTeamsByTournamentId(tour.id); tournamentClick=true')
-              span([ngStyle]="{'background-position':flagPosition}")
-              |  {{tour.whoScoredTourName}}
+              span([ngStyle]="{'background-position':tour.nationalityFlagPosition}")
+              |  {{tour.name}}
     .col-sm-6.categories
       .scrollbar
         h3.categories-title Clubs
@@ -34,8 +34,8 @@
             ul.list-unstyled.category-item
               li( *ngFor='let tour of tournaments; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTournamentIndex')
                 a((click)='getTeamsByTournamentId(tour.id)')
-                  span([ngStyle]="{'background-position':flagPosition}")
-                  | {{tour.whoScoredTourName}}
+                  span([ngStyle]="{'background-position':tour.nationalityFlagPosition}")
+                  | {{tour.name}}
         label.btn.btn-danger.text-uppercase((click)='hideClubsDropdown=!hideClubsDropdown') Clubs
         .categories-dropdown-content([hidden]='hideClubsDropdown')
           .scrollbar
@@ -59,7 +59,7 @@
     ul
       li( *ngFor='let player of players')
         a(href='#')
-          span([ngStyle]="{'background-position':player.nationalityFlagUrl}")
+          span([ngStyle]="{'background-position':player.nationalityFlagPosition}")
           | {{player.name}}
 .videos-content(infinite-scroll, (scrolled)='onScrollDown()', [infiniteScrollDistance]='0', [infiniteScrollThrottle]='0')
   .row.row-centered
