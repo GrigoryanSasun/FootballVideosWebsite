@@ -7,13 +7,13 @@ namespace FootBallVideos.Models
 {
     public interface IMatchRepository
     {
-        //void Add(Match item);
-        //IEnumerable<Match> GetAll();
-        //Match Find(int key);
-        //void Remove(int key);
-        //void Update(Match item);
+        void Add(Match item);
+        IEnumerable<Match> GetAll();
+        Match Find(int key);
+        void Remove(int key);
+        void Update(Match item);
 
-        //Task<IEnumerable<Match>> GetAllAsync();
-        //Task<Match> FindAsync(int key);
+        Task<IEnumerable<Match>> GetAllAsync();
+        Task<Match> FindAsync(int key);
     }
 }

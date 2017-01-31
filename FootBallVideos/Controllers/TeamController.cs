@@ -16,16 +16,10 @@ namespace FootBallVideos.Controllers
         public ITeamRepository Team { get; set; }
 
         [HttpGet]
-        public async Task<IEnumerable<Team>> GetAllAsync()
+        public async Task<IEnumerable<Teams>> GetAllAsync()
         {
             return await Team.GetAllAsync();
         }
-
-        //[HttpGet]
-        //public IEnumerable<Team> GetAll()
-        //{
-        //    return Team.GetAll();
-        //}
 
         [HttpGet("{id}", Name = "GetTeam")]
         public IActionResult GetById(int id)
@@ -37,17 +31,6 @@ namespace FootBallVideos.Controllers
             }
             return new ObjectResult(item);
         }
-
-        //[HttpGet("{id}", Name = "GetTeam")]
-        //public IActionResult GetByIdAsync(int id)
-        //{
-        //    var item = Team.Find(id);
-        //    if (item == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return new ObjectResult(item);
-        //}
 
         [HttpGet("{id}/players", Name = "GetPlayersByTeamId")]
         public async Task<IEnumerable<PlayerDetails>> GetPlayersByTeamId(int id)
