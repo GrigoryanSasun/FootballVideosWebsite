@@ -1,23 +1,39 @@
-﻿.category-item li.active a {  
-    color: #DC3434;
+﻿.sidebar{
+    border-right: 1px solid #1f1515;
+    height: 100%;
+    top: 85px;
+    position: fixed;
+    width: 220px;
+background: #0c0000; /* Old browsers */
+background: -moz-linear-gradient(45deg, #0c0000 11%, #260600 31%, #260600 67%, #0f0000 83%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg, #0c0000 11%,#260600 31%,#260600 67%,#0f0000 83%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg, #0c0000 11%,#260600 31%,#260600 67%,#0f0000 83%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', endColorstr='#0f0000',GradientType=1 );
+}
+.category-item li.active a {  
+    color: #6B0F1A;
 }
 .categories {
   height:210px;
-  background-color: #222;
-  color: #9d9d9d;
+  background-color: transparent;
+  color: #807e78;
   padding: 5px 5px;
+  border-bottom: 1px solid #1f1515;
 }
 .categories-xs {
   background-color: #222;
-  color: #9d9d9d;
+  color: #807e78;
 }
 
 .categories-title {
    text-align:center;
-   color: #DC3434;
+   color: #F7F3E3;
+   margin:5px;
+   font-weight: bold;
+   height: 40px; 
 }
 .categories li > a, .categories-xs li > a {
-   color: #9d9d9d; 
+   color: #807e78; 
 }
 .categories a > span, .categories-xs a > span, .players a > span {
     padding-right: 5px;
@@ -32,11 +48,11 @@
 }
 .categories li > a:hover, .categories-xs li > a:hover,
 .categories li > a:focus, .categories-xs li > a:focus { 
-  color: #DC3434;
+  color: #6B0F1A;
   cursor: pointer;
 }
 .categories ul {
-   margin-left:50px;
+   margin-left:20px;
    text-align:left;
 }
 .categories-dropdown-content {
@@ -46,21 +62,22 @@
 }
 .scrollbar {
 	float: left;
-	height: 100%;
+	height: 150px;
 	width: 100%;
 	overflow-y: scroll;
+   
 }
 .scrollbar::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	background-color: #9d9d9d;
+	background-color: #807e78;
 }
 
 .scrollbar::-webkit-scrollbar {
 	width: 6px;
-	background-color: #F5F5F5;
+	background-color: #807e78;
 }
 .scrollbar::-webkit-scrollbar-thumb {
-	background-color: #DC3434;
+	background-color: #560700;
 }
 .btn.btn-danger {
     min-width: 300px;
@@ -69,17 +86,6 @@
     text-align:center;
     background-size: contain;
 }
-.team-title {
-    text-align:center;
-    color: #DC3434;
-}
-.players-content {
-    background-color: #222;
-    margin: 20px 50px auto;
-    height: 100%;
-    padding: 20px 20px 20px 20px;  
-    color: #9d9d9d;
-}
 .players {    
     -moz-column-width: 400px; 
     -webkit-column-width: 400px; 
@@ -87,31 +93,24 @@
     margin: 0 auto;  
     
 }
-.players a {
-   color: #9d9d9d; 
-}
-.players a > img {
-  padding-right: 5px;
-}
-.players a:hover {
-  color: #DC3434;
-}
-.players ul {
-   margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-.players ul li:first-child {
-    margin-top:0px;
-}
 .videos-content {
-    background-color: #222;
-    margin: 20px auto;
-    margin-right: 50px;
-    margin-left: 50px;
+    background: #0f0000; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #0f0000 17%, #260600 33%, #260600 69%, #0c0000 89%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #0f0000 17%,#260600 33%,#260600 69%,#0c0000 89%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #0f0000 17%,#260600 33%,#260600 69%,#0c0000 89%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f0000', endColorstr='#0c0000',GradientType=1 ); 
+    margin: 0 auto;
     height: 100%;
-    padding: 20px 5px;
+    padding: 20px 20px;
     min-width: 300px;
+    margin-right: 10px;
+    margin-left: 230px;
+    top: 85px;
+    margin-top: 10px;
+    border: 1px solid #1f1515;
+}
+.row-centered {
+    text-align:center;
 }
 .videos-img-holder {
     height: 200px;
@@ -123,6 +122,7 @@
 }
 
 .videos {
+    position:center;
     margin-bottom:20px;
     margin-right: 10px;
     display: inline-block;

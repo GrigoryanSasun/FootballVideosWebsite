@@ -1,17 +1,24 @@
-.main-nav
-	.navbar.navbar-inverse
-		.navbar-header
-			button.navbar-toggle(type='button',data-toggle='collapse', data-target='.navbar-collapse')
-				span.sr-only('Toggle navigation')
-				span.icon-bar
-				span.icon-bar
-				span.icon-bar
-			a.navbar-brand(routerLink='/home') FootBallVideos
-		.navbar-collapse.collapse
-			ul.nav.navbar-nav
-				li(routerLinkActive='link-active')
-					a(routerLink='/home') Home
-				li(routerLinkActive='link-active')
-					a(routerLink='/about-us') About Us
-				li(routerLinkActive='link-active')
-					a(routerLink='/contacts') Contacts
+#flipkart-navbar
+  .container-fluid
+    .row.header
+      .col-sm-3
+        .menu-bar
+          a(data-toggle='collapse')
+            span.bars
+        .logo
+          a(routerlink='/home') FootBallVideos
+      .flipkart-navbar-search.smallsearch.col-sm-6.col-xs-11
+        .row
+          input.flipkart-navbar-input.col-xs-11(type='', placeholder='Search...', name='')
+          button.flipkart-navbar-button.col-xs-1
+            i.fa.fa-search
+      ul.largenav.pull-right
+        li.upper-links
+          a.links(routerLink='/home')
+            span.menu-icon.fa.fa-home
+        li.upper-links
+          a.links(routerLink='/contacts')
+            span.menu-icon.fa.fa-phone
+        li.upper-links
+          a.links(routerLink='/about-us')
+            span.menu-icon.fa.fa-info
