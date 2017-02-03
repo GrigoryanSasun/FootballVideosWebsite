@@ -25,14 +25,7 @@
               a(href='#')
                 span([ngStyle]="{'background-position':player.nationalityFlagPosition}")
                 | {{player.name}}
-    .videos-content.col-sm-10(infinite-scroll='infinite-scroll', (scrolled)='onScrollDown()', [infiniteScrollDistance]='0', [infiniteScrollThrottle]='0')
-      .row.row-centered
-        .videos.col-lg-4.col-md-4.col-sm-6.col-xs-12.col-centered(*ngFor='let video of videoImages')
-          div
-            .videos-img-holder
-              a(routerLink='/videodetails')
-                img(src='/Content/images/VideoImage.jpg')
-  .row.visible-xs
+  .row.mobile.visible-xs
     .btns-holder.category-btns
       .col-sm-4.categories-xs
         label.btn.btn-danger.text-uppercase((click)='hideTournamentsDropdown=!hideTournamentsDropdown') Tournaments & Leugues
@@ -48,6 +41,21 @@
           .scrollbar
             ul.list-unstyled.category-item
               li(*ngFor='let team of teams; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTeamIndex')
-                a((click)='getPlayers(team.id, team.teamName)')
-                  span([ngStyle]="{'background-position':flagPosition}")
-                  | {{team.teamName}}
+                a((click)='getPlayers(team.id, team.teamName); teamClick=true')
+                  img(src='{{team.teamLogoUrl}}', height='16px', width='16px')
+                  |  {{team.teamName}}
+        label.btn.btn-danger.text-uppercase([hidden]='hidePlayersList', (click)='hidePlayersDropdown=!hidePlayersDropdown') {{teamName}}
+        .categories-dropdown-content([hidden]='hidePlayersDropdown')
+          .scrollbar
+            ul.list-unstyled.category-item
+              li(*ngFor='let player of players; let i = index', (click)='selectedItem(i)')
+                a(href='#')
+                  span([ngStyle]="{'background-position':player.nationalityFlagPosition}")
+                  |  {{player.name}}
+  .row.videos-content.col-sm-10(infinite-scroll='infinite-scroll', (scrolled)='onScrollDown()', [infiniteScrollDistance]='0', [infiniteScrollThrottle]='1')
+      .row.row-centered
+        .videos.col-lg-4.col-sm-6.col-centered(*ngFor='let video of videoImages')
+          div
+            .videos-img-holder
+              a(routerLink='/videodetails')
+                img(src='/Content/images/VideoImage.jpg')

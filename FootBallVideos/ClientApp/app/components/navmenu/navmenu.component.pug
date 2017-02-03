@@ -1,24 +1,30 @@
 #flipkart-navbar
   .container-fluid
     .row.header
-      .col-sm-3
+      .flipkart-navbar-menu.col-md-1.col-sm-1.col-xs-2
         .menu-bar
           a(data-toggle='collapse')
             span.bars
-        .logo
-          a(routerlink='/home') FootBallVideos
-      .flipkart-navbar-search.smallsearch.col-sm-6.col-xs-11
-        .row
-          input.flipkart-navbar-input.col-xs-11(type='', placeholder='Search...', name='')
-          button.flipkart-navbar-button.col-xs-1
+      .flipkart-navbar-logo.col-md-3.col-sm-3.col-xs-8
+        a(routerLink='/home') FootBallVideos
+      .flipkart-navbar-search.col-md-6
+        input.flipkart-navbar-input.col-xs-11(type='', placeholder='Search...', name='')
+        button.flipkart-navbar-button.col-xs-1
             i.fa.fa-search
-      ul.largenav.pull-right
-        li.upper-links
-          a.links(routerLink='/home')
-            span.menu-icon.fa.fa-home
-        li.upper-links
-          a.links(routerLink='/contacts')
-            span.menu-icon.fa.fa-phone
-        li.upper-links
-          a.links(routerLink='/about-us')
-            span.menu-icon.fa.fa-info
+      .search-button.col-xs-2
+        .span
+          i.fa.fa-search
+      .flipkart-navbar-icons.col-md-2
+        ul.nav-icons
+          li.upper-links.search-icon
+            a.links(routerLink='/home')
+              span.menu-icon.fa.fa-search
+          li.upper-links.home-icon
+            a.links(routerLink='/home')
+              span.menu-icon.fa.fa-home
+          li.upper-links.phone-icon
+            a.links(routerLink='/contacts')
+              span.menu-icon.fa.fa-phone
+          li.upper-links.info-icon
+            a.links(routerLink='/about-us')
+              span.menu-icon.fa.fa-info

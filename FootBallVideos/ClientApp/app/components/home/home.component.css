@@ -1,4 +1,7 @@
-﻿.sidebar{
+﻿[hidden] {
+  display: none !important;
+}
+.sidebar{
     border-right: 1px solid #1f1515;
     height: 100%;
     top: 85px;
@@ -21,7 +24,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', end
   border-bottom: 1px solid #1f1515;
 }
 .categories-xs {
-  background-color: #222;
+  background-color: #050000;
   color: #807e78;
 }
 
@@ -59,6 +62,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', end
     height:150px;
     text-align:left;
     padding-left:20px;
+    border-bottom: 1px solid #1f1515;
 }
 .scrollbar {
 	float: left;
@@ -79,12 +83,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', end
 .scrollbar::-webkit-scrollbar-thumb {
 	background-color: #560700;
 }
+
 .btn.btn-danger {
     min-width: 300px;
     width:100%;
-    margin:10px;
+    margin:10px 0px;
     text-align:center;
     background-size: contain;
+    background-color: #560700;
+    border: 1px solid #1f1515;
 }
 .players {    
     -moz-column-width: 400px; 
@@ -101,13 +108,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', end
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f0000', endColorstr='#0c0000',GradientType=1 ); 
     margin: 0 auto;
     height: 100%;
+    width: inherit;
     padding: 20px 20px;
     min-width: 300px;
     margin-right: 10px;
     margin-left: 230px;
-    top: 85px;
     margin-top: 10px;
+    top:0px;
     border: 1px solid #1f1515;
+}
+@media only screen and (max-width: 768px) {
+    .videos-content {
+    margin-left: 10px;
+    }
 }
 .row-centered {
     text-align:center;

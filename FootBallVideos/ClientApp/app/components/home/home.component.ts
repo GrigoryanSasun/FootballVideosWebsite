@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     players: Players[];
     hideTournamentsDropdown: boolean = true;
     hideClubsDropdown: boolean = true;
-    hideTeamsDropdown: boolean = true;
+    hidePlayersDropdown: boolean = true;
     hidePlayersList: boolean = true;
     currentTournamentIndex: number = null;
     currentTeamIndex: number = null;
@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
     }
     getPlayers(id, teamName) {
         this.players = [];
+        this.hidePlayersDropdown = false;
         this.playersService.getPlayers(id)
             .then(
             players => this.players = players,
@@ -57,7 +58,8 @@ export class HomeComponent implements OnInit {
     }
     getTeamsByTournamentId(id) {
         this.hidePlayersList = true;
-        this.teamClick == false;
+        this.hidePlayersDropdown = true
+        this.teamClick = false;
         this.currentTeamIndex = null;
         this.teams = [];
         this.hideClubsDropdown = false;

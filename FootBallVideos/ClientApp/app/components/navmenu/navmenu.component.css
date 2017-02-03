@@ -1,13 +1,11 @@
 #flipkart-navbar {
-   /* background-color: #222;*/
-background: #0c0000; /* Old browsers */
-background: -moz-linear-gradient(45deg, #0c0000 11%, #260600 31%, #560700 48%, #260600 67%, #0f0000 83%); /* FF3.6-15 */
-background: -webkit-linear-gradient(45deg, #0c0000 11%,#260600 31%,#560700 48%,#260600 67%,#0f0000 83%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(45deg, #0c0000 11%,#260600 31%,#560700 48%,#260600 67%,#0f0000 83%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+background: #0c0000;
+background: -moz-linear-gradient(45deg, #0c0000 11%, #260600 31%, #560700 48%, #560700 67%, #0f0000 83%);
+background: -webkit-linear-gradient(45deg, #0c0000 11%,#260600 31%,#560700 48%,#560700 67%,#0f0000 83%); 
+background: linear-gradient(45deg, #0c0000 11%,#260600 31%,#560700 48%,#560700 67%,#0f0000 83%); 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', endColorstr='#0f0000',GradientType=1 );
 
 }
-
 .header {
     padding: 20px;
        border-bottom: 1px solid #1f1515;
@@ -15,15 +13,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', end
 .menu-bar {
     display: inline-block;
     margin: 10px;
-    width: 30px;
-    margin-left: 50px;
+    width: inherit;
+    margin-left: auto;
 }
-.logo{
+.flipkart-navbar-logo{
     display: inline-block;
     font-size:x-large;
+    float: left;
 }
-.logo a{
-     color:#F7F3E3;
+.flipkart-navbar-logo a{
+    color:#F7F3E3;
     font-weight: bold;
 }
 .bars {
@@ -55,7 +54,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', end
     cursor: pointer;
     margin-left:-60px;
 }
-
+.flipkart-navbar-icons{
+    text-align: center;
+    width: auto;
+    display: inline-block;
+    float: right;
+    padding:0px;
+     top:10px;
+}
+.nav-icons{
+     padding:0px;
+     margin:0px;
+    
+}
 .upper-links {
     display: inline-block;
     padding: 0 11px;
@@ -69,6 +80,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', end
 .upper-links a {
     color: #F7F3E3;
     }
+.search-button, .search-icon {
+    display: none;
+}
 .links {
     color: #fff;
     text-decoration: none;
@@ -78,22 +92,39 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', end
     color: #fff;
     text-decoration: none;
 }
-
-
-.smallsearch{
-    margin-left: 15px;
-    margin-top: 15px;
-}
-
-.menu{
+.menu, .bars{
     cursor: pointer;
 }
-
-@media screen and (min-width: 768px) {
-   
-    .smallsearch{
-        margin: 0px;
+@media only screen and (max-width: 768px) {
+.search-button {
+    float: right;
+    padding:0px;
+    width:auto;
+    color: #560700;
+    font-size:x-large;
+    display: inline-block;
+    margin-right: auto;
     }
+.flipkart-navbar-search, .home-icon, .phone-icon, .info-icon {
+        display: none;
+    }
+    
+.flipkart-navbar-logo{
+    display: inline-block;
+    text-align: center;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width:993px) {
+.flipkart-navbar-search {
+        display: none;
+    }
+.search-icon{
+    display: inline-block;
+}
+.flipkart-navbar-logo{
+    width:inherit;
+}
+
 }
 
 
