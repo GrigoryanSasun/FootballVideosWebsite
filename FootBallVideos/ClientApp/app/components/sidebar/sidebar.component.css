@@ -1,0 +1,116 @@
+[hidden] {
+    display: none !important;
+}
+
+.sidebar {
+    border-right: 1px solid #1f1515;
+    height: 100%;
+    top: 85px;
+    position: fixed;
+    width: 220px;
+    background: #0c0000; /* Old browsers */
+    background: -moz-linear-gradient(45deg, #0c0000 11%, #260600 31%, #260600 67%, #0f0000 83%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #0c0000 11%,#260600 31%,#260600 67%,#0f0000 83%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #0c0000 11%,#260600 31%,#260600 67%,#0f0000 83%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', endColorstr='#0f0000',GradientType=1 );
+     overflow: hidden;
+      -webkit-transition: height .5s;
+      transition: height .5s;
+}
+
+.category-item li.active a {
+    color: #6B0F1A;
+}
+
+.categories {
+    height: 210px;
+    background-color: transparent;
+    color: #807e78;
+    padding: 5px 5px;
+    border-bottom: 1px solid #1f1515;
+}
+
+.categories-xs {
+    background-color: #050000;
+    color: #807e78;
+}
+
+.categories-title {
+    text-align: center;
+    color: #F7F3E3;
+    margin: 5px;
+    font-weight: bold;
+    height: 40px;
+}
+
+.categories li > a, .categories-xs li > a {
+    color: #807e78;
+}
+
+.categories a > span, .categories-xs a > span, .players a > span {
+    padding-right: 5px;
+    background-image: url(/Content/images/CountryFlag.png);
+    height: 16px;
+    width: 16px;
+    display: block;
+    float: left;
+    z-index: 10;
+    color: #9d9d9d;
+    margin-top: 2px;
+}
+
+.categories li > a:hover, .categories-xs li > a:hover,
+.categories li > a:focus, .categories-xs li > a:focus {
+    color: #6B0F1A;
+    cursor: pointer;
+}
+
+.categories ul {
+    margin-left: 20px;
+    text-align: left;
+}
+
+.categories-dropdown-content {
+    height: 150px;
+    text-align: left;
+    padding-left: 20px;
+    border-bottom: 1px solid #1f1515;
+}
+
+.scrollbar {
+    float: left;
+    height: 150px;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #807e78;
+    }
+
+    .scrollbar::-webkit-scrollbar {
+        width: 6px;
+        background-color: #807e78;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb {
+        background-color: #560700;
+    }
+
+.btn.btn-danger {
+    min-width: 300px;
+    width: 100%;
+    margin: 10px 0px;
+    text-align: center;
+    background-size: contain;
+    background-color: #560700;
+    border: 1px solid #1f1515;
+}
+
+.players {
+    -moz-column-width: 400px;
+    -webkit-column-width: 400px;
+    column-width: 400px;
+    margin: 0 auto;
+}

@@ -1,57 +1,5 @@
 .container-fluid
-  .row.hidden-xs
-    .sidebar.col-sm-2([@categoriesVisibleInvisible]='animationService.categiriesDesctopState')
-      .row.categories
-        h4.categories-title Tournaments & Leugues
-        .scrollbar
-          ul.list-unstyled.category-item
-            li(*ngFor='let tour of tournaments; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTournamentIndex')
-              a((click)='getTeamsByTournamentId(tour.id); tournamentClick=true')
-                span([ngStyle]="{'background-position':tour.nationalityFlagPosition}")
-                |  {{tour.name}}
-      .row.categories
-        h4.categories-title Clubs
-        .scrollbar
-          ul.list-unstyled.category-item
-            li(*ngFor='let team of teams; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTeamIndex')
-              a((click)='getPlayers(team.id, team.teamName);teamClick=true')
-                img(src='{{team.teamLogoUrl}}', height='16px', width='16px')
-                |  {{team.teamName}}
-      .row.categories([hidden]='hidePlayersList')
-        h4.categories-title {{teamName}}
-        .scrollbar
-          ul.list-unstyled.category-item
-            li(*ngFor='let player of players')
-              a(href='#')
-                span([ngStyle]="{'background-position':player.nationalityFlagPosition}")
-                | {{player.name}}
-  .row.mobile.visible-xs
-    .btns-holder.category-btns([@categoriesVisibleInvisible]='animationService.categiriesMobileState')
-      .col-sm-4.categories-xs
-        label.btn.btn-danger.text-uppercase((click)='hideTournamentsDropdown=!hideTournamentsDropdown') Tournaments & Leugues
-        .categories-dropdown-content([hidden]='hideTournamentsDropdown')
-          .scrollbar
-            ul.list-unstyled.category-item
-              li(*ngFor='let tour of tournaments; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTournamentIndex')
-                a((click)='getTeamsByTournamentId(tour.id)')
-                  span([ngStyle]="{'background-position':tour.nationalityFlagPosition}")
-                  | {{tour.name}}
-        label.btn.btn-danger.text-uppercase((click)='hideClubsDropdown=!hideClubsDropdown') Clubs
-        .categories-dropdown-content([hidden]='hideClubsDropdown')
-          .scrollbar
-            ul.list-unstyled.category-item
-              li(*ngFor='let team of teams; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTeamIndex')
-                a((click)='getPlayers(team.id, team.teamName); teamClick=true')
-                  img(src='{{team.teamLogoUrl}}', height='16px', width='16px')
-                  |  {{team.teamName}}
-        label.btn.btn-danger.text-uppercase([hidden]='hidePlayersList', (click)='hidePlayersDropdown=!hidePlayersDropdown') {{teamName}}
-        .categories-dropdown-content([hidden]='hidePlayersDropdown')
-          .scrollbar
-            ul.list-unstyled.category-item
-              li(*ngFor='let player of players; let i = index', (click)='selectedItem(i)')
-                a(href='#')
-                  span([ngStyle]="{'background-position':player.nationalityFlagPosition}")
-                  |  {{player.name}}
+  sidebar
   .row.videos-content([ngClass]="{'full-sceen-videos': animationService.categiriesDesctopState === 'out' }", infinite-scroll='infinite-scroll', (scrolled)='onScrollDown()', [infiniteScrollDistance]='0', [infiniteScrollThrottle]='1')
       .row.row-centered
         .videos.col-lg-4.col-sm-6.col-centered(*ngFor='let video of videoImages')
