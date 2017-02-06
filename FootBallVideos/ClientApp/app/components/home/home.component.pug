@@ -1,6 +1,6 @@
 .container-fluid
   .row.hidden-xs
-    .sidebar.col-sm-2
+    .sidebar.col-sm-2([@categoriesVisibleInvisible]='animationService.categiriesDesctopState')
       .row.categories
         h4.categories-title Tournaments & Leugues
         .scrollbar
@@ -26,7 +26,7 @@
                 span([ngStyle]="{'background-position':player.nationalityFlagPosition}")
                 | {{player.name}}
   .row.mobile.visible-xs
-    .btns-holder.category-btns
+    .btns-holder.category-btns([@categoriesVisibleInvisible]='animationService.categiriesMobileState')
       .col-sm-4.categories-xs
         label.btn.btn-danger.text-uppercase((click)='hideTournamentsDropdown=!hideTournamentsDropdown') Tournaments & Leugues
         .categories-dropdown-content([hidden]='hideTournamentsDropdown')
@@ -52,7 +52,7 @@
                 a(href='#')
                   span([ngStyle]="{'background-position':player.nationalityFlagPosition}")
                   |  {{player.name}}
-  .row.videos-content.col-sm-10(infinite-scroll='infinite-scroll', (scrolled)='onScrollDown()', [infiniteScrollDistance]='0', [infiniteScrollThrottle]='1')
+  .row.videos-content([ngClass]="{'full-sceen-videos': animationService.categiriesDesctopState === 'out' }", infinite-scroll='infinite-scroll', (scrolled)='onScrollDown()', [infiniteScrollDistance]='0', [infiniteScrollThrottle]='1')
       .row.row-centered
         .videos.col-lg-4.col-sm-6.col-centered(*ngFor='let video of videoImages')
           div

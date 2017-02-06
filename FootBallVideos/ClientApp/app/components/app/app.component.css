@@ -21,6 +21,9 @@ html, body {
     background-color: #050000;
     padding-top: 85px;
 }
+.mobile-full-sceen-videos{
+    padding-top:10px;
+}
 .footer {
 	background: #0c0000; /* Old browsers */
     background: -moz-linear-gradient(45deg, #0c0000 11%, #260600 31%, #560700 48%, #260600 67%, #0f0000 83%); /* FF3.6-15 */

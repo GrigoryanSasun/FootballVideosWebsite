@@ -4,14 +4,31 @@ import { Teams } from '../../teams/teams';
 import { TeamsService } from '../../teams/teams.service';
 import { Players } from '../../players/players';
 import { PlayersService } from '../../players/players.service';
-
-import { Component, OnInit} from '@angular/core';
+import { AnimationService } from '../../services/animation.service';
+import { Component, OnInit, trigger, state, style, transition, animate} from '@angular/core';
 
 @Component({
     selector: 'home',
     template: require('./home.component.pug'),
     styles: [require('./home.component.css')],
     providers: [TournamentsService, TeamsService, PlayersService],
+    animations: [
+        trigger('categoriesVisibleInvisible', [
+            state('in', style({
+                transform: 'translate3d(0, 0, 0)'
+            })),
+            state('out', style({
+                transform: 'translate3d(-100%, 0, 0)'
+            })),
+            state('up', style({
+                transform: 'translate3d(0, -100%, 0)'
+            })),
+            transition('in => out', animate('100ms ease-in-out')),
+            transition('out => in', animate('100ms ease-in-out')),
+            transition('in => up', animate('300ms ease-in-out')),
+            transition('up => in', animate('300ms ease-in-out'))
+        ]),
+    ]
 })
 export class HomeComponent implements OnInit {
     errorMessage: string;
@@ -27,12 +44,16 @@ export class HomeComponent implements OnInit {
     currentTeamIndex: number = null;
     tournamentClick: boolean = false;
     teamClick: boolean = false;
-    videoImages = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]; 
    
-    constructor(private tournamentsService: TournamentsService, private teamsService: TeamsService, private playersService: PlayersService) { }
+    videoImages = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]; 
+
+    constructor(private tournamentsService: TournamentsService, private teamsService: TeamsService, private playersService: PlayersService, private animationService: AnimationService) {
+        this.animationService = animationService;
+    }
 
     ngOnInit() { this.getTournaments(); this.getTeams() }
-
+    
+    
     getTournaments() {
         this.tournamentsService.getTournaments()
             .then(

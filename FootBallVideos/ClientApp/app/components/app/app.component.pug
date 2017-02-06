@@ -1,7 +1,7 @@
 .wrapper
   .header
     nav-menu
-  .content
+  .content([ngClass]="{'mobile-full-sceen-videos': animationService.categiriesMobileState === 'up'}") 
     router-outlet
   .push
 .footer

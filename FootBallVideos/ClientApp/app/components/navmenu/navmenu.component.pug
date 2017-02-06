@@ -1,10 +1,9 @@
 #flipkart-navbar
   .container-fluid
     .row.header
-      .flipkart-navbar-menu.col-md-1.col-sm-1.col-xs-2
+      .flipkart-navbar-menu.col-md-1.col-sm-1.col-xs-2((click)='animationService.toggleMenu()')
         .menu-bar
-          a(data-toggle='collapse')
-            span.bars
+          span.bars
       .flipkart-navbar-logo.col-md-3.col-sm-3.col-xs-8
         a(routerLink='/home') FootBallVideos
       .flipkart-navbar-search.col-md-6
