@@ -6,15 +6,15 @@ namespace FootBallVideos.Models
 {
     public interface ITournamentRepository
     {
-        void Add(Tournaments item);
-        IEnumerable<TournamentDetail> GetAll();
-        IEnumerable<Team> GetTeams(int id);
+        IEnumerable<Tournaments> GetAll();
+        IEnumerable<Teams> GetTeams(int id);
         Tournaments Find(int key);
+        void Add(Tournaments item);
         void Remove(int key);
         void Update(Tournaments item);
 
-        Task<IEnumerable<TournamentDetail>> GetAllAsync();
-        Task<IEnumerable<Team>> GetTeamsAsync(int id);
+        Task<IEnumerable<Tournaments>> GetAllAsync();
+        Task<IEnumerable<Teams>> GetTeamsAsync(int id);
         Task<Tournaments> FindAsync(int key);
 
     }

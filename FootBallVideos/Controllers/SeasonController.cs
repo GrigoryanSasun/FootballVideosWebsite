@@ -30,5 +30,18 @@ namespace FootBallVideos.Controllers
             }
             return new ObjectResult(item);
         }
+
+        [HttpPost]
+        [ActionName("Complex")]
+        public IActionResult Create([FromBody] Season item)
+        {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            Season.Add(item);
+            return CreatedAtRoute("AddSeason", new { id = item.Id }, item);
+        }
     }
 }

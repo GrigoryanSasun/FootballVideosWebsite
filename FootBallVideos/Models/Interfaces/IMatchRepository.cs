@@ -1,19 +1,18 @@
-﻿using System;
+﻿using FootBallVideos.ModelsData;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FootBallVideos.Models
 {
     public interface IMatchRepository
     {
-        void Add(Match item);
-        IEnumerable<Match> GetAll();
-        Match Find(int key);
+        IEnumerable<Matches> GetAll();
+        Matches Find(int key);
         void Remove(int key);
-        void Update(Match item);
+        void Update(Matches item);
+        void Add(Matches item);
 
-        Task<IEnumerable<Match>> GetAllAsync();
-        Task<Match> FindAsync(int key);
+        Task<IEnumerable<Matches>> GetAllAsync();
+        Task<Matches> FindAsync(int key);
     }
 }

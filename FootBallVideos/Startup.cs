@@ -8,6 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using FootBallVideos.ModelsData;
 using FootBallVideos.Models;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.Extensions.Options;
 
 namespace FootBallVideos
 {
@@ -32,13 +36,15 @@ namespace FootBallVideos
             // Add framework services.
             //services.AddApplicationInsightsTelemetry(Configuration);
             services.AddMvc();
-          
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
             //var connection = @";Database=FootballAnalytics;Trusted_Connection=True;";
             services.AddSingleton<IPlayersRepository, PlayersRepository>();
             services.AddSingleton<ITeamRepository, TeamRepository>();
             services.AddSingleton<ITournamentRepository, TournamentRepository>();
             services.AddSingleton<ISeasonRepository, SeasonRepository>();
-            services.AddSingleton<IPlayerParticipiationRepository, PlayerParticipiationRepository>();
             services.AddSingleton<IMatchRepository, MatchRepository>();
         }
 
@@ -61,6 +67,20 @@ namespace FootBallVideos
             }
 
             app.UseStaticFiles();
+            PathString path = new PathString("/api/insert");
+            app.Map(path,
+            appBranch =>
+            {
+                appBranch.Use(async (context, next) =>
+                {
+                    var key = Configuration.GetValue<string>("MySettings:ApiKey");
+                    var headerKey = context.Request.Headers["ApiKey"];
+                    if (string.Compare(key, headerKey, false) == 0)
+                    {
+                        await next.Invoke();
+                    }
+                });
+            });
 
             app.UseMvc(routes =>
             {

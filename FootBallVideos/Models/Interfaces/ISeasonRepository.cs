@@ -6,10 +6,10 @@ namespace FootBallVideos.Models
 {
     public interface ISeasonRepository
     {
-        void Add(Season item);
         IEnumerable<Season> GetAll();
         Season Find(int key);
         void Remove(int key);
+        void Add(Season item);
         void Update(Season item);
 
         Task<IEnumerable<Season>> GetAllAsync();

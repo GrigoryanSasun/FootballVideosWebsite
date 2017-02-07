@@ -8,86 +8,86 @@ namespace FootBallVideos.Models
 {
     public class TeamRepository : ITeamRepository
     {
-        //private FootballAnalyticsContext _context;
+        private FootballWebsiteContext _context;
 
-        //public TeamRepository(FootballAnalyticsContext context)
-        //{
-        //    _context = context;
-        //}
+        public TeamRepository(FootballWebsiteContext context)
+        {
+            _context = context;
+        }
 
-        //public IEnumerable<Team> GetAll()
-        //{
-        //    return _context.Team;
-        //}
+        public IEnumerable<Teams> GetAll()
+        {
+            return _context.Teams;
+        }
 
-        //public async Task<IEnumerable<Team>> GetAllAsync()
-        //{
-        //    return await _context.Team.ToListAsync();
-        //}
+        public async Task<IEnumerable<Teams>> GetAllAsync()
+        {
+            return await _context.Teams.ToListAsync();
+        }
 
-        //public void Add(Team item)
-        //{
-        //    _context.Team.Add(item);
-        //    _context.SaveChanges();
-        //}
+        public void Add(Teams item)
+        {
+            _context.Teams.Add(item);
+            _context.SaveChanges();
+        }
 
-        //public Team Find(int key)
-        //{
-        //    return (from b in _context.Team
-        //            where b.WhoScoredTeamId == key
-        //            select b).FirstOrDefault();
-        //}
+        public Teams Find(int key)
+        {
+            return (from b in _context.Teams
+                    where b.NativeId == key
+                    select b).FirstOrDefault();
+        }
 
-        //public async Task<Team> FindAsync(int key)
-        //{
-        //    return await (from b in _context.Team
-        //                  where b.WhoScoredTeamId == key
-        //                  select b).FirstOrDefaultAsync();
-        //}
+        public async Task<Teams> FindAsync(int key)
+        {
+            return await (from b in _context.Teams
+                          where b.NativeId == key
+                          select b).FirstOrDefaultAsync();
+        }
 
-        //public void Remove(int key)
-        //{
-        //    var team = new Team { WhoScoredTeamId = key };
-        //    _context.Team.Attach(team);
-        //    _context.Team.Remove(team);
-        //    _context.SaveChanges();
-        //}
+        public void Remove(int key)
+        {
+            var team = new Teams { NativeId = key };
+            _context.Teams.Attach(team);
+            _context.Teams.Remove(team);
+            _context.SaveChanges();
+        }
 
-        //public void Update(Team item)
-        //{
-        //    _context.Team.Attach(item);
-        //    var entry = _context.Entry(item);
-        //    entry.Property(e => e.TeamName).IsModified = true;
-        //    entry.Property(e => e.WhoScoredTeamId).IsModified = true;
-        //    _context.SaveChanges();
-        //}
+        public void Update(Teams item)
+        {
+            _context.Teams.Attach(item);
+            var entry = _context.Entry(item);
+            entry.Property(e => e.Name).IsModified = true;
+            entry.Property(e => e.NativeId).IsModified = true;
+            _context.SaveChanges();
+        }
 
-        //public async Task<IEnumerable<PlayerDetails>> GetPlayersAsync(int id)
-        //{
-        //    var players = (from p in _context.Players
-        //                   join pp in _context.PlayerProfile on p.Id equals pp.PlayersId
-        //                   where pp.CurrentTeamId == id
-        //                   select new PlayerDetails
-        //                   {
-        //                       name = p.PlayerName,
-        //                       nationalityFlagPosition = pp.NationalityFlagUrl
-        //                   }).ToListAsync();
-        //    return await players;
+        public async Task<IEnumerable<Players>> GetPlayersAsync(int id)
+        {
+            var players = (from p in _context.Players
+                           where p.CurrentTeamId == id
+                           select new Players {
+                               Name = p.Name,
+                               Position = p.Position,
+                               IconPosition = p.IconPosition,
+                               HeightInCm = p.HeightInCm,
+                               WeightInKg = p.WeightInKg,
+                               Nationality = p.Nationality,
+                               PortraitUrl = p.PortraitUrl,
+                               CurrentShirtNumber = p.CurrentShirtNumber,
+                               Age = p.Age
+                           }).ToListAsync();
+            return await players;
 
-        //}
+        }
 
-        //public IEnumerable<PlayerDetails> GetPlayers(int id)
-        //{
-        //    var players = (from p in _context.Players
-        //                   join pp in _context.PlayerProfile on p.Id equals pp.PlayersId
-        //                   where pp.CurrentTeamId == id
-        //                   select new PlayerDetails
-        //                   {
-        //                       name = p.PlayerName,
-        //                       nationalityFlagPosition = pp.NationalityFlagUrl
-        //                   }).ToList();
-        //    return players.ToList();
+        public IEnumerable<Players> GetPlayers(int id)
+        {
+            var players = (from p in _context.Players
+                           where p.CurrentTeamId == id
+                           select p).ToList();
+            return players.ToList();
 
-        //}
+        }
     }
 }

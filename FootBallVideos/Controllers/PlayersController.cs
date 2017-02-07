@@ -30,5 +30,18 @@ namespace FootBallVideos.Controllers
             }
             return new ObjectResult(item);
         }
+
+        [HttpPost]
+        [ActionName("Complex")]
+        public IActionResult Create([FromBody] Players item)
+        {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            Players.Add(item);
+            return CreatedAtRoute("AddPlayer", new { id = item.Id }, item);
+        }
     }
 }

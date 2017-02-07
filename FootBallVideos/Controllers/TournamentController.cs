@@ -16,7 +16,7 @@ namespace FootBallVideos.Controllers
         public ITournamentRepository Tournaments { get; set; }
 
         [HttpGet]
-        public async Task<IEnumerable<TournamentDetail>> GetAllAsync()
+        public async Task<IEnumerable<Tournaments>> GetAllAsync()
         {
             return await Tournaments.GetAllAsync();
         }
@@ -33,9 +33,28 @@ namespace FootBallVideos.Controllers
         }
 
         [HttpGet("{id}/teams", Name = "GetTeamsByTournamentId")]
-        public async Task<IEnumerable<Team>> GetPlayersByTeamId(int id)
+        public async Task<IEnumerable<Teams>> GetPlayersByTeamId(int id)
         {
             return await Tournaments.GetTeamsAsync(id);
+        }
+
+        //[HttpGet("{id}/teams", Name = "GetTeamsByTournamentId")]
+        //public IEnumerable<Teams> GetPlayersByTeamId(int id)
+        //{
+        //    return Tournaments.GetTeams(id);
+        //}
+
+        [HttpPost]
+        [ActionName("Complex")]
+        public IActionResult Create([FromBody] Tournaments item)
+        {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            Tournaments.Add(item);
+            return CreatedAtRoute("AddTournament", new { id = item.Id }, item);
         }
     }
 }

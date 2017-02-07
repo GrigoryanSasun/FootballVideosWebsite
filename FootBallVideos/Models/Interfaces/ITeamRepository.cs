@@ -6,14 +6,14 @@ namespace FootBallVideos.Models
 {
     public interface ITeamRepository
     {
-        void Add(Teams item);
         IEnumerable<Teams> GetAll();
-        IEnumerable<PlayerDetails> GetPlayers(int id);
+        IEnumerable<Players> GetPlayers(int id);
         Teams Find(int id);
+        void Add(Teams item);
         void Remove(int id);
         void Update(Teams item);
 
-        Task<IEnumerable<PlayerDetails>> GetPlayersAsync(int id);
+        Task<IEnumerable<Players>> GetPlayersAsync(int id);
         Task<IEnumerable<Teams>> GetAllAsync();
         Task<Teams> FindAsync(int key);
     }
