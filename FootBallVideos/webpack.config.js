@@ -18,7 +18,12 @@ var sharedConfig = {
             { test: /\.html$/, loader: 'raw' },
             { test: /\.css$/, loader: 'to-string!css' },
             { test: /\.(png|jpg|jpeg|gif|svg)$/, loader: 'url', query: { limit: 25000 } },
-            { test: /\.(pug|jade)$/, loader: 'pug-html-loader' }
+            { test: /\.(pug|jade)$/, loader: 'pug-html-loader' },
+           {
+               test: /\.scss$/,
+               exclude: /node_modules/,
+               loaders: ['raw-loader', 'sass-loader']
+           },
         ]
     }
 };

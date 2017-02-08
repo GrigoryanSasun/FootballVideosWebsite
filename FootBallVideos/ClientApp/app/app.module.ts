@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal';
+import { AppWrapperComponent } from './components/appwrapper/appwrapper.component';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -11,10 +12,12 @@ import { AboutUsComponent } from './components/aboutus/about-us.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DetailsComponent } from './components/details/details.component';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
-import {AnimationService} from './services/animation.service';
+import { AnimationService } from './services/animation.service';
+
 @NgModule({
     bootstrap: [AppComponent],
     declarations: [
+        AppWrapperComponent,
         AppComponent,
         NavMenuComponent,
         AboutUsComponent,

@@ -28,6 +28,7 @@
     color: #807e78;
     padding: 5px 5px;
     border-bottom: 1px solid #1f1515;
+    width: 100%;
 }
 
 .categories-xs {
@@ -41,6 +42,9 @@
     margin: 5px;
     font-weight: bold;
     height: 40px;
+    background-color: #560700;
+    padding:10px;
+    width: 100%;
 }
 
 .categories li > a, .categories-xs li > a {

@@ -1,7 +1,7 @@
 .row.hidden-xs
-  .sidebar([@categoriesVisibleInvisible]='animationService.categiriesDesctopState')
+  .sidebar([@animationVisibleInvisible]='animationService.categiriesDesctopState', class="{{'color-'+ teamName}}")
     .row.categories
-      h4.categories-title Tournaments & Leugues
+      p.categories-title Tournaments & Leugues
       .scrollbar
         ul.list-unstyled.category-item
           li(*ngFor='let tour of tournaments; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTournamentIndex')
@@ -9,7 +9,7 @@
               span([ngStyle]="{'background-position':tour.nationalityFlagPosition}")
               |  {{tour.name}}
     .row.categories
-      h4.categories-title Clubs
+      p.categories-title Clubs
       .scrollbar
         ul.list-unstyled.category-item
           li(*ngFor='let team of teams; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTeamIndex')
@@ -17,7 +17,7 @@
               img(src='{{team.teamLogoUrl}}', height='16px', width='16px')
               |  {{team.teamName}}
     .row.categories([hidden]='hidePlayersList')
-      h4.categories-title {{teamName}}
+      p.categories-title {{teamName}}
       .scrollbar
         ul.list-unstyled.category-item
           li(*ngFor='let player of players')
@@ -25,7 +25,7 @@
               span([ngStyle]="{'background-position':player.nationalityFlagPosition}")
               | {{player.name}}
 .row.mobile.visible-xs
-  .btns-holder.category-btns([@categoriesVisibleInvisible]='animationService.categiriesMobileState')
+  .btns-holder.category-btns([@animationVisibleInvisible]='animationService.categiriesMobileState')
     .col-sm-4.categories-xs
       label.btn.btn-danger.text-uppercase((click)='hideTournamentsDropdown=!hideTournamentsDropdown') Tournaments & Leugues
       .categories-dropdown-content([hidden]='hideTournamentsDropdown')

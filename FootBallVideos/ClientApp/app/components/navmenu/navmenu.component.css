@@ -1,8 +1,8 @@
-#flipkart-navbar {
+.flipkart-navbar {
     background: #0c0000;
-    background: -moz-linear-gradient(45deg, #0c0000 11%, #260600 31%, #560700 48%, #560700 67%, #0f0000 83%);
-    background: -webkit-linear-gradient(45deg, #0c0000 11%,#260600 31%,#560700 48%,#560700 67%,#0f0000 83%);
-    background: linear-gradient(45deg, #0c0000 11%,#260600 31%,#560700 48%,#560700 67%,#0f0000 83%);
+    background: -moz-linear-gradient(45deg, #0c0000 11%, #560700 31%, #560700 48%, #560700 70%, #0f0000 100%);
+    background: -webkit-linear-gradient(45deg, #0c0000 11%,#560700 31%,#560700 48%,#560700 70%,#0f0000 100%);
+    background: linear-gradient(45deg, #0c0000 11%,#560700 31%,#560700 48%,#560700 70%,#0f0000 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', endColorstr='#0f0000',GradientType=1 );
 }
 
@@ -76,6 +76,8 @@
 .flipkart-navbar-menu {
     text-align: center;
     padding: 0px;
+    cursor: pointer;
+
 }
 
 .flipkart-navbar-logo {
@@ -84,12 +86,15 @@
     float: left;
 }
 
-    .flipkart-navbar-logo a {
-        color: #F7F3E3;
-        font-weight: bold;
+.flipkart-navbar-logo a {
+    color: #F7F3E3;
+    font-weight: bold;
     }
-
-.flipkart-navbar-input {
+.tablet-navbar-search{
+    height:70px;
+    text-align: center;
+}
+.flipkart-navbar-input, .tablet-navbar-input {
     padding: 11px 16px;
     border-radius: 50px 50px 50px 50px;
     border: 1px solid #0c0000;
@@ -97,9 +102,10 @@
     font-size: 15px;
     color: #807e78;
     background-color: #0f0000;
+   
 }
 
-.flipkart-navbar-button {
+.flipkart-navbar-button, .tablet-navbar-button {
     background-color: transparent;
     border: 0;
     font-size: 18px;
@@ -155,28 +161,44 @@
     }
 
 
-@media only screen and (max-width: 768px) {
-    .search-button {
-        float: right;
-        padding: 0px;
-        color: #560700;
-        font-size: x-large;
-        display: inline-block;
-        margin-right: auto;
-        text-align: center;
+@media only screen and (max-width: 767px) {
+.search-button {
+    float: right;
+    padding: 0px;
+    color: #560700;
+    font-size: x-large;
+    display: inline-block;
+    margin-right: auto;
+    text-align: center;
+    }
+.flipkart-navbar-search, .home-icon, .phone-icon, .info-icon {
+     display: none;
     }
 
-    .flipkart-navbar-search, .home-icon, .phone-icon, .info-icon {
-        display: none;
+.flipkart-navbar-logo {
+     display: inline-block;
+     text-align: center;
     }
-
-    .flipkart-navbar-logo {
-        display: inline-block;
-        text-align: center;
-    }
+.tablet-navbar-input{
+     width: 280px;
+     margin-top: 10px;
+     margin-bottom: 10px;
 }
-
-@media only screen and (min-width: 768px) and (max-width:993px) {
+.tablet-navbar-button{
+     margin-left:-30px;
+ }
+}
+.block {
+    overflow: hidden;
+    -webkit-transition: height .2s;
+    transition: height .2s;
+    background: #0c0000;
+    background: -moz-linear-gradient(45deg, #0c0000 11%, #560700 31%, #560700 48%, #560700 70%, #0f0000 100%);
+    background: -webkit-linear-gradient(45deg, #0c0000 11%,#560700 31%,#560700 48%,#560700 70%,#0f0000 100%);
+    background: linear-gradient(45deg, #0c0000 11%,#560700 31%,#560700 48%,#560700 70%,#0f0000 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', endColorstr='#0f0000',GradientType=1 );
+    }
+@media only screen and (min-width: 768px) and (max-width:991px) {
     .flipkart-navbar-search {
         display: none;
     }
@@ -188,4 +210,12 @@
     .flipkart-navbar-logo {
         width: inherit;
     }
+    .tablet-navbar-input{
+        width: 650px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+}
+    .tablet-navbar-button{
+     margin-left:-30px;
+ }
 }

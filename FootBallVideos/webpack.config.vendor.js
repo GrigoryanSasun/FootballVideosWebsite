@@ -12,7 +12,12 @@ module.exports = {
         loaders: [
             { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, loader: 'url-loader?limit=100000' },
             { test: /\.css(\?|$)/, loader: extractCSS.extract(['css']) },
-            { test: /\.(pug|jade)$/, loader: 'pug-html-loader' }
+            { test: /\.(pug|jade)$/, loader: 'pug-html-loader' },
+            {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                loaders: ['raw-loader', 'sass-loader']
+            },
         ]
     },
     entry: {

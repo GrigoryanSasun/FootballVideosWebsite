@@ -1,8 +1,14 @@
-﻿.wrapper {
-	min-height: 100%;
-	height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
-	height: 100%;
-	margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
+﻿@media only screen and (max-width: 767px) {
+    .wrapper {
+        margin-left: 10px !important;
+}
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -100px;
+    margin-left: 210px;
 }
 .push {
     height: 100px;

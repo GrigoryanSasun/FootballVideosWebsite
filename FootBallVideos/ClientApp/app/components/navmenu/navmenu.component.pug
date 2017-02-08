@@ -1,4 +1,4 @@
-#flipkart-navbar
+.flipkart-navbar(class="{{'color-'+ teamName}}")
   .container-fluid
     .row.header
       .flipkart-navbar-menu.col-md-1.col-sm-1.col-xs-2((click)='animationService.toggleMenu()')
@@ -10,12 +10,12 @@
         input.flipkart-navbar-input.col-xs-11(type='', placeholder='Search...', name='')
         button.flipkart-navbar-button.col-xs-1
             i.fa.fa-search
-      .search-button.col-xs-2
+      .search-button.col-xs-2((click)='height = height ? 0 : el.scrollHeight')
         .span
           i.fa.fa-search
       .flipkart-navbar-icons.col-md-2
         ul.nav-icons
-          li.upper-links.search-icon
+          li.upper-links.search-icon((click)='height = height ? 0 : el.scrollHeight')
             a.links(routerLink='/home')
               span.menu-icon.fa.fa-search
           li.upper-links.home-icon
@@ -27,3 +27,9 @@
           li.upper-links.info-icon
             a.links(routerLink='/about-us')
               span.menu-icon.fa.fa-info
+    .row.visible-sm.visible-xs.block([style.height]="height + 'px'", #el='')
+      .tablet-navbar-search
+          input.tablet-navbar-input(type='', placeholder='Search...', name='')
+          button.tablet-navbar-button
+              i.fa.fa-search
+      

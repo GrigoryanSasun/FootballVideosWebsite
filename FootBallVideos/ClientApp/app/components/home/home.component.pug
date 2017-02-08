@@ -1,9 +1,9 @@
 .container-fluid
   sidebar
-  .row.videos-content([ngClass]="{'full-sceen-videos': animationService.categiriesDesctopState === 'out' }", infinite-scroll='infinite-scroll', (scrolled)='onScrollDown()', [infiniteScrollDistance]='0', [infiniteScrollThrottle]='1')
-      .row.row-centered
-        .videos.col-lg-4.col-sm-6.col-centered(*ngFor='let video of videoImages')
-          div
-            .videos-img-holder
-              a(routerLink='/videodetails')
-                img(src='/Content/images/VideoImage.jpg')
+  .row.videos-content(class="{{'color-'+ teamNameForColor}}", [ngClass]="{'full-sceen-videos': animationService.categiriesDesctopState === 'out' }", infinite-scroll='infinite-scroll', (scrolled)='onScrollDown()', [infiniteScrollDistance]='0', [infiniteScrollThrottle]='1')
+    .row.row-centered
+      .videos.col-lg-4.col-sm-6.col-centered(*ngFor='let video of videoImages')
+        div
+          .videos-img-holder(class="{{'color-'+club}}")
+            a(routerLink='/videodetails')
+              img(src='/Content/images/VideoImage.jpg')

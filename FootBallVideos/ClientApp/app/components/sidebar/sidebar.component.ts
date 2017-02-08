@@ -7,13 +7,14 @@ import { PlayersService } from '../../players/players.service';
 import { AnimationService } from '../../services/animation.service';
 import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 
+
 @Component({
     selector: 'sidebar',
     template: require('./sidebar.component.pug'),
     styles: [require('./sidebar.component.css')],
     providers: [TournamentsService, TeamsService, PlayersService],
     animations: [
-        trigger('categoriesVisibleInvisible', [
+        trigger('animationVisibleInvisible', [
             state('in', style({
                 transform: 'translate3d(0, 0, 0)'
             })),
@@ -34,7 +35,7 @@ export class SideBarComponent implements OnInit {
     errorMessage: string;
     tournaments: Tournaments[];
     teams: Teams[];
-    teamName: string;
+    public teamName: string;
     players: Players[];
     hideTournamentsDropdown: boolean = true;
     hideClubsDropdown: boolean = true;
@@ -44,6 +45,7 @@ export class SideBarComponent implements OnInit {
     currentTeamIndex: number = null;
     tournamentClick: boolean = false;
     teamClick: boolean = false;
+    teamNameForColor: string = '';
     constructor(private tournamentsService: TournamentsService, private teamsService: TeamsService, private playersService: PlayersService, private animationService: AnimationService) {
         this.animationService = animationService;
     }
@@ -94,6 +96,7 @@ export class SideBarComponent implements OnInit {
         if (this.teamClick == true) {
             this.currentTeamIndex = index;
             this.teamClick = false;
+            
         }
     }
 

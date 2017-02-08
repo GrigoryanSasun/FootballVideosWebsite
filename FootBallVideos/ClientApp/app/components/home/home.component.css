@@ -2,10 +2,10 @@
     display: none !important;
 }
 .videos-content {
-    background: #0f0000; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #0f0000 17%, #260600 33%, #260600 69%, #0c0000 89%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #0f0000 17%,#260600 33%,#260600 69%,#0c0000 89%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #0f0000 17%,#260600 33%,#260600 69%,#0c0000 89%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: #0f0000;
+    background: -moz-linear-gradient(-45deg, #0f0000 17%, #260600 33%, #260600 69%, #0c0000 89%); 
+    background: -webkit-linear-gradient(-45deg, #0f0000 17%,#260600 33%,#260600 69%,#0c0000 89%); 
+    background: linear-gradient(135deg, #0f0000 17%,#260600 33%,#260600 69%,#0c0000 89%); 
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f0000', endColorstr='#0c0000',GradientType=1 );
     margin: 0 auto;
     height: 100%;
@@ -22,7 +22,7 @@
     margin-left: 10px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
     .videos-content {
         margin-left: 10px;
     }

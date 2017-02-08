@@ -1,5 +1,5 @@
 import { AnimationService } from '../../services/animation.service';
-import { Component, OnInit, trigger, state, style, transition, animate} from '@angular/core';
+import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 
 @Component({
     selector: 'home',
@@ -8,7 +8,7 @@ import { Component, OnInit, trigger, state, style, transition, animate} from '@a
     providers: [],
 })
 export class HomeComponent implements OnInit {
-    
+
     videoImages = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]; 
 
     constructor(private animationService: AnimationService) {
