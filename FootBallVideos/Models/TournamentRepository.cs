@@ -40,7 +40,7 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                if (!ex.Message.Contains("unique"))
+                if (!ex.Message.Contains("unique") || ex.InnerException.Message.Contains("unique"))
                 {
 
                 }
