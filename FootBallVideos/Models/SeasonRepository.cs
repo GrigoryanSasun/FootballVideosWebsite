@@ -28,8 +28,18 @@ namespace FootBallVideos.Models
 
         public void Add(Season item)
         {
-            _context.Season.Add(item);
-            _context.SaveChanges();
+            try
+            {
+                _context.Season.Add(item);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                if (!ex.Message.Contains("unique"))
+                {
+
+                }
+            }
         }
 
         public Season Find(int key)

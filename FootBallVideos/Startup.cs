@@ -67,11 +67,12 @@ namespace FootBallVideos
             }
 
             app.UseStaticFiles();
-            PathString path = new PathString("/api/insert");
-            app.Map(path,
-            appBranch =>
+       
+
+            app.Use(async (context, next) =>
             {
-                appBranch.Use(async (context, next) =>
+                var insertPath = new PathString("/api/insert");
+                if (context.Request.Path.StartsWithSegments(insertPath))
                 {
                     var key = Configuration.GetValue<string>("MySettings:ApiKey");
                     var headerKey = context.Request.Headers["ApiKey"];
@@ -79,7 +80,16 @@ namespace FootBallVideos
                     {
                         await next.Invoke();
                     }
-                });
+                    else
+                    {
+                        context.Response.StatusCode = 403;
+                        await context.Response.WriteAsync("Go f**k yourself");
+                    }
+                }
+                else
+                {
+                    await next.Invoke();
+                }
             });
 
             app.UseMvc(routes =>

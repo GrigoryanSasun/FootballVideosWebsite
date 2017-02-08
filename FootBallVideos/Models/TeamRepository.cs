@@ -1,5 +1,6 @@
 ﻿using FootBallVideos.ModelsData;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,8 +28,18 @@ namespace FootBallVideos.Models
 
         public void Add(Teams item)
         {
-            _context.Teams.Add(item);
-            _context.SaveChanges();
+            try
+            {
+                _context.Teams.Add(item);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                if (!ex.Message.Contains("unique"))
+                {
+
+                }
+            }
         }
 
         public Teams Find(int key)
@@ -66,7 +77,8 @@ namespace FootBallVideos.Models
         {
             var players = (from p in _context.Players
                            where p.CurrentTeamId == id
-                           select new Players {
+                           select new Players
+                           {
                                Name = p.Name,
                                Position = p.Position,
                                IconPosition = p.IconPosition,

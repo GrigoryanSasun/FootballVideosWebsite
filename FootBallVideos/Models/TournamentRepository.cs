@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using FootBallVideos.ModelsData;
+using System;
 
 namespace FootBallVideos.Models
 {
@@ -31,8 +32,19 @@ namespace FootBallVideos.Models
 
         public void Add(Tournaments item)
         {
-            _context.Tournaments.Add(item);
-            _context.SaveChanges();
+            try
+            {
+                _context.Tournaments.Add(item);
+                _context.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+                if (!ex.Message.Contains("unique"))
+                {
+
+                }
+            }
         }
 
         public Tournaments Find(int key)
