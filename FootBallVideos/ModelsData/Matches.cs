@@ -9,8 +9,8 @@ namespace FootBallVideos.ModelsData
         public int NativeId { get; set; }
         public int HomeTeamId { get; set; }
         public int AwayTeamId { get; set; }
-        public DateTime Date { get; set; }
         public int SeasonId { get; set; }
+        public DateTime Date { get; set; }
 
         public virtual Teams AwayTeam { get; set; }
         public virtual Teams HomeTeam { get; set; }

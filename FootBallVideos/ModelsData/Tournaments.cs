@@ -12,9 +12,10 @@ namespace FootBallVideos.ModelsData
         }
 
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string IconPosition { get; set; }
         public int NativeId { get; set; }
+        public string Name { get; set; }
+        public string Country { get; set; }
+        public string IconPosition { get; set; }
 
         public virtual ICollection<TeamSeasonTournamentMap> TeamSeasonTournamentMap { get; set; }
         public virtual ICollection<Videos> Videos { get; set; }

@@ -9,7 +9,7 @@ namespace FootBallVideos.Models
         IEnumerable<Season> GetAll();
         Season Find(int key);
         void Remove(int key);
-        void Add(Season item);
+        Task<bool> Add(Season item);
         void Update(Season item);
 
         Task<IEnumerable<Season>> GetAllAsync();

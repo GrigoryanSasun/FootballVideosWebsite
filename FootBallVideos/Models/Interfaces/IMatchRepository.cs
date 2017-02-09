@@ -10,7 +10,7 @@ namespace FootBallVideos.Models
         Matches Find(int key);
         void Remove(int key);
         void Update(Matches item);
-        void Add(Matches item);
+        Task<bool> Add(Matches item);
 
         Task<IEnumerable<Matches>> GetAllAsync();
         Task<Matches> FindAsync(int key);

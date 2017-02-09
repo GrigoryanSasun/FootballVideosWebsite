@@ -22,6 +22,8 @@ namespace FootBallVideos.ModelsData
         {
             modelBuilder.Entity<Matches>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
                 entity.HasOne(d => d.AwayTeam)
@@ -45,7 +47,9 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<Players>(entity =>
             {
-                entity.Property(e => e.IconPosition).IsRequired();
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Age).HasMaxLength(250);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -53,9 +57,7 @@ namespace FootBallVideos.ModelsData
 
                 entity.Property(e => e.Nationality).HasMaxLength(250);
 
-                entity.Property(e => e.Position)
-                    .IsRequired()
-                    .HasMaxLength(250);
+                entity.Property(e => e.Position).HasMaxLength(250);
 
                 entity.HasOne(d => d.CurrentTeam)
                     .WithMany(p => p.Players)
@@ -65,6 +67,8 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<Season>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Name)
@@ -76,7 +80,7 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<TeamSeasonTournamentMap>(entity =>
             {
-                entity.ToTable("teamSeasonTournamentMap");
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.HasOne(d => d.Season)
                     .WithMany(p => p.TeamSeasonTournamentMap)
@@ -99,7 +103,7 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<Teams>(entity =>
             {
-                entity.Property(e => e.IconUrl).IsRequired();
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -108,7 +112,11 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<Tournaments>(entity =>
             {
-                entity.Property(e => e.IconPosition).IsRequired();
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Country)
+                    .IsRequired()
+                    .HasMaxLength(200);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -117,6 +125,8 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<Videos>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);

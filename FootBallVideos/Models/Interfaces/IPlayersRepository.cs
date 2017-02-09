@@ -9,7 +9,7 @@ namespace FootBallVideos.Models
         IEnumerable<Players> GetAll();
         int GetByTeamId(int id);
         Players Find(int key);
-        void Add(Players item);
+        Task<bool> Add(Players item);
         void Remove(int key);
         void Update(Players item);
 

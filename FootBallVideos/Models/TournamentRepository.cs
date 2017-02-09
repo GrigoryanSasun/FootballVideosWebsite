@@ -30,20 +30,22 @@ namespace FootBallVideos.Models
             return await tournaments;
         }
 
-        public void Add(Tournaments item)
+        public async Task<bool> Add(Tournaments item)
         {
             try
             {
                 _context.Tournaments.Add(item);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
+                return true;
 
             }
             catch (Exception ex)
             {
                 if (!ex.Message.Contains("unique") || ex.InnerException.Message.Contains("unique"))
                 {
-
+                    return false;
                 }
+                return true;
             }
         }
 

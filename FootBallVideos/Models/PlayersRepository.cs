@@ -26,19 +26,21 @@ namespace FootBallVideos.Models
             return await _context.Players.ToListAsync();
         }
 
-        public void Add(Players item)
+        public async Task<bool> Add(Players item)
         {
             try
             {
                 _context.Players.Add(item);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
+                return true;
             }
             catch(Exception ex)
             {
                 if (!ex.Message.Contains("unique") || ex.InnerException.Message.Contains("unique"))
                 {
-
+                    return false;
                 }
+                return true;
             }
         }
 

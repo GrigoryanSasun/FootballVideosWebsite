@@ -15,9 +15,9 @@ namespace FootBallVideos.ModelsData
         }
 
         public int Id { get; set; }
+        public int NativeId { get; set; }
         public string Name { get; set; }
         public string IconUrl { get; set; }
-        public int NativeId { get; set; }
 
         public virtual ICollection<Matches> MatchesAwayTeam { get; set; }
         public virtual ICollection<Matches> MatchesHomeTeam { get; set; }
