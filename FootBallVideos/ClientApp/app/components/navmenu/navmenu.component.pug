@@ -1,35 +1,35 @@
-.flipkart-navbar(class="{{'color-'+ teamName}}")
+.flipkart-navbar
   .container-fluid
     .row.header
       .flipkart-navbar-menu.col-md-1.col-sm-1.col-xs-2((click)='animationService.toggleMenu()')
         .menu-bar
-          span.bars
+          span.bars(class="{{'background-color-'+ changeColorsService.teamNameForColors}}")
       .flipkart-navbar-logo.col-md-3.col-sm-3.col-xs-8
         a(routerLink='/home') FootBallVideos
       .flipkart-navbar-search.col-md-6
         input.flipkart-navbar-input.col-xs-11(type='', placeholder='Search...', name='')
         button.flipkart-navbar-button.col-xs-1
-            i.fa.fa-search
+            i.fa.fa-search(class="{{'color-'+ changeColorsService.teamNameForColors}}")
       .search-button.col-xs-2((click)='height = height ? 0 : el.scrollHeight')
         .span
-          i.fa.fa-search
+          i.fa.fa-search(class="{{'color-'+ changeColorsService.teamNameForColors}}")
       .flipkart-navbar-icons.col-md-2
-        ul.nav-icons
+        ul.nav-icons(class="{{'color-'+ changeColorsService.teamNameForColors}}")
           li.upper-links.search-icon((click)='height = height ? 0 : el.scrollHeight')
-            a.links(routerLink='/home')
+            a.links(routerLink='/home', class="{{'color-'+ changeColorsService.teamNameForColors}}")
               span.menu-icon.fa.fa-search
           li.upper-links.home-icon
-            a.links(routerLink='/home')
+            a.links(routerLink='/home', class="{{'color-'+ changeColorsService.teamNameForColors}}")
               span.menu-icon.fa.fa-home
           li.upper-links.phone-icon
-            a.links(routerLink='/contacts')
+            a.links(routerLink='/contacts', class="{{'color-'+ changeColorsService.teamNameForColors}}")
               span.menu-icon.fa.fa-phone
           li.upper-links.info-icon
-            a.links(routerLink='/about-us')
+            a.links(routerLink='/about-us', class="{{'color-'+ changeColorsService.teamNameForColors}}")
               span.menu-icon.fa.fa-info
     .row.visible-sm.visible-xs.block([style.height]="height + 'px'", #el='')
       .tablet-navbar-search
           input.tablet-navbar-input(type='', placeholder='Search...', name='')
           button.tablet-navbar-button
-              i.fa.fa-search
+              i.fa.fa-search(class="{{'color-'+ changeColorsService.teamNameForColors}}")
       

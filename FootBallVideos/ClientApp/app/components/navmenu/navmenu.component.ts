@@ -1,4 +1,5 @@
 import { AnimationService } from '../../services/animation.service';
+import { ChangeColorsService } from '../../services/change-colors.service';
 import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 @Component({
     selector: 'nav-menu',
@@ -7,9 +8,11 @@ import { Component, OnInit, trigger, state, style, transition, animate } from '@
 })
 export class NavMenuComponent {
     height = 0;
-    constructor(private animationService: AnimationService) {
+    constructor(private animationService: AnimationService, private changeColorsService: ChangeColorsService) {
         this.animationService = animationService;
+        this.changeColorsService = changeColorsService;
+        this.changeColorsService.getValue();
     }
-
+    
     
 }

@@ -1,22 +1,28 @@
-$colorList:
-    "Chelsea" #684343,
-    "Liverpool" #3e4040,
-    "Manchester-City" #422020,
-    "Arsenal" #422020,
+$clubsBackgroundList:
+    "Chelsea" #3886de 
+    "Liverpool" #e31b23,
+    "Manchester-City" #98c5e9,
+    "Arsenal" #FC0405,
+    "Tottenham" #142a5d;
 ;
-
-@each $i in $colorList {
-    .color-#{nth($i,1)} {
-         background: nth($i,2) !important;
+$clubsColorList:
+    "Chelsea" #fff 
+    "Liverpool" #fff,
+    "Manchester-City" #fff,
+    "Arsenal" #fff,
+    "Tottenham" #fff,
+;
+@each $club in $clubsBackgroundList {
+    .background-color-#{nth($club,1)} {
+         background: nth($club,2) !important;
+         box-shadow: 0 5px 0 nth($club,2), 0 10px 0 nth($club,2) !important;
+    }
+    .color-#{nth($club,1)} {
+         color: nth($club,2) !important;
     }
 }
-.videos-img-holder {
-
-}
-.flipkart-navbar {
-    background: #0c0000;
-    background: -moz-linear-gradient(45deg, #0c0000 11%, #260600 31%, #560700 48%, #560700 67%, #0f0000 83%);
-    background: -webkit-linear-gradient(45deg, #0c0000 11%,#260600 31%,#560700 48%,#560700 67%,#0f0000 83%);
-    background: linear-gradient(45deg, #0c0000 11%,#260600 31%,#560700 48%,#560700 67%,#0f0000 83%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', endColorstr='#0f0000',GradientType=1 );
-}
+@each $club in $clubsColorList {
+    .background-color-#{nth($club,1)} {
+         color: nth($club,2) !important;
+    }
+    }

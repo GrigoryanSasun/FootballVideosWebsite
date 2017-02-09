@@ -1,7 +1,7 @@
 .row.hidden-xs
-  .sidebar([@animationVisibleInvisible]='animationService.categiriesDesctopState', class="{{'color-'+ teamName}}")
+  .sidebar([@animationVisibleInvisible]='animationService.categiriesDesctopState')
     .row.categories
-      p.categories-title Tournaments & Leugues
+      p.categories-title(class="{{'background-color-'+ changeColorsService.teamNameForColors}}") Tournaments & Leugues
       .scrollbar
         ul.list-unstyled.category-item
           li(*ngFor='let tour of tournaments; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTournamentIndex')
@@ -9,7 +9,7 @@
               span([ngStyle]="{'background-position':tour.nationalityFlagPosition}")
               |  {{tour.name}}
     .row.categories
-      p.categories-title Clubs
+      p.categories-title(class="{{'background-color-'+ changeColorsService.teamNameForColors}}") Clubs
       .scrollbar
         ul.list-unstyled.category-item
           li(*ngFor='let team of teams; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTeamIndex')
@@ -17,7 +17,7 @@
               img(src='{{team.teamLogoUrl}}', height='16px', width='16px')
               |  {{team.teamName}}
     .row.categories([hidden]='hidePlayersList')
-      p.categories-title {{teamName}}
+      p.categories-title(class="{{'background-color-'+ changeColorsService.teamNameForColors}}") {{teamName}}
       .scrollbar
         ul.list-unstyled.category-item
           li(*ngFor='let player of players')
@@ -27,7 +27,7 @@
 .row.mobile.visible-xs
   .btns-holder.category-btns([@animationVisibleInvisible]='animationService.categiriesMobileState')
     .col-sm-4.categories-xs
-      label.btn.btn-danger.text-uppercase((click)='hideTournamentsDropdown=!hideTournamentsDropdown') Tournaments & Leugues
+      label.btn.btn-danger.text-uppercase((click)='hideTournamentsDropdown=!hideTournamentsDropdown', class="{{'background-color-'+ changeColorsService.teamNameForColors}}") Tournaments & Leugues
       .categories-dropdown-content([hidden]='hideTournamentsDropdown')
         .scrollbar
           ul.list-unstyled.category-item
@@ -35,7 +35,7 @@
               a((click)='getTeamsByTournamentId(tour.id)')
                 span([ngStyle]="{'background-position':tour.nationalityFlagPosition}")
                 | {{tour.name}}
-      label.btn.btn-danger.text-uppercase((click)='hideClubsDropdown=!hideClubsDropdown') Clubs
+      label.btn.btn-danger.text-uppercase((click)='hideClubsDropdown=!hideClubsDropdown', class="{{'background-color-'+ changeColorsService.teamNameForColors}}") Clubs
       .categories-dropdown-content([hidden]='hideClubsDropdown')
         .scrollbar
           ul.list-unstyled.category-item
@@ -43,7 +43,7 @@
               a((click)='getPlayers(team.id, team.teamName); teamClick=true')
                 img(src='{{team.teamLogoUrl}}', height='16px', width='16px')
                 |  {{team.teamName}}
-      label.btn.btn-danger.text-uppercase([hidden]='hidePlayersList', (click)='hidePlayersDropdown=!hidePlayersDropdown') {{teamName}}
+      label.btn.btn-danger.text-uppercase([hidden]='hidePlayersList', (click)='hidePlayersDropdown=!hidePlayersDropdown', class="{{'background-color-'+ changeColorsService.teamNameForColors}}") {{teamName}}
       .categories-dropdown-content([hidden]='hidePlayersDropdown')
         .scrollbar
           ul.list-unstyled.category-item

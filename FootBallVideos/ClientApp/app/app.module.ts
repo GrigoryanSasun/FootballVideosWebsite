@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DetailsComponent } from './components/details/details.component';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { AnimationService } from './services/animation.service';
+import { ChangeColorsService } from './services/change-colors.service';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -29,6 +30,7 @@ import { AnimationService } from './services/animation.service';
     ],
     providers: [
         AnimationService,
+        ChangeColorsService,
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too
