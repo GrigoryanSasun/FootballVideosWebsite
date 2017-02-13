@@ -1,7 +1,7 @@
 .row.hidden-xs
   .sidebar([@animationVisibleInvisible]='animationService.categiriesDesctopState')
     .row.categories
-      p.categories-title(class="{{'background-color-'+ changeColorsService.teamNameForColors}}") Tournaments & Leugues
+      p.categories-title Tournaments & Leugues
       .scrollbar
         ul.list-unstyled.category-item
           li(*ngFor='let tour of tournaments; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTournamentIndex')
@@ -9,7 +9,7 @@
               span([ngStyle]="{'background-position':tour.nationalityFlagPosition}")
               |  {{tour.name}}
     .row.categories
-      p.categories-title(class="{{'background-color-'+ changeColorsService.teamNameForColors}}") Clubs
+      p.categories-title Clubs
       .scrollbar
         ul.list-unstyled.category-item
           li(*ngFor='let team of teams; let i = index', (click)='selectedItem(i)', [class.active]='i==currentTeamIndex')
@@ -17,7 +17,7 @@
               img(src='{{team.teamLogoUrl}}', height='16px', width='16px')
               |  {{team.teamName}}
     .row.categories([hidden]='hidePlayersList')
-      p.categories-title(class="{{'background-color-'+ changeColorsService.teamNameForColors}}") {{teamName}}
+      p.categories-title {{teamName}}
       .scrollbar
         ul.list-unstyled.category-item
           li(*ngFor='let player of players')

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal';
-import { AppWrapperComponent } from './components/appwrapper/appwrapper.component';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -18,7 +17,6 @@ import { ChangeColorsService } from './services/change-colors.service';
 @NgModule({
     bootstrap: [AppComponent],
     declarations: [
-        AppWrapperComponent,
         AppComponent,
         NavMenuComponent,
         AboutUsComponent,

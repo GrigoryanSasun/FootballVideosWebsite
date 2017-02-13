@@ -5,7 +5,7 @@ import { TeamsService } from '../../teams/teams.service';
 import { Players } from '../../players/players';
 import { PlayersService } from '../../players/players.service';
 import { AnimationService } from '../../services/animation.service';
-import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, trigger, state, style, transition, animate, Inject } from '@angular/core';
 import { ChangeColorsService } from '../../services/change-colors.service';
 
 @Component({
@@ -46,9 +46,9 @@ export class SideBarComponent implements OnInit {
     tournamentClick: boolean = false;
     teamClick: boolean = false;
     teamNameForColors: string = '';
+    stylesheetPath: string;
     constructor(private tournamentsService: TournamentsService, private teamsService: TeamsService, private playersService: PlayersService, private animationService: AnimationService, private changeColorsService: ChangeColorsService) {
-        this.animationService = animationService;
-        this.changeColorsService = changeColorsService; 
+        this.animationService = animationService; this.changeColorsService = changeColorsService; 
     }
 
     ngOnInit() { this.getTournaments(); this.getTeams() }
@@ -78,6 +78,7 @@ export class SideBarComponent implements OnInit {
         this.teamName = teamName;
         //this.teamNameForColors = teamName;
         this.changeColorsService.setValue(this.teamName);
+        this.changeColorsService.changeTheme();
 
     }
     getTeamsByTournamentId(id) {
