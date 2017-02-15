@@ -9,9 +9,9 @@ namespace FootBallVideos.ModelsData
         public int TournamentId { get; set; }
         public int SeasonId { get; set; }
         public int TeamId { get; set; }
+        public int? NativeId { get; set; }
 
         public virtual Season Season { get; set; }
-        public virtual Teams Team { get; set; }
         public virtual Tournaments Tournament { get; set; }
     }
 }

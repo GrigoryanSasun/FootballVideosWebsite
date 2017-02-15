@@ -22,8 +22,8 @@ namespace FootBallVideos.ModelsData
         public string Nationality { get; set; }
         public string IconPosition { get; set; }
         public string PortraitUrl { get; set; }
+        public int? WhoScoredId { get; set; }
 
         public virtual ICollection<Videos> Videos { get; set; }
-        public virtual Teams CurrentTeam { get; set; }
     }
 }

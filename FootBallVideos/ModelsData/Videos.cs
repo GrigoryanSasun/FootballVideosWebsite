@@ -21,7 +21,6 @@ namespace FootBallVideos.ModelsData
 
         public virtual Players Player { get; set; }
         public virtual Season Season { get; set; }
-        public virtual Teams Team { get; set; }
         public virtual Tournaments Tournament { get; set; }
     }
 }

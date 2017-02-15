@@ -46,6 +46,7 @@ namespace FootBallVideos
             services.AddSingleton<ITournamentRepository, TournamentRepository>();
             services.AddSingleton<ISeasonRepository, SeasonRepository>();
             services.AddSingleton<IMatchRepository, MatchRepository>();
+            services.AddSingleton<ITeamSeasonTournamentMapRepository, TeamSeasonTournamentMapRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

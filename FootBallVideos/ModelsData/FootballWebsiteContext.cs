@@ -22,21 +22,7 @@ namespace FootBallVideos.ModelsData
         {
             modelBuilder.Entity<Matches>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Date).HasColumnType("datetime");
-
-                entity.HasOne(d => d.AwayTeam)
-                    .WithMany(p => p.MatchesAwayTeam)
-                    .HasForeignKey(d => d.AwayTeamId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK_Matchs_Teams_Away");
-
-                entity.HasOne(d => d.HomeTeam)
-                    .WithMany(p => p.MatchesHomeTeam)
-                    .HasForeignKey(d => d.HomeTeamId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK_Matchs_Teams_Home");
 
                 entity.HasOne(d => d.Season)
                     .WithMany(p => p.Matches)
@@ -47,8 +33,6 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<Players>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Age).HasMaxLength(250);
 
                 entity.Property(e => e.Name)
@@ -58,17 +42,10 @@ namespace FootBallVideos.ModelsData
                 entity.Property(e => e.Nationality).HasMaxLength(250);
 
                 entity.Property(e => e.Position).HasMaxLength(250);
-
-                entity.HasOne(d => d.CurrentTeam)
-                    .WithMany(p => p.Players)
-                    .HasForeignKey(d => d.CurrentTeamId)
-                    .HasConstraintName("FK_Players_Teams");
             });
 
             modelBuilder.Entity<Season>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Name)
@@ -80,19 +57,11 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<TeamSeasonTournamentMap>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.HasOne(d => d.Season)
                     .WithMany(p => p.TeamSeasonTournamentMap)
                     .HasForeignKey(d => d.SeasonId)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_teamSeasonTournamentMap_Season");
-
-                entity.HasOne(d => d.Team)
-                    .WithMany(p => p.TeamSeasonTournamentMap)
-                    .HasForeignKey(d => d.TeamId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK_teamSeasonTournamentMap_Teams");
 
                 entity.HasOne(d => d.Tournament)
                     .WithMany(p => p.TeamSeasonTournamentMap)
@@ -103,8 +72,6 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<Teams>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(200);
@@ -112,11 +79,7 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<Tournaments>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.Country)
-                    .IsRequired()
-                    .HasMaxLength(200);
+                entity.Property(e => e.Country).HasMaxLength(200);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -142,11 +105,6 @@ namespace FootBallVideos.ModelsData
                     .WithMany(p => p.Videos)
                     .HasForeignKey(d => d.SeasonId)
                     .HasConstraintName("FK_Videos_Season");
-
-                entity.HasOne(d => d.Team)
-                    .WithMany(p => p.Videos)
-                    .HasForeignKey(d => d.TeamId)
-                    .HasConstraintName("FK_Videos_Teams");
 
                 entity.HasOne(d => d.Tournament)
                     .WithMany(p => p.Videos)
