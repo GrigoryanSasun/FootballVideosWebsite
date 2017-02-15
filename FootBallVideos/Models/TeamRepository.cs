@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,15 +33,20 @@ namespace FootBallVideos.Models
             {
                 _context.Teams.Add(item);
                 await _context.SaveChangesAsync();
+                Debug.WriteLine("Team: " + item.Id + " : OK");
                 return true;
             }
             catch (Exception ex)
             {
-                if (!ex.Message.Contains("unique") || ex.InnerException.Message.Contains("unique"))
+                Debug.WriteLine(ex.Message + " error occured in Team insert");
+                if (!ex.Message.Contains("unique") && !ex.InnerException.Message.Contains("unique"))
                 {
                     return false;
                 }
-                return true;
+                else
+                {
+                    return true;
+                }
             }
         }
 
@@ -58,21 +64,39 @@ namespace FootBallVideos.Models
                           select b).FirstOrDefaultAsync();
         }
 
-        public void Remove(int key)
+        public bool Remove(int key)
         {
-            var team = new Teams { NativeId = key };
-            _context.Teams.Attach(team);
-            _context.Teams.Remove(team);
-            _context.SaveChanges();
+            try
+            {
+                var team = new Teams { NativeId = key };
+                _context.Teams.Attach(team);
+                _context.Teams.Remove(team);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + " error occured in Teams remove");
+                return false;
+            }
         }
 
-        public void Update(Teams item)
+        public bool Update(Teams item)
         {
-            _context.Teams.Attach(item);
-            var entry = _context.Entry(item);
-            entry.Property(e => e.Name).IsModified = true;
-            entry.Property(e => e.NativeId).IsModified = true;
-            _context.SaveChanges();
+            try
+            {
+                _context.Teams.Attach(item);
+                var entry = _context.Entry(item);
+                entry.Property(e => e.Name).IsModified = true;
+                entry.Property(e => e.NativeId).IsModified = true;
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex )
+            {
+                Debug.WriteLine(ex.Message + " error occured in Teams Update");
+                return false;
+            }
         }
 
         public async Task<IEnumerable<Players>> GetPlayersAsync(int id)

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,15 +33,20 @@ namespace FootBallVideos.Models
             {
                 _context.Season.Add(item);
                 await _context.SaveChangesAsync();
+                Debug.WriteLine("Season: " + item.Id + " : OK");
                 return true;
             }
             catch (Exception ex)
             {
-                if (!ex.Message.Contains("unique") || ex.InnerException.Message.Contains("unique"))
+                Debug.WriteLine(ex.Message + " error occured in Season insert");
+                if (!ex.Message.Contains("unique") && !ex.InnerException.Message.Contains("unique"))
                 {
                     return false;
                 }
-                return true;
+                else
+                {
+                    return true;
+                }
             }
         }
 
@@ -58,23 +64,41 @@ namespace FootBallVideos.Models
                           select b).FirstOrDefaultAsync();
         }
 
-        public void Remove(int key)
+        public bool Remove(int key)
         {
-            var season = new Season { NativeId = key };
-            _context.Season.Attach(season);
-            _context.Season.Remove(season);
-            _context.SaveChanges();
+            try
+            {
+                var season = new Season { NativeId = key };
+                _context.Season.Attach(season);
+                _context.Season.Remove(season);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + " error occured in Season remove");
+                return false;
+            }
         }
 
-        public void Update(Season item)
+        public bool Update(Season item)
         {
-            _context.Season.Attach(item);
-            var entry = _context.Entry(item);
-            entry.Property(e => e.Name).IsModified = true;
-            entry.Property(e => e.NativeId).IsModified = true;
-            entry.Property(e => e.StartDate).IsModified = true;
-            entry.Property(e => e.EndDate).IsModified = true;
-            _context.SaveChanges();
+            try
+            {
+                _context.Season.Attach(item);
+                var entry = _context.Entry(item);
+                entry.Property(e => e.Name).IsModified = true;
+                entry.Property(e => e.NativeId).IsModified = true;
+                entry.Property(e => e.StartDate).IsModified = true;
+                entry.Property(e => e.EndDate).IsModified = true;
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + " error occured in Season Update");
+                return false;
+            }
         }
 
         IEnumerable<Season> ISeasonRepository.GetAll()

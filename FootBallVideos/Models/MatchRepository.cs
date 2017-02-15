@@ -4,13 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FootBallVideos;
+using System.Diagnostics;
 
 namespace FootBallVideos.Models
 {
     public class MatchRepository : IMatchRepository
     {
         private FootballWebsiteContext _context;
-
+        //private LogManager _logger = new LogManager();
         public MatchRepository(FootballWebsiteContext context)
         {
             _context = context;
@@ -32,15 +34,20 @@ namespace FootBallVideos.Models
             {
                 _context.Matches.Add(item);
                 await _context.SaveChangesAsync();
+                Debug.WriteLine("Match: " + item.Id + " : OK");
                 return true;
             }
             catch(Exception ex)
             {
-                if (!ex.Message.Contains("unique") || ex.InnerException.Message.Contains("unique"))
+                Debug.WriteLine(ex.Message + " error occured in Match insert");
+                if (!ex.Message.Contains("unique") && !ex.InnerException.Message.Contains("unique"))
                 {
                     return false;
                 }
-                return true;
+                else
+                {
+                    return true;
+                }
             }
         }
 
@@ -58,24 +65,43 @@ namespace FootBallVideos.Models
                           select b).FirstOrDefaultAsync();
         }
 
-        public void Remove(int id)
+        public bool Remove(int id)
         {
-            var matches = new Matches { NativeId = id };
-            _context.Matches.Attach(matches);
-            _context.Matches.Remove(matches);
-            _context.SaveChanges();
+            try
+            {
+                var matches = new Matches { NativeId = id };
+                _context.Matches.Attach(matches);
+                _context.Matches.Remove(matches);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(ex.Message + " error occured in Match remove");
+                return false;
+            }
         }
 
-        public void Update(Matches item)
+        public bool Update(Matches item)
         {
-            _context.Matches.Attach(item);
-            var entry = _context.Entry(item);
-            entry.Property(e => e.AwayTeamId).IsModified = true;
-            entry.Property(e => e.HomeTeamId).IsModified = true;
-            entry.Property(e => e.Date).IsModified = true;
-            entry.Property(e => e.NativeId).IsModified = true;
-            entry.Property(e => e.SeasonId).IsModified = true;
-            _context.SaveChanges();
+            try
+            {
+                _context.Matches.Attach(item);
+                var entry = _context.Entry(item);
+                entry.Property(e => e.AwayTeamId).IsModified = true;
+                entry.Property(e => e.HomeTeamId).IsModified = true;
+                entry.Property(e => e.Date).IsModified = true;
+                entry.Property(e => e.NativeId).IsModified = true;
+                entry.Property(e => e.SeasonId).IsModified = true;
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + " error occured in Match Update");
+                return false;
+            }
         }
         public int GetByTeamId(int id)
         {

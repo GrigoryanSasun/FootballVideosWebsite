@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using FootBallVideos.ModelsData;
 using System;
+using System.Diagnostics;
 
 namespace FootBallVideos.Models
 {
@@ -30,17 +31,28 @@ namespace FootBallVideos.Models
         {
             try
             {
-                _context.Players.Add(item);
-                await _context.SaveChangesAsync();
-                return true;
+                if (item.WhoScoredId == null)
+                {                    
+                    return Update(item); ;
+                }
+                else
+                {
+                    _context.Players.Add(item);
+                    await _context.SaveChangesAsync();
+                    Debug.WriteLine("Player Inserted: " + item.Id + " : OK");
+                    return true;
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                if (!ex.Message.Contains("unique") || ex.InnerException.Message.Contains("unique"))
+                Debug.WriteLine(ex.Message + " error occured in Player insert");
+                if (!ex.Message.Contains("unique") && !ex.InnerException.Message.Contains("unique"))
                 {
                     return false;
+                } else
+                {
+                    return true;
                 }
-                return true;
             }
         }
 
@@ -58,28 +70,46 @@ namespace FootBallVideos.Models
                           select b).FirstOrDefaultAsync();
         }
 
-        public void Remove(int id)
+        public bool Remove(int id)
         {
-            var player = new Players { NativeId = id };
-            _context.Players.Attach(player);
-            _context.Players.Remove(player);
-            _context.SaveChanges();
+            try
+            {
+                var player = new Players { NativeId = id };
+                _context.Players.Attach(player);
+                _context.Players.Remove(player);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + " error occured in Player remove");
+                return false;
+            }
         }
 
-        public void Update(Players item)
+        public bool Update(Players item)
         {
-            _context.Players.Attach(item);
-            var entry = _context.Entry(item);
-            entry.Property(e => e.Name).IsModified = true;
-            entry.Property(e => e.NativeId).IsModified = true;
-            entry.Property(e => e.Nationality).IsModified = true;
-            entry.Property(e => e.HeightInCm).IsModified = true;
-            entry.Property(e => e.CurrentShirtNumber).IsModified = true;
-            entry.Property(e => e.CurrentTeamId).IsModified = true;
-            entry.Property(e => e.IconPosition).IsModified = true;
-            entry.Property(e => e.PortraitUrl).IsModified = true;
-            entry.Property(e => e.WeightInKg).IsModified = true;
-            _context.SaveChanges();
+            try
+            {
+                var itemOrigin = (from q in _context.Players where q.NativeId == item.NativeId select q).FirstOrDefault();
+                itemOrigin.NativeId = item.NativeId;
+                itemOrigin.Nationality = item.Nationality;
+                itemOrigin.HeightInCm = item.HeightInCm;
+                itemOrigin.WeightInKg = item.WeightInKg;
+                itemOrigin.CurrentShirtNumber = item.CurrentShirtNumber;
+                itemOrigin.CurrentTeamId = item.CurrentTeamId;
+                itemOrigin.IconPosition = item.IconPosition;
+                itemOrigin.PortraitUrl = item.PortraitUrl;
+                itemOrigin.Age = item.Age;
+                itemOrigin.Position = item.Position;
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + " error occured in Player Update");
+                return false;
+            }
         }
         public int GetByTeamId(int id)
         {

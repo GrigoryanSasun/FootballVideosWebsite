@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using FootBallVideos.ModelsData;
 using System;
+using System.Diagnostics;
 
 namespace FootBallVideos.Models
 {
@@ -36,16 +37,20 @@ namespace FootBallVideos.Models
             {
                 _context.Tournaments.Add(item);
                 await _context.SaveChangesAsync();
+                Debug.WriteLine("Tournament: " + item.Id + " : OK");
                 return true;
-
             }
             catch (Exception ex)
             {
-                if (!ex.Message.Contains("unique") || ex.InnerException.Message.Contains("unique"))
+                Debug.WriteLine(ex.Message + " error occured in Tournament insert");
+                if (!ex.Message.Contains("unique") && !ex.InnerException.Message.Contains("unique"))
                 {
                     return false;
                 }
-                return true;
+                else
+                {
+                    return true;
+                }
             }
         }
 
@@ -63,21 +68,39 @@ namespace FootBallVideos.Models
                           select b).FirstOrDefaultAsync();
         }
 
-        public void Remove(int key)
+        public bool Remove(int key)
         {
-            var tour = new Tournaments { NativeId = key };
-            _context.Tournaments.Attach(tour);
-            _context.Tournaments.Remove(tour);
-            _context.SaveChanges();
+            try
+            {
+                var tour = new Tournaments { NativeId = key };
+                _context.Tournaments.Attach(tour);
+                _context.Tournaments.Remove(tour);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + " error occured in Tournament remove");
+                return false;
+            }
         }
 
-        public void Update(Tournaments item)
+        public bool Update(Tournaments item)
         {
-            _context.Tournaments.Attach(item);
-            var entry = _context.Entry(item);
-            entry.Property(e => e.Name).IsModified = true;
-            entry.Property(e => e.NativeId).IsModified = true;
-            _context.SaveChanges();
+            try
+            {
+                _context.Tournaments.Attach(item);
+                var entry = _context.Entry(item);
+                entry.Property(e => e.Name).IsModified = true;
+                entry.Property(e => e.NativeId).IsModified = true;
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message + " error occured in Tournament Update");
+                return false;
+            }
         }
 
         public IEnumerable<Teams> GetTeams(int id)
