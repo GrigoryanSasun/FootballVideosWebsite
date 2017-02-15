@@ -8,9 +8,9 @@ namespace FootBallVideos.Models
     {
         IEnumerable<Matches> GetAll();
         Matches Find(int key);
-        void Remove(int key);
-        void Update(Matches item);
         Task<bool> Add(Matches item);
+        bool Remove(int key);
+        bool Update(Matches item);
 
         Task<IEnumerable<Matches>> GetAllAsync();
         Task<Matches> FindAsync(int key);

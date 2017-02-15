@@ -10,8 +10,8 @@ namespace FootBallVideos.Models
         IEnumerable<Teams> GetTeams(int id);
         Tournaments Find(int key);
         Task<bool> Add(Tournaments item);
-        void Remove(int key);
-        void Update(Tournaments item);
+        bool Remove(int key);
+        bool Update(Tournaments item);
 
         Task<IEnumerable<Tournaments>> GetAllAsync();
         Task<IEnumerable<Teams>> GetTeamsAsync(int id);
