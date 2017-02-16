@@ -6,30 +6,21 @@ html, body {
 	min-height:100%;
 	position:relative;
     margin: 0 auto -100px;
-    /*background-color:#ecebe8;*/
 }
 .header {
-	/*background-color:#ecebe8;*/
     top:0;
     position: fixed;
     width: 100%;
     top: 0px;
-    z-index: 4;
+    z-index: 1000;
 }
 .content {
 	padding-bottom:100px; /* Height of the footer element */
-    background-color: #ecebe8;
     padding-top: 85px;
 }
 
 .footer {
-	/*background: #0c0000; 
-    background: -moz-linear-gradient(45deg, #0c0000 11%, #260600 31%, #560700 48%, #260600 67%, #0f0000 83%); 
-    background: -webkit-linear-gradient(45deg, #0c0000 11%,#260600 31%,#560700 48%,#260600 67%,#0f0000 83%); 
-    background: linear-gradient(45deg, #0c0000 11%,#260600 31%,#560700 48%,#260600 67%,#0f0000 83%); 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', endColorstr='#0f0000',GradientType=1 );*/
-    background-color: #fff;
-    position: relative;
+	position: relative;
     margin: 0 auto;
 	width:100%;
 	height:100px;
