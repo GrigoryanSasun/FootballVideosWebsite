@@ -6,10 +6,10 @@ html, body {
 	min-height:100%;
 	position:relative;
     margin: 0 auto -100px;
-    background-color:#ecebe8;
+    /*background-color:#ecebe8;*/
 }
 .header {
-	background-color:#ecebe8;
+	/*background-color:#ecebe8;*/
     top:0;
     position: fixed;
     width: 100%;
