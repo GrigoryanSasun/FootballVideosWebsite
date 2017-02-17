@@ -41,12 +41,12 @@ namespace FootBallVideos
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
             //var connection = @";Database=FootballAnalytics;Trusted_Connection=True;";
-            services.AddSingleton<IPlayersRepository, PlayersRepository>();
-            services.AddSingleton<ITeamRepository, TeamRepository>();
-            services.AddSingleton<ITournamentRepository, TournamentRepository>();
-            services.AddSingleton<ISeasonRepository, SeasonRepository>();
-            services.AddSingleton<IMatchRepository, MatchRepository>();
-            services.AddSingleton<ITeamSeasonTournamentMapRepository, TeamSeasonTournamentMapRepository>();
+            services.AddScoped<IPlayersRepository, PlayersRepository>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
+            services.AddScoped<ITournamentRepository, TournamentRepository>();
+            services.AddScoped<ISeasonRepository, SeasonRepository>();
+            services.AddScoped<IMatchRepository, MatchRepository>();
+            services.AddScoped<ITeamSeasonTournamentMapRepository, TeamSeasonTournamentMapRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -51,7 +51,7 @@ export class SideBarComponent implements OnInit {
         this.animationService = animationService; this.changeColorsService = changeColorsService; 
     }
 
-    ngOnInit() { this.getTournaments(); this.getTeams() }
+    ngOnInit() { this.getTournaments(); this.getTeams(); }
 
 
     getTournaments() {

@@ -14,7 +14,7 @@ namespace FootBallVideos.Controllers
     [Route("api/[controller]")]
     public class InsertController : Controller
     {
-        public InsertController(
+        public InsertController(            
             ITeamRepository team, 
             ITournamentRepository tournament, 
             IMatchRepository match, 
@@ -65,7 +65,7 @@ namespace FootBallVideos.Controllers
 
         [HttpPost("season", Name = "AddSeason")]
         [ActionName("Complex")]
-        public async Task<bool> Create([FromBody] Season item)
+        public async Task<bool> Create([FromBody] SeasonAlternate item)
         {
             if (item == null)
             {
@@ -73,7 +73,7 @@ namespace FootBallVideos.Controllers
             }
 
             Debug.WriteLine("Season : " + item.Name + " - Added");
-            return await Season.Add(item);
+            return await Season.Add(item.CovertToSeason());
         }
         
         [HttpPost("player", Name = "AddPlayer")]
@@ -91,7 +91,7 @@ namespace FootBallVideos.Controllers
 
         [HttpPost("match", Name = "AddMatch")]
         [ActionName("Complex")]
-        public async Task<bool> Create([FromBody] Matches item)
+        public async Task<bool> Create([FromBody] MatchAlternate item)
         {
             if (item == null)
             {
@@ -99,7 +99,8 @@ namespace FootBallVideos.Controllers
             }
 
             Debug.WriteLine("Match : " + item.Id + " - Added");
-            return await Match.Add(item);
+
+            return await Match.Add(item.CovertToMatch());
         }
 
         [HttpPost("map", Name = "AddMap")]
