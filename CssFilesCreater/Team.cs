@@ -18,6 +18,8 @@ namespace CssFilesCreater
         public string ButtonColor { get; set; }
         public string BorderColor { get; set; }
         public string WrapperColor { get; set; }
+        public string HoverColor { get; set; }
+        public string TittleColor { get; set; }
 
     }
 }

@@ -22,6 +22,8 @@ namespace FootBallVideos.ModelsData
         public string ButtonColor { get; set; }
         public string BorderColor { get; set; }
         public string WrapperColor { get; set; }
+        public string HoverColor { get; set; }
+        public string TittleColor { get; set; }
 
         public virtual ICollection<Players> Players { get; set; }
         public virtual ICollection<TeamTournamentMap> TeamTournamentMap { get; set; }
