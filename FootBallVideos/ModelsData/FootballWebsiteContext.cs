@@ -6,6 +6,7 @@ namespace FootBallVideos.ModelsData
 {
     public partial class FootballWebsiteContext : DbContext
     {
+        public virtual DbSet<ErrorLog> ErrorLog { get; set; }
         public virtual DbSet<Matches> Matches { get; set; }
         public virtual DbSet<Players> Players { get; set; }
         public virtual DbSet<Season> Season { get; set; }
@@ -20,9 +21,32 @@ namespace FootBallVideos.ModelsData
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ErrorLog>(entity =>
+            {
+                entity.Property(e => e.Message).IsRequired();
+
+                entity.Property(e => e.Time).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<Matches>(entity =>
             {
+                entity.HasIndex(e => e.NativeId)
+                    .HasName("IX_Matches")
+                    .IsUnique();
+
                 entity.Property(e => e.Date).HasColumnType("datetime");
+
+                entity.HasOne(d => d.AwayTeam)
+                    .WithMany(p => p.MatchesAwayTeam)
+                    .HasForeignKey(d => d.AwayTeamId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Matches_Teams");
+
+                entity.HasOne(d => d.HomeTeam)
+                    .WithMany(p => p.MatchesHomeTeam)
+                    .HasForeignKey(d => d.HomeTeamId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Matches_Teams1");
 
                 entity.HasOne(d => d.Season)
                     .WithMany(p => p.Matches)
@@ -33,6 +57,10 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<Players>(entity =>
             {
+                entity.HasIndex(e => e.NativeId)
+                    .HasName("IX_Players")
+                    .IsUnique();
+
                 entity.Property(e => e.Age).HasMaxLength(250);
 
                 entity.Property(e => e.Name)
@@ -46,6 +74,10 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<Season>(entity =>
             {
+                entity.HasIndex(e => e.NativeId)
+                    .HasName("IX_Season")
+                    .IsUnique();
+
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Name)
@@ -72,6 +104,10 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<Teams>(entity =>
             {
+                entity.HasIndex(e => e.NativeId)
+                    .HasName("IX_Teams")
+                    .IsUnique();
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(200);
@@ -79,6 +115,10 @@ namespace FootBallVideos.ModelsData
 
             modelBuilder.Entity<Tournaments>(entity =>
             {
+                entity.HasIndex(e => e.NativeId)
+                    .HasName("IX_Tournaments")
+                    .IsUnique();
+
                 entity.Property(e => e.Country).HasMaxLength(200);
 
                 entity.Property(e => e.Name)

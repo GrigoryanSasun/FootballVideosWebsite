@@ -13,6 +13,8 @@ namespace FootBallVideos.ModelsData
         public int WhoScoredId { get; set; }
         public DateTime Date { get; set; }
 
+        public virtual Teams AwayTeam { get; set; }
+        public virtual Teams HomeTeam { get; set; }
         public virtual Season Season { get; set; }
     }
 }
