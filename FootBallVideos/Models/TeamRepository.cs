@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,13 +32,11 @@ namespace FootBallVideos.Models
             {
                 _context.Teams.Add(item);
                 await _context.SaveChangesAsync();
-                Debug.WriteLine("Team: " + item.Id + " : OK");
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Team insert");
-                if (!ex.Message.Contains("unique") && !ex.InnerException.Message.Contains("unique"))
+                if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
                 {
                     return false;
                 }
@@ -76,7 +73,6 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Teams remove");
                 return false;
             }
         }
@@ -94,7 +90,6 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex )
             {
-                Debug.WriteLine(ex.Message + " error occured in Teams Update");
                 return false;
             }
         }
@@ -102,7 +97,7 @@ namespace FootBallVideos.Models
         public async Task<IEnumerable<Players>> GetPlayersAsync(int id)
         {
             var players = (from p in _context.Players
-                           where p.CurrentTeamId == id
+                           where p.NativeId == id
                            select new Players
                            {
                                Name = p.Name,
@@ -123,8 +118,19 @@ namespace FootBallVideos.Models
         {
             var players = (from p in _context.Players
                            where p.CurrentTeamId == id
-                           select p).ToList();
-            return players.ToList();
+                           select new Players
+                           {
+                               Name = p.Name,
+                               Position = p.Position,
+                               IconPosition = p.IconPosition,
+                               HeightInCm = p.HeightInCm,
+                               WeightInKg = p.WeightInKg,
+                               Nationality = p.Nationality,
+                               PortraitUrl = p.PortraitUrl,
+                               CurrentShirtNumber = p.CurrentShirtNumber,
+                               Age = p.Age
+                           }).ToList();
+            return players;
 
         }
     }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using FootBallVideos.ModelsData;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 
 namespace FootBallVideos.Models
 {
@@ -30,13 +29,11 @@ namespace FootBallVideos.Models
                 newItem.TournamentId = tournamentId;
                 _context.TeamSeasonTournamentMap.Add(newItem);
                 await _context.SaveChangesAsync();
-                Debug.WriteLine("Map: " + newItem.Id + " : OK");
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Map insert");
-                if (!ex.Message.Contains("unique") && !ex.InnerException.Message.Contains("unique"))
+                if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
                 {
                     return false;
                 }
@@ -83,7 +80,6 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Map remove");
                 return false;
             }
         }
@@ -102,7 +98,6 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Map Update");
                 return false;
             }
         }

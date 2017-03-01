@@ -46,7 +46,6 @@ namespace FootBallVideos.Controllers
                 return false;
             }
 
-            Debug.WriteLine("Tournament : " + item.Name + " - Added");
             return await Tournament.Add(item);
         }
 
@@ -58,8 +57,6 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-
-            Debug.WriteLine("Team : " + item.Name + " - Added");
             return await Team.Add(item);
         }
 
@@ -71,8 +68,6 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-
-            Debug.WriteLine("Season : " + item.Name + " - Added");
             return await Season.Add(item.CovertToSeason());
         }
         
@@ -84,8 +79,6 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-
-            Debug.WriteLine("Player : " + item.Name + " - Added");
             return await Player.Add(item);
         }
 
@@ -97,9 +90,6 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-
-            Debug.WriteLine("Match : " + item.Id + " - Added");
-
             return await Match.Add(item.CovertToMatch());
         }
 
@@ -111,8 +101,6 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-
-            Debug.WriteLine("Map : " + item.Id + " - Added");
             return await Map.Add(item);
         }
 

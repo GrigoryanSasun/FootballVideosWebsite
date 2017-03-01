@@ -1,0 +1,27 @@
+2/21/2017 5:37:50 PM   : Tournament : Germany-Bundesliga-II - Added
+2/21/2017 6:12:19 PM   : Tournament : Germany-Bundesliga-II - Added
+2/21/2017 6:13:25 PM   : Season : Germany-Bundesliga-II-2016-2017 - Added
+2/21/2017 6:13:34 PM   : Team : VfB Stuttgart - Added
+2/21/2017 6:13:34 PM   : Team : Hannover 96 - Added
+2/21/2017 6:13:34 PM   : Team : Union Berlin - Added
+2/21/2017 6:13:34 PM   : Team : Eintracht Braunschweig - Added
+2/21/2017 6:13:35 PM   : Team : FC Heidenheim - Added
+2/21/2017 6:13:35 PM   : Team : Dynamo Dresden - Added
+2/21/2017 6:13:35 PM   : Team : Sandhausen - Added
+2/21/2017 6:13:35 PM   : Team : Nuernberg - Added
+2/21/2017 6:13:35 PM   : Team : Wuerzburger Kickers - Added
+2/21/2017 6:13:35 PM   : Team : Greuther Fuerth - Added
+2/21/2017 6:13:36 PM   : Team : Kaiserslautern - Added
+2/21/2017 6:13:36 PM   : Team : Fortuna Duesseldorf - Added
+2/21/2017 6:13:36 PM   : Team : Bochum - Added
+2/21/2017 6:13:36 PM   : Team : 1860 Muenchen - Added
+2/21/2017 6:13:36 PM   : Team : Karlsruher SC - Added
+2/21/2017 6:13:36 PM   : Team : St. Pauli - Added
+2/21/2017 6:13:36 PM   : Team : Arminia Bielefeld - Added
+2/21/2017 6:13:36 PM   : Team : Erzgebirge Aue - Added
+2/21/2017 6:38:25 PM   : Map : 1 - Added
+2/21/2017 6:38:45 PM   : Map : 2 - Added
+2/21/2017 6:39:21 PM   : Match : 1 - Added
+2/21/2017 6:42:11 PM   : Map : 3 - Added
+2/21/2017 6:42:11 PM   : Map : 4 - Added
+2/28/2017 12:42:36 PM   : Player :  - Updated

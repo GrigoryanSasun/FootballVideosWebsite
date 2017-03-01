@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using FootBallVideos.ModelsData;
 using System;
-using System.Diagnostics;
 
 namespace FootBallVideos.Models
 {
@@ -37,13 +36,11 @@ namespace FootBallVideos.Models
             {
                 _context.Tournaments.Add(item);
                 await _context.SaveChangesAsync();
-                Debug.WriteLine("Tournament: " + item.Id + " : OK");
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Tournament insert");
-                if (!ex.Message.Contains("unique") && !ex.InnerException.Message.Contains("unique"))
+                if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
                 {
                     return false;
                 }
@@ -80,7 +77,6 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Tournament remove");
                 return false;
             }
         }
@@ -98,7 +94,6 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Tournament Update");
                 return false;
             }
         }

@@ -12,7 +12,6 @@ namespace FootBallVideos.Models
     public class MatchRepository : IMatchRepository
     {
         private FootballWebsiteContext _context;
-        //private LogManager _logger = new LogManager();
         public MatchRepository(FootballWebsiteContext context)
         {
             _context = context;
@@ -32,15 +31,20 @@ namespace FootBallVideos.Models
         {
             try
             {
-                _context.Matches.Add(item);
+                Matches newItem = item;
+                int HomeTeamId = (from q in _context.Teams where q.NativeId == item.HomeTeamId select q.Id).FirstOrDefault();
+                int AwayTeamId = (from q in _context.Teams where q.NativeId == item.AwayTeamId select q.Id).FirstOrDefault();
+                int SeasonId = (from q in _context.Season where q.NativeId == item.SeasonId select q.Id).FirstOrDefault();
+                newItem.HomeTeamId = HomeTeamId;
+                newItem.AwayTeamId = AwayTeamId;
+                newItem.SeasonId = SeasonId;
+                _context.Matches.Add(newItem);
                 await _context.SaveChangesAsync();
-                Debug.WriteLine("Match: " + item.Id + " : OK");
                 return true;
             }
             catch(Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Match insert");
-                if (!ex.Message.Contains("unique") && !ex.InnerException.Message.Contains("unique"))
+                if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
                 {
                     return false;
                 }
@@ -77,8 +81,6 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-
-                Debug.WriteLine(ex.Message + " error occured in Match remove");
                 return false;
             }
         }
@@ -99,7 +101,6 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Match Update");
                 return false;
             }
         }

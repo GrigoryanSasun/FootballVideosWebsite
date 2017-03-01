@@ -32,24 +32,23 @@ namespace FootBallVideos.Models
             try
             {
                 if (item.WhoScoredId == null)
-                {                    
-                    return Update(item); ;
+                {
+                    return Update(item);
                 }
                 else
                 {
                     _context.Players.Add(item);
                     await _context.SaveChangesAsync();
-                    Debug.WriteLine("Player Inserted: " + item.Id + " : OK");
                     return true;
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Player insert");
-                if (!ex.Message.Contains("unique") && !ex.InnerException.Message.Contains("unique"))
+                if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
                 {
                     return false;
-                } else
+                }
+                else
                 {
                     return true;
                 }
@@ -82,7 +81,6 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Player remove");
                 return false;
             }
         }
@@ -107,7 +105,6 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Player Update");
                 return false;
             }
         }

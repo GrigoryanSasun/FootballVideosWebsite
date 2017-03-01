@@ -2,7 +2,8 @@
   "dependencies": {
     "Microsoft.NETCore.App": {
       "version": "1.0.1",
-      "type": "platform"
+      "type": "platform",
+      "webroot": "wwwroot"
     },
     "Microsoft.AspNetCore.AngularServices": "1.0.0-*",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
@@ -62,11 +63,14 @@
   "publishOptions": {
     "include": [
       "appsettings.json",
+      "Controllers",
       "ClientApp/dist",
       "node_modules",
       "Views",
       "web.config",
-      "wwwroot"
+      "webpack.config.js",
+      "wwwroot",
+      "logs"
     ]
   },
 

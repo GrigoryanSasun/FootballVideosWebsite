@@ -32,10 +32,16 @@ namespace FootBallVideos.Controllers
             return new ObjectResult(item);
         }
 
+        //[HttpGet("{id}/players", Name = "GetPlayersByTeamId")]
+        //public async Task<IEnumerable<Players>> GetPlayersByTeamIdAsync(int id)
+        //{
+        //    return await Team.GetPlayersAsync(id);
+        //}
+
         [HttpGet("{id}/players", Name = "GetPlayersByTeamId")]
-        public async Task<IEnumerable<Players>> GetPlayersByTeamId(int id)
+        public IEnumerable<Players> GetPlayersByTeamId(int id)
         {
-            return await Team.GetPlayersAsync(id);
+            return Team.GetPlayers(id);
         }
     }
 }
