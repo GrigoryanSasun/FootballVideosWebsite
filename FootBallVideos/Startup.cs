@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
+using FootBallVideos.Logging;
 
 namespace FootBallVideos
 {
@@ -47,6 +49,8 @@ namespace FootBallVideos
             services.AddScoped<ISeasonRepository, SeasonRepository>();
             services.AddScoped<IMatchRepository, MatchRepository>();
             services.AddScoped<ITeamSeasonTournamentMapRepository, TeamSeasonTournamentMapRepository>();
+            services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
+            services.AddScoped<LoggerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,8 +76,9 @@ namespace FootBallVideos
 
             app.Use(async (context, next) =>
             {
-                var insertPath = new PathString("/api/insert");
-                if (context.Request.Path.StartsWithSegments(insertPath))
+                List<PathString> securePaths = new List<PathString>();
+                securePaths.Add(new PathString("/api/insert"));
+                if (securePaths.Contains(context.Request.Path))
                 {
                     var key = Configuration.GetValue<string>("MySettings:ApiKey");
                     var headerKey = context.Request.Headers["ApiKey"];

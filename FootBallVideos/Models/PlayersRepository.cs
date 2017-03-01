@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using FootBallVideos.ModelsData;
 using System;
 using System.Diagnostics;
+using FootBallVideos.Logging;
 
 namespace FootBallVideos.Models
 {
     public class PlayersRepository : IPlayersRepository
     {
         private FootballWebsiteContext _context;
+        private LoggerService _logger;
 
         public PlayersRepository(FootballWebsiteContext context)
         {
@@ -46,7 +48,7 @@ namespace FootBallVideos.Models
             {
                 if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
                 {
-                    return false;
+                    return _logger.Add(ex.Message, 1);
                 }
                 else
                 {
@@ -58,14 +60,14 @@ namespace FootBallVideos.Models
         public Players Find(int id)
         {
             return (from b in _context.Players
-                    where b.NativeId == id
+                    where b.Id == id
                     select b).FirstOrDefault();
         }
 
         public async Task<Players> FindAsync(int id)
         {
             return await (from b in _context.Players
-                          where b.NativeId == id
+                          where b.Id == id
                           select b).FirstOrDefaultAsync();
         }
 

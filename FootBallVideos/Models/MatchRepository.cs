@@ -6,17 +6,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using FootBallVideos;
 using System.Diagnostics;
+using FootBallVideos.Logging;
 
 namespace FootBallVideos.Models
 {
     public class MatchRepository : IMatchRepository
     {
         private FootballWebsiteContext _context;
-        public MatchRepository(FootballWebsiteContext context)
+        private LoggerService _logger;
+
+        public MatchRepository(FootballWebsiteContext context, LoggerService logger)
         {
             _context = context;
+            _logger = logger;
         }
-
+        
         public IEnumerable<Matches> GetAll()
         {
             return _context.Matches;
@@ -46,7 +50,7 @@ namespace FootBallVideos.Models
             {
                 if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
                 {
-                    return false;
+                    return _logger.Add(ex.Message, 1);
                 }
                 else
                 {
@@ -57,19 +61,35 @@ namespace FootBallVideos.Models
 
         public Matches Find(int id)
         {
-            return (from b in _context.Matches
-                    where b.NativeId == id
-                    select b).FirstOrDefault();
+            try
+            {
+                return (from b in _context.Matches
+                        where b.NativeId == id
+                        select b).FirstOrDefault();
+            } catch(Exception ex)
+            {
+                _logger.Add(ex.Message, 1);
+                return new Matches();
+            }
         }
 
         public async Task<Matches> FindAsync(int id)
         {
-            return await (from b in _context.Matches
-                          where b.NativeId == id
-                          select b).FirstOrDefaultAsync();
+            try
+            {
+                return await (from b in _context.Matches
+                              where b.NativeId == id
+                              select b).FirstOrDefaultAsync();
+
+            }
+            catch (Exception ex)
+            {
+                await _logger.AddAsync(ex.Message, 1);
+                return new Matches();
+            }
         }
 
-        public bool Remove(int id)
+        public async Task<bool> Remove(int id)
         {
             try
             {
@@ -81,11 +101,11 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                return false;
+                return await _logger.AddAsync(ex.Message, 1);
             }
         }
 
-        public bool Update(Matches item)
+        public async Task<bool> Update(Matches item)
         {
             try
             {
@@ -101,12 +121,8 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                return false;
+                return await _logger.AddAsync(ex.Message, 1);
             }
-        }
-        public int GetByTeamId(int id)
-        {
-            return id;
         }
     }
 }

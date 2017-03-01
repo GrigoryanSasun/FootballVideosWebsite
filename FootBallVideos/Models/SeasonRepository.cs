@@ -95,25 +95,5 @@ namespace FootBallVideos.Models
                 return false;
             }
         }
-
-        IEnumerable<Season> ISeasonRepository.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        Season ISeasonRepository.Find(int key)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<IEnumerable<Season>> ISeasonRepository.GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Season> ISeasonRepository.FindAsync(int key)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
