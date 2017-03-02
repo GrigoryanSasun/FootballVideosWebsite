@@ -7,8 +7,9 @@ namespace FootBallVideos.ModelsData
     {
         public int Id { get; set; }
         public string Message { get; set; }
-        public DateTime Time { get; set; }
         public int Priority { get; set; }
         public bool? IsFixed { get; set; }
+        public DateTime? Datetime { get; set; }
+        public string Component { get; set; }
     }
 }

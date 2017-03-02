@@ -45,12 +45,12 @@ namespace FootBallVideos.Models
                     {
                         if (ex.Message.Contains("inner exception"))
                         {
-                            _logger.Add(ex.InnerException.Message, 1);
+                            _logger.Add(ex.InnerException.Message, "Team Add", 1);
                             return false;
                         }
                         else
                         {
-                            _logger.Add(ex.Message, 1);
+                            _logger.Add(ex.Message, "Team Add", 1);
                             return false;
                         }
                     }
@@ -79,12 +79,12 @@ namespace FootBallVideos.Models
                     {
                         if (ex.Message.Contains("inner exception"))
                         {
-                            await _logger.AddAsync(ex.InnerException.Message, 1);
+                            await _logger.AddAsync(ex.InnerException.Message, "Team AddAsync", 1);
                             return false;
                         }
                         else
                         {
-                            await _logger.AddAsync(ex.Message, 1);
+                            await _logger.AddAsync(ex.Message, "Team AddAsync", 1);
                             return false;
                         }
                     }
@@ -112,12 +112,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        _logger.Add(ex.InnerException.Message, 1);
+                        _logger.Add(ex.InnerException.Message, "Team Find", 1);
                         return null;
                     }
                     else
                     {
-                        _logger.Add(ex.Message, 1);
+                        _logger.Add(ex.Message, "Team Find", 1);
                         return null;
                     }
                 }
@@ -141,12 +141,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        await _logger.AddAsync(ex.InnerException.Message, "Team FindAsync", 1);
                         return null;
                     }
                     else
                     {
-                        await _logger.AddAsync(ex.Message, 1);
+                        await _logger.AddAsync(ex.Message, "Team FindAsync", 1);
                         return null;
                     }
                 }
@@ -170,12 +170,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        _logger.Add(ex.InnerException.Message, 1);
+                        _logger.Add(ex.InnerException.Message, "Team Remove", 1);
                         return false;
                     }
                     else
                     {
-                        _logger.Add(ex.Message, 1);
+                        _logger.Add(ex.Message, "Team Remove", 1);
                         return false;
                     }
                 }
@@ -199,12 +199,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        await _logger.AddAsync(ex.InnerException.Message, "Team RemoveAsync", 1);
                         return false;
                     }
                     else
                     {
-                        await _logger.AddAsync(ex.Message, 1);
+                        await _logger.AddAsync(ex.Message, "Team RemoveAsync", 1);
                         return false;
                     }
                 }
@@ -229,12 +229,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        _logger.Add(ex.InnerException.Message, 1);
+                        _logger.Add(ex.InnerException.Message, "Team Update", 1);
                         return false;
                     }
                     else
                     {
-                        _logger.Add(ex.Message, 1);
+                        _logger.Add(ex.Message, "Team Update", 1);
                         return false;
                     }
                 }
@@ -259,12 +259,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        await _logger.AddAsync(ex.InnerException.Message, "Team UpdateAsync", 1);
                         return false;
                     }
                     else
                     {
-                        await _logger.AddAsync(ex.Message, 1);
+                        await _logger.AddAsync(ex.Message, "Team UpdateAsync", 1);
                         return false;
                     }
                 }

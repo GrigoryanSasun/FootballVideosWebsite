@@ -53,12 +53,12 @@ namespace FootBallVideos.Models
                     {
                         if (ex.Message.Contains("inner exception"))
                         {
-                            _logger.Add(ex.InnerException.Message, 1);
+                            _logger.Add(ex.InnerException.Message, "TeamSeasonTournamentMap Add", 1);
                             return false;
                         }
                         else
                         {
-                            _logger.Add(ex.Message, 1);
+                            _logger.Add(ex.Message, "TeamSeasonTournamentMap Add", 1);
                             return false;
                         }
                     }
@@ -94,12 +94,12 @@ namespace FootBallVideos.Models
                     {
                         if (ex.Message.Contains("inner exception"))
                         {
-                            await _logger.AddAsync(ex.InnerException.Message, 1);
+                            await _logger.AddAsync(ex.InnerException.Message, "TeamSeasonTournamentMap AddAsync", 1);
                             return false;
                         }
                         else
                         {
-                            await _logger.AddAsync(ex.Message, 1);
+                            await _logger.AddAsync(ex.Message, "TeamSeasonTournamentMap AddAsync", 1);
                             return false;
                         }
                     }
@@ -126,12 +126,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        _logger.Add(ex.InnerException.Message, 1);
+                        _logger.Add(ex.InnerException.Message, "TeamSeasonTournamentMap Find", 1);
                         return null;
                     }
                     else
                     {
-                        _logger.Add(ex.Message, 1);
+                        _logger.Add(ex.Message, "TeamSeasonTournamentMap Find", 1);
                         return null;
                     }
                 }
@@ -154,12 +154,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        await _logger.AddAsync(ex.InnerException.Message, "TeamSeasonTournamentMap FindAsync", 1);
                         return null;
                     }
                     else
                     {
-                        await _logger.AddAsync(ex.Message, 1);
+                        await _logger.AddAsync(ex.Message, "TeamSeasonTournamentMap FindAsync", 1);
                         return null;
                     }
                 }
@@ -183,12 +183,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        _logger.Add(ex.InnerException.Message, 1);
+                        _logger.Add(ex.InnerException.Message, "TeamSeasonTournamentMap Remove", 1);
                         return false;
                     }
                     else
                     {
-                        _logger.Add(ex.Message, 1);
+                        _logger.Add(ex.Message, "TeamSeasonTournamentMap Remove", 1);
                         return false;
                     }
                 }
@@ -212,12 +212,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        await _logger.AddAsync(ex.InnerException.Message, "TeamSeasonTournamentMap RemoveAsync", 1);
                         return false;
                     }
                     else
                     {
-                        await _logger.AddAsync(ex.Message, 1);
+                        await _logger.AddAsync(ex.Message, "TeamSeasonTournamentMap RemoveAsync", 1);
                         return false;
                     }
                 }
@@ -243,12 +243,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        _logger.Add(ex.InnerException.Message, 1);
+                        _logger.Add(ex.InnerException.Message, "TeamSeasonTournamentMap Update", 1);
                         return false;
                     }
                     else
                     {
-                        _logger.Add(ex.Message, 1);
+                        _logger.Add(ex.Message, "TeamSeasonTournamentMap Update", 1);
                         return false;
                     }
                 }
@@ -274,12 +274,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        await _logger.AddAsync(ex.InnerException.Message, "TeamSeasonTournamentMap UpdateAsync", 1);
                         return false;
                     }
                     else
                     {
-                        await _logger.AddAsync(ex.Message, 1);
+                        await _logger.AddAsync(ex.Message, "TeamSeasonTournamentMap UpdateAsync", 1);
                         return false;
                     }
                 }

@@ -25,21 +25,25 @@ namespace FootBallVideos.LogingServcie
         }
 
 
-        public async Task<bool> AddAsync(string message, int priority)
+        public async Task<bool> AddAsync(string message, string component, int priority)
         {
             ErrorLog err = new ErrorLog();
             err.IsFixed = false;
             err.Message = message;
             err.Priority = priority;
+            err.Component = component;
+            err.Datetime = DateTime.UtcNow;
             return await Error.AddAsync(err);
         }
 
-        public bool Add(string message, int priority)
+        public bool Add(string message, string component, int priority)
         {
             ErrorLog err = new ErrorLog();
             err.IsFixed = false;
             err.Message = message;
             err.Priority = priority;
+            err.Component = component;
+            err.Datetime = DateTime.UtcNow;
             return Error.Add(err);
         }
 
