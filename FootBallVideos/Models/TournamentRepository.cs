@@ -45,12 +45,12 @@ namespace FootBallVideos.Models
                     {
                         if (ex.Message.Contains("inner exception"))
                         {
-                            _logger.Add(ex.InnerException.Message, 1);
+                            _logger.Add(ex.InnerException.Message, "Tournament Add", 1);
                             return false;
                         }
                         else
                         {
-                            _logger.Add(ex.Message, 1);
+                            _logger.Add(ex.Message, "Tournament Add", 1);
                             return false;
                         }
                     }
@@ -79,12 +79,12 @@ namespace FootBallVideos.Models
                     {
                         if (ex.Message.Contains("inner exception"))
                         {
-                            await _logger.AddAsync(ex.InnerException.Message, 1);
+                            await _logger.AddAsync(ex.InnerException.Message, "Tournament AddAsync", 1);
                             return false;
                         }
                         else
                         {
-                            await _logger.AddAsync(ex.Message, 1);
+                            await _logger.AddAsync(ex.Message, "Tournament AddAsync", 1);
                             return false;
                         }
                     }
@@ -112,12 +112,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        _logger.Add(ex.InnerException.Message, 1);
+                        _logger.Add(ex.InnerException.Message, "Tournament Find", 1);
                         return null;
                     }
                     else
                     {
-                        _logger.Add(ex.Message, 1);
+                        _logger.Add(ex.Message, "Tournament Find", 1);
                         return null;
                     }
                 }
@@ -140,12 +140,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        await _logger.AddAsync(ex.InnerException.Message, "Tournament FindAsync", 1);
                         return null;
                     }
                     else
                     {
-                        await _logger.AddAsync(ex.Message, 1);
+                        await _logger.AddAsync(ex.Message, "Tournament FindAsync", 1);
                         return null;
                     }
                 }
@@ -169,12 +169,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        _logger.Add(ex.InnerException.Message, 1);
+                        _logger.Add(ex.InnerException.Message, "Tournament Remove", 1);
                         return false;
                     }
                     else
                     {
-                        _logger.Add(ex.Message, 1);
+                        _logger.Add(ex.Message, "Tournament Remove", 1);
                         return false;
                     }
                 }
@@ -194,7 +194,20 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                return false;
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        await _logger.AddAsync(ex.InnerException.Message, "Tournament RemoveAsync", 1);
+                        return false;
+                    }
+                    else
+                    {
+                        await _logger.AddAsync(ex.Message, "Tournament RemoveAsync", 1);
+                        return false;
+                    }
+                }
+                else return false;
             }
         }
 
@@ -215,12 +228,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        _logger.Add(ex.InnerException.Message, 1);
+                        _logger.Add(ex.InnerException.Message, "Tournament Update", 1);
                         return false;
                     }
                     else
                     {
-                        _logger.Add(ex.Message, 1);
+                        _logger.Add(ex.Message, "Tournament Update", 1);
                         return false;
                     }
                 }
@@ -245,12 +258,12 @@ namespace FootBallVideos.Models
                 {
                     if (ex.Message.Contains("inner exception"))
                     {
-                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        await _logger.AddAsync(ex.InnerException.Message, "Tournament UpdateAsync", 1);
                         return false;
                     }
                     else
                     {
-                        await _logger.AddAsync(ex.Message, 1);
+                        await _logger.AddAsync(ex.Message, "Tournament UpdateAsync", 1);
                         return false;
                     }
                 }
