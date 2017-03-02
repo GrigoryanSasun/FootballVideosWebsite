@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,7 +12,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
-using FootBallVideos.Logging;
+using FootBallVideos.LogingServcie;
 
 namespace FootBallVideos
 {
@@ -51,6 +50,7 @@ namespace FootBallVideos
             services.AddScoped<ITeamSeasonTournamentMapRepository, TeamSeasonTournamentMapRepository>();
             services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
             services.AddScoped<LoggerService>();
+            services.AddScoped<FootballWebsiteContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

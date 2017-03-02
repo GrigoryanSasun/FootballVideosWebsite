@@ -1,18 +1,22 @@
 ﻿using FootBallVideos.Models;
 using FootBallVideos.ModelsData;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FootBallVideos.Logging
+namespace FootBallVideos.LogingServcie
 {
     public class LoggerService
     {
         private IErrorLogRepository Error { get; set; }
-        public LoggerService(IErrorLogRepository error)
+        private FootballWebsiteContext _context { get; set; }
+        public LoggerService(IErrorLogRepository error, FootballWebsiteContext context)
         {
             Error = error;
+            _context = context;
         }
 
         public async Task<IEnumerable<ErrorLog>> GetAll()
@@ -27,7 +31,6 @@ namespace FootBallVideos.Logging
             err.IsFixed = false;
             err.Message = message;
             err.Priority = priority;
-            err.Time = DateTime.UtcNow;
             return await Error.AddAsync(err);
         }
 
@@ -37,8 +40,27 @@ namespace FootBallVideos.Logging
             err.IsFixed = false;
             err.Message = message;
             err.Priority = priority;
-            err.Time = DateTime.UtcNow;
             return Error.Add(err);
         }
+
+        public bool DetachAll(FootballWebsiteContext context)
+        {
+            try
+            {
+                foreach (EntityEntry entityEntry in context.ChangeTracker.Entries().ToArray())
+                {
+                    if (entityEntry.Entity != null)
+                    {
+                        entityEntry.State = EntityState.Detached;
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

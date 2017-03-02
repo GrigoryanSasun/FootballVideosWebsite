@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using FootBallVideos.ModelsData;
 using System;
 using System.Diagnostics;
-using FootBallVideos.Logging;
+using FootBallVideos.LogingServcie;
 
 namespace FootBallVideos.Models
 {
@@ -14,10 +14,12 @@ namespace FootBallVideos.Models
         private FootballWebsiteContext _context;
         private LoggerService _logger;
 
-        public PlayersRepository(FootballWebsiteContext context)
+        public PlayersRepository(FootballWebsiteContext context,LoggerService logger)
         {
             _context = context;
+            _logger = logger;
         }
+
 
         public IEnumerable<Players> GetAll()
         {
@@ -29,7 +31,48 @@ namespace FootBallVideos.Models
             return await _context.Players.ToListAsync();
         }
 
-        public async Task<bool> Add(Players item)
+        public bool Add(Players item)
+        {
+            try
+            {
+                if (item.WhoScoredId == null)
+                {
+                    return Update(item);
+                }
+                else
+                {
+                    _context.Players.Add(item);
+                    _context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
+                {
+                    if (_logger.DetachAll(_context))
+                    {
+                        if (ex.Message.Contains("inner exception"))
+                        {
+                            _logger.Add(ex.InnerException.Message, 1);
+                            return false;
+                        }
+                        else
+                        {
+                            _logger.Add(ex.Message, 1);
+                            return false;
+                        }
+                    }
+                    else return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public async Task<bool> AddAsync(Players item)
         {
             try
             {
@@ -48,7 +91,20 @@ namespace FootBallVideos.Models
             {
                 if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
                 {
-                    return _logger.Add(ex.Message, 1);
+                    if (_logger.DetachAll(_context))
+                    {
+                        if (ex.Message.Contains("inner exception"))
+                        {
+                            await _logger.AddAsync(ex.InnerException.Message, 1);
+                            return false;
+                        }
+                        else
+                        {
+                            await _logger.AddAsync(ex.Message, 1);
+                            return false;
+                        }
+                    }
+                    else return false;
                 }
                 else
                 {
@@ -59,16 +115,57 @@ namespace FootBallVideos.Models
 
         public Players Find(int id)
         {
-            return (from b in _context.Players
-                    where b.Id == id
-                    select b).FirstOrDefault();
+            try
+            {
+                return (from b in _context.Players
+                        where b.Id == id
+                        select b).FirstOrDefault();
+
+            } catch(Exception ex)
+            {
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        _logger.Add(ex.InnerException.Message, 1);
+                        return null;
+                    }
+                    else
+                    {
+                        _logger.Add(ex.Message, 1);
+                        return null;
+                    }
+                }
+                else return null;
+            }
         }
 
         public async Task<Players> FindAsync(int id)
         {
-            return await (from b in _context.Players
-                          where b.Id == id
-                          select b).FirstOrDefaultAsync();
+            try
+            {
+                return await (from b in _context.Players
+                              where b.Id == id
+                              select b).FirstOrDefaultAsync();
+
+            }
+            catch (Exception ex)
+            {
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        return null;
+                    }
+                    else
+                    {
+                        await _logger.AddAsync(ex.Message, 1);
+                        return null;
+                    }
+                }
+                else return null;
+            }
         }
 
         public bool Remove(int id)
@@ -83,7 +180,49 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                return false;
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        _logger.Add(ex.InnerException.Message, 1);
+                        return false;
+                    }
+                    else
+                    {
+                        _logger.Add(ex.Message, 1);
+                        return false;
+                    }
+                }
+                else return false;
+            }
+        }
+
+        public async Task<bool> RemoveAsync(int id)
+        {
+            try
+            {
+                var player = new Players { NativeId = id };
+                _context.Players.Attach(player);
+                _context.Players.Remove(player);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        return false;
+                    }
+                    else
+                    {
+                        await _logger.AddAsync(ex.Message, 1);
+                        return false;
+                    }
+                }
+                else return false;
             }
         }
 
@@ -107,13 +246,58 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                return false;
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        _logger.Add(ex.InnerException.Message, 1);
+                        return false;
+                    }
+                    else
+                    {
+                        _logger.Add(ex.Message, 1);
+                        return false;
+                    }
+                }
+                else return false;
             }
         }
-        public int GetByTeamId(int id)
-        {
-            return id;
-        }
 
+        public async Task<bool> UpdateAsync(Players item)
+        {
+            try
+            {
+                var itemOrigin = (from q in _context.Players where q.NativeId == item.NativeId select q).FirstOrDefault();
+                itemOrigin.NativeId = item.NativeId;
+                itemOrigin.Nationality = item.Nationality;
+                itemOrigin.HeightInCm = item.HeightInCm;
+                itemOrigin.WeightInKg = item.WeightInKg;
+                itemOrigin.CurrentShirtNumber = item.CurrentShirtNumber;
+                itemOrigin.CurrentTeamId = item.CurrentTeamId;
+                itemOrigin.IconPosition = item.IconPosition;
+                itemOrigin.PortraitUrl = item.PortraitUrl;
+                itemOrigin.Age = item.Age;
+                itemOrigin.Position = item.Position;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        return false;
+                    }
+                    else
+                    {
+                        await _logger.AddAsync(ex.Message, 1);
+                        return false;
+                    }
+                }
+                else return false;
+            }
+        }
     }
 }

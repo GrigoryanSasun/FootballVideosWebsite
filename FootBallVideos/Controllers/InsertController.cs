@@ -46,7 +46,7 @@ namespace FootBallVideos.Controllers
                 return false;
             }
 
-            return await Tournament.Add(item);
+            return await Tournament.AddAsync(item);
         }
 
         [HttpPost("team", Name = "AddTeam")]
@@ -57,7 +57,7 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-            return await Team.Add(item);
+            return await Team.AddAsync(item);
         }
 
         [HttpPost("season", Name = "AddSeason")]
@@ -68,7 +68,7 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-            return await Season.Add(item.CovertToSeason());
+            return await Season.AddAsync(item.CovertToSeason());
         }
         
         [HttpPost("player", Name = "AddPlayer")]
@@ -79,7 +79,7 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-            return await Player.Add(item);
+            return await Player.AddAsync(item);
         }
 
         [HttpPost("match", Name = "AddMatch")]
@@ -90,7 +90,7 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-            return await Match.Add(item.CovertToMatch());
+            return await Match.AddAsync(item.CovertToMatch());
         }
 
         [HttpPost("map", Name = "AddMap")]
@@ -101,7 +101,7 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-            return await Map.Add(item);
+            return await Map.AddAsync(item);
         }
 
     }

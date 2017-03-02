@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FootBallVideos;
 using System.Diagnostics;
-using FootBallVideos.Logging;
+using FootBallVideos.LogingServcie;
 
 namespace FootBallVideos.Models
 {
@@ -20,7 +20,8 @@ namespace FootBallVideos.Models
             _context = context;
             _logger = logger;
         }
-        
+
+
         public IEnumerable<Matches> GetAll()
         {
             return _context.Matches;
@@ -31,7 +32,48 @@ namespace FootBallVideos.Models
             return await _context.Matches.ToListAsync();
         }
 
-        public async Task<bool> Add(Matches item)
+        public bool Add(Matches item)
+        {
+            try
+            {
+                Matches newItem = item;
+                int HomeTeamId = (from q in _context.Teams where q.NativeId == item.HomeTeamId select q.Id).FirstOrDefault();
+                int AwayTeamId = (from q in _context.Teams where q.NativeId == item.AwayTeamId select q.Id).FirstOrDefault();
+                int SeasonId = (from q in _context.Season where q.NativeId == item.SeasonId select q.Id).FirstOrDefault();
+                newItem.HomeTeamId = HomeTeamId;
+                newItem.AwayTeamId = AwayTeamId;
+                newItem.SeasonId = SeasonId;
+                _context.Matches.Add(newItem);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
+                {
+                    if (_logger.DetachAll(_context))
+                    {
+                        if (ex.Message.Contains("inner exception"))
+                        {
+                            _logger.Add(ex.InnerException.Message, 1);
+                            return false;
+                        }
+                        else
+                        {
+                            _logger.Add(ex.Message, 1);
+                            return false;
+                        }
+                    }
+                    else return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public async Task<bool> AddAsync(Matches item)
         {
             try
             {
@@ -46,11 +88,24 @@ namespace FootBallVideos.Models
                 await _context.SaveChangesAsync();
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
                 {
-                    return _logger.Add(ex.Message, 1);
+                    if (_logger.DetachAll(_context))
+                    {
+                        if (ex.Message.Contains("inner exception"))
+                        {
+                            await _logger.AddAsync(ex.InnerException.Message, 1);
+                            return false;
+                        }
+                        else
+                        {
+                            await _logger.AddAsync(ex.Message, 1);
+                            return false;
+                        }
+                    }
+                    else return false;
                 }
                 else
                 {
@@ -66,10 +121,23 @@ namespace FootBallVideos.Models
                 return (from b in _context.Matches
                         where b.NativeId == id
                         select b).FirstOrDefault();
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                _logger.Add(ex.Message, 1);
-                return new Matches();
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        _logger.Add(ex.InnerException.Message, 1);
+                        return null;
+                    }
+                    else
+                    {
+                        _logger.Add(ex.Message, 1);
+                        return null;
+                    }
+                }
+                else return null;
             }
         }
 
@@ -84,16 +152,28 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                await _logger.AddAsync(ex.Message, 1);
-                return new Matches();
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        return null;
+                    }
+                    else
+                    {
+                        await _logger.AddAsync(ex.Message, 1);
+                        return null;
+                    }
+                }
+                else return null;
             }
         }
 
-        public async Task<bool> Remove(int id)
+        public bool Remove(int id)
         {
             try
             {
-                var matches = new Matches { NativeId = id };
+                var matches = new Matches { Id = id };
                 _context.Matches.Attach(matches);
                 _context.Matches.Remove(matches);
                 _context.SaveChanges();
@@ -101,11 +181,53 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                return await _logger.AddAsync(ex.Message, 1);
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        _logger.Add(ex.InnerException.Message, 1);
+                        return false;
+                    }
+                    else
+                    {
+                        _logger.Add(ex.Message, 1);
+                        return false;
+                    }
+                }
+                else return false;
             }
         }
 
-        public async Task<bool> Update(Matches item)
+        public async Task<bool> RemoveAsync(int id)
+        {
+            try
+            {
+                var matches = new Matches { Id = id };
+                _context.Matches.Attach(matches);
+                _context.Matches.Remove(matches);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        return false;
+                    }
+                    else
+                    {
+                        await _logger.AddAsync(ex.Message, 1);
+                        return false;
+                    }
+                }
+                else return false;
+            }
+        }
+
+        public bool Update(Matches item)
         {
             try
             {
@@ -116,12 +238,58 @@ namespace FootBallVideos.Models
                 entry.Property(e => e.Date).IsModified = true;
                 entry.Property(e => e.NativeId).IsModified = true;
                 entry.Property(e => e.SeasonId).IsModified = true;
-                _context.SaveChanges();
+                _context.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
             {
-                return await _logger.AddAsync(ex.Message, 1);
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        _logger.Add(ex.InnerException.Message, 1);
+                        return false;
+                    }
+                    else
+                    {
+                        _logger.Add(ex.Message, 1);
+                        return false;
+                    }
+                }
+                else return false;
+            }
+        }
+
+        public async Task<bool> UpdateAsync(Matches item)
+        {
+            try
+            {
+                _context.Matches.Attach(item);
+                var entry = _context.Entry(item);
+                entry.Property(e => e.AwayTeamId).IsModified = true;
+                entry.Property(e => e.HomeTeamId).IsModified = true;
+                entry.Property(e => e.Date).IsModified = true;
+                entry.Property(e => e.NativeId).IsModified = true;
+                entry.Property(e => e.SeasonId).IsModified = true;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        await _logger.AddAsync(ex.InnerException.Message, 1);
+                        return false;
+                    }
+                    else
+                    {
+                        await _logger.AddAsync(ex.Message, 1);
+                        return false;
+                    }
+                }
+                else return false;
             }
         }
     }

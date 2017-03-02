@@ -24,8 +24,6 @@ namespace FootBallVideos.ModelsData
             modelBuilder.Entity<ErrorLog>(entity =>
             {
                 entity.Property(e => e.Message).IsRequired();
-
-                entity.Property(e => e.Time).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Matches>(entity =>
