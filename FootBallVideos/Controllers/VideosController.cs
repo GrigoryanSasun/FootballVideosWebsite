@@ -42,13 +42,13 @@ namespace FootBallVideos.Controllers
             return await Videos.GetVideosByTournamentIdAsync(id);
         }
 
-        [HttpGet("Team/{id}", Name = "GetVideosByTournamentId")]
+        [HttpGet("Team/{id}", Name = "GetVideosByTeamId")]
         public async Task<IEnumerable<Videos>> GetVideosByTeamID(int id)
         {
             return await Videos.GetVideosByTeamIdAsync(id);
         }
 
-        [HttpGet("Player/{id}", Name = "GetVideosByTournamentId")]
+        [HttpGet("Player/{id}", Name = "GetVideosByPlayerId")]
         public async Task<IEnumerable<Videos>> GetVideosByPlayerId(int id)
         {
             return await Videos.GetVideosByPlayerIdAsync(id);
