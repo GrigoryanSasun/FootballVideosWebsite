@@ -13,6 +13,8 @@ using System.IO;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using FootBallVideos.LogingServcie;
+using FootBallVideos.Elasticsearch;
+
 
 namespace FootBallVideos
 {

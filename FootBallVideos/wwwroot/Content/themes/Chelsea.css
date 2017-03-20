@@ -1,4 +1,32 @@
-﻿.categories-title {
-    background-color:#3886de;
-    color:#fff;
-}
+.header {background-color:#fff;}
+.content { background-color: #ecebe8;}
+.footer { background-color:#fff;}
+.nav-header { border-bottom: 1px solid #c1bfba;}
+.bars { background-color:#ec1b23; box-shadow: 0 5px 0#ec1b23, 0 10px 0#ec1b23;}
+.flipkart-navbar-logo a { color:#024593;}
+.flipkart-navbar-input, .tablet-navbar-input {border: 1px solid #c1bfba; color:#cc181e; background-color: #ecebe8;}
+.flipkart-navbar-button, .tablet-navbar-button { color:#024593;}
+.links { color:#ec1b23; }
+.links: hover {color:#222f82;}
+.block { background-color:#fff; border-bottom: 1px solid #c1bfba;}
+.search-button { color:#ec1b23; }
+.category-item li.active a { color:  #024593;}
+.sidebar { border-right:1px solid #daa010; background-color:#fff; }
+.categories { color:#024593; border-bottom: 1px solid #daa010;}
+.categories-xs {background-color:#fff ; color:#024593;}
+.categories-title { background-color: #024593; color:#daa010;}
+.categories li > a, .categories-xs li > a { color: #024593;}
+.categories li > a:hover, .categories-xs li > a:hover,
+.categories li > a:focus, .categories-xs li > a:focus {color:#ec1b23;}
+.categories-dropdown-content { border-bottom: 1px solid#daa010;}
+.scrollbar::-webkit-scrollbar-track { background-color:#024593;}
+.scrollbar::-webkit-scrollbar { background-color:#024593;}
+.scrollbar::-webkit-scrollbar-thumb {background-color: #ec1b23;}
+.btn.btn-danger { background-color:#024593; border: 1px solid#daa010;}
+.videos-content { background-color:#fff; border: 1px solid #c1bfba;}
+.videos-img-holder { border: 1px solid #c1bfba;}
+#footer { border-top:1px solid#daa010;}
+#footer ul li { color:#9d9d9d;}
+#footer a { color:#9d9d9d;}
+#footer ul li:before { color: #5b5b5b;}
+.video-title, .related-title{ color:#024593;}

@@ -3,55 +3,31 @@
 }
 
 .sidebar {
-    border-right:1px solid #c1bfba;
     height: 100%;
-    top: 85px;
+    top: 75px;
     position: fixed;
     width: 220px;
-    /*background: #0c0000; 
-    background: -moz-linear-gradient(45deg, #0c0000 11%, #260600 31%, #260600 67%, #0f0000 83%); 
-    background: -webkit-linear-gradient(45deg, #0c0000 11%,#260600 31%,#260600 67%,#0f0000 83%); 
-    background: linear-gradient(45deg, #0c0000 11%,#260600 31%,#260600 67%,#0f0000 83%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0000', endColorstr='#0f0000',GradientType=1 );*/
-    background:#fff; 
     overflow: hidden;
       -webkit-transition: height .5s;
       transition: height .5s;
 }
 
-.category-item li.active a {
-    color: #cc181e;
-}
-
 .categories {
     height: 210px;
     background-color: transparent;
-    color: #222;
     padding: 5px 5px;
-    border-bottom: 1px solid #c1bfba;
     width: 100%;
-}
-
-.categories-xs {
-    background-color: #fff;
-    color: #222;
 }
 
 .categories-title {
     text-align: center;
-    /*color: #F7F3E3;*/
-    color:#222;
     margin: 5px;
     font-weight: bold;
-    height: 40px;
-    /*background-color: #cc181e;*/
-    padding:10px;
+    height: 30px;
+    padding:5px;
     width: 100%;
     box-shadow: 0 0 0 transparent !important;
-}
-
-.categories li > a, .categories-xs li > a {
-    color: #222;
+    font-size: 13px;
 }
 
 .categories a > span, .categories-xs a > span, .players a > span {
@@ -62,13 +38,11 @@
     display: block;
     float: left;
     z-index: 10;
-    color: #9d9d9d;
     margin-top: 2px;
 }
 
 .categories li > a:hover, .categories-xs li > a:hover,
 .categories li > a:focus, .categories-xs li > a:focus {
-    color: #cc181e;
     cursor: pointer;
 }
 
@@ -81,7 +55,6 @@
     height: 150px;
     text-align: left;
     padding-left: 20px;
-    border-bottom: 1px solid #c1bfba;
 }
 
 .scrollbar {
@@ -91,19 +64,9 @@
     overflow-y: scroll;
 }
 
-.scrollbar::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        background-color: #c1bfba;
-    }
-
-    .scrollbar::-webkit-scrollbar {
-        width: 6px;
-        background-color: #c1bfba;
-    }
-
-    .scrollbar::-webkit-scrollbar-thumb {
-        background-color: #cc181e;
-    }
+.scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
 
 .btn.btn-danger {
     min-width: 300px;
@@ -111,8 +74,6 @@
     margin: 10px 0px;
     text-align: center;
     background-size: contain;
-    background-color: #cc181e;
-    border: 1px solid #c1bfba;;
     box-shadow: 0 0 0 transparent !important;
 }
 
