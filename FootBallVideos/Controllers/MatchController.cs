@@ -40,13 +40,6 @@ namespace FootBallVideos.Controllers
             {
                 return BadRequest();
             }
-            //Matches match = new Matches();
-            //match.Id = id;
-            //match.NativeId = nativeId;
-            //match.HomeTeamId = homeTeamId;
-            //match.AwayTeamId = awayTeamId;
-            //match.SeasonId = seasonId;
-            //match.Date = DateTime.Parse(date);
 
             Match.Add(item);
             return CreatedAtRoute("GetMatch", new { id = item.Id }, item);

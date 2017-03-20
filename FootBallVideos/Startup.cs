@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +11,8 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
+using FootBallVideos.LogingServcie;
 using FootBallVideos.Elasticsearch;
 
 
@@ -43,17 +44,15 @@ namespace FootBallVideos
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
             //var connection = @";Database=FootballAnalytics;Trusted_Connection=True;";
-            services.AddSingleton<IPlayersRepository, PlayersRepository>();
-            services.AddSingleton<ITeamRepository, TeamRepository>();
-            services.AddSingleton<ITournamentRepository, TournamentRepository>();
-            services.AddSingleton<ISeasonRepository, SeasonRepository>();
-            services.AddSingleton<IMatchRepository, MatchRepository>();
-
-            services.AddSingleton<ITeamSeasonTournamentMapRepository, TeamSeasonTournamentMapRepository>();
-
-            services.AddTransient<FootballVideosSearchProvider>();
-
-
+            services.AddScoped<IPlayersRepository, PlayersRepository>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
+            services.AddScoped<ITournamentRepository, TournamentRepository>();
+            services.AddScoped<ISeasonRepository, SeasonRepository>();
+            services.AddScoped<IMatchRepository, MatchRepository>();
+            services.AddScoped<ITeamSeasonTournamentMapRepository, TeamSeasonTournamentMapRepository>();
+            services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
+            services.AddScoped<LoggerService>();
+            services.AddScoped<FootballWebsiteContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,8 +78,9 @@ namespace FootBallVideos
 
             app.Use(async (context, next) =>
             {
-                var insertPath = new PathString("/api/insert");
-                if (context.Request.Path.StartsWithSegments(insertPath))
+                List<PathString> securePaths = new List<PathString>();
+                securePaths.Add(new PathString("/api/insert"));
+                if (securePaths.Contains(context.Request.Path))
                 {
                     var key = Configuration.GetValue<string>("MySettings:ApiKey");
                     var headerKey = context.Request.Headers["ApiKey"];

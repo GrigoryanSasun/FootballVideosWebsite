@@ -17,7 +17,15 @@ namespace FootBallVideos.Controllers
         [HttpGet]
         public IEnumerable<Season> GetAll()
         {
-            return Season.GetAll();
+            try
+            {
+                return Season.GetAll();
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet("{id}", Name = "GetSeason")]

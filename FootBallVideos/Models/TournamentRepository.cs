@@ -4,48 +4,57 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using FootBallVideos.ModelsData;
 using System;
-using System.Diagnostics;
+using FootBallVideos.LogingServcie;
 
 namespace FootBallVideos.Models
 {
     public class TournamentRepository : ITournamentRepository
     {
         private FootballWebsiteContext _context;
+        private LoggerService _logger;
 
-        public TournamentRepository(FootballWebsiteContext context)
+        public TournamentRepository(FootballWebsiteContext context, LoggerService logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public IEnumerable<Tournaments> GetAll()
         {
-            var tournaments = (from t in _context.Tournaments
-                               select t).ToList();
-            return tournaments;
+            return _context.Tournaments;
         }
 
         public async Task<IEnumerable<Tournaments>> GetAllAsync()
         {
-            var tournaments = (from t in _context.Tournaments
-                               select t).ToListAsync();
-            return await tournaments;
+            return await _context.Tournaments.ToListAsync();
         }
 
-        public async Task<bool> Add(Tournaments item)
+        public bool Add(Tournaments item)
         {
             try
             {
                 _context.Tournaments.Add(item);
-                await _context.SaveChangesAsync();
-                Debug.WriteLine("Tournament: " + item.Id + " : OK");
+                _context.SaveChanges();
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Tournament insert");
-                if (!ex.Message.Contains("unique") && !ex.InnerException.Message.Contains("unique"))
+                if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
                 {
-                    return false;
+                    if (_logger.DetachAll(_context))
+                    {
+                        if (ex.Message.Contains("inner exception"))
+                        {
+                            _logger.Add(ex.InnerException.Message, "Tournament Add", 1);
+                            return false;
+                        }
+                        else
+                        {
+                            _logger.Add(ex.Message, "Tournament Add", 1);
+                            return false;
+                        }
+                    }
+                    else return false;
                 }
                 else
                 {
@@ -54,18 +63,94 @@ namespace FootBallVideos.Models
             }
         }
 
-        public Tournaments Find(int key)
+        public async Task<bool> AddAsync(Tournaments item)
         {
-            return (from b in _context.Tournaments
-                    where b.NativeId == key
-                    select b).FirstOrDefault();
+            try
+            {
+                _context.Tournaments.Add(item);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
+                {
+                    if (_logger.DetachAll(_context))
+                    {
+                        if (ex.Message.Contains("inner exception"))
+                        {
+                            await _logger.AddAsync(ex.InnerException.Message, "Tournament AddAsync", 1);
+                            return false;
+                        }
+                        else
+                        {
+                            await _logger.AddAsync(ex.Message, "Tournament AddAsync", 1);
+                            return false;
+                        }
+                    }
+                    else return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
         }
 
-        public async Task<Tournaments> FindAsync(int key)
+        public Tournaments Find(int id)
         {
-            return await (from b in _context.Tournaments
-                          where b.NativeId == key
-                          select b).FirstOrDefaultAsync();
+            try
+            {
+                return (from b in _context.Tournaments
+                        where b.Id == id
+                        select b).FirstOrDefault();
+
+            }
+            catch (Exception ex)
+            {
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        _logger.Add(ex.InnerException.Message, "Tournament Find", 1);
+                        return null;
+                    }
+                    else
+                    {
+                        _logger.Add(ex.Message, "Tournament Find", 1);
+                        return null;
+                    }
+                }
+                else return null;
+            }
+        }
+
+        public async Task<Tournaments> FindAsync(int id)
+        {
+            try
+            {
+                return await (from b in _context.Tournaments
+                              where b.Id == id
+                              select b).FirstOrDefaultAsync();
+
+            }
+            catch (Exception ex)
+            {
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        await _logger.AddAsync(ex.InnerException.Message, "Tournament FindAsync", 1);
+                        return null;
+                    }
+                    else
+                    {
+                        await _logger.AddAsync(ex.Message, "Tournament FindAsync", 1);
+                        return null;
+                    }
+                }
+                else return null;
+            }
         }
 
         public bool Remove(int key)
@@ -80,8 +165,49 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Tournament remove");
-                return false;
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        _logger.Add(ex.InnerException.Message, "Tournament Remove", 1);
+                        return false;
+                    }
+                    else
+                    {
+                        _logger.Add(ex.Message, "Tournament Remove", 1);
+                        return false;
+                    }
+                }
+                else return false;
+            }
+        }
+
+        public async Task<bool> RemoveAsync(int key)
+        {
+            try
+            {
+                var tour = new Tournaments { NativeId = key };
+                _context.Tournaments.Attach(tour);
+                _context.Tournaments.Remove(tour);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        await _logger.AddAsync(ex.InnerException.Message, "Tournament RemoveAsync", 1);
+                        return false;
+                    }
+                    else
+                    {
+                        await _logger.AddAsync(ex.Message, "Tournament RemoveAsync", 1);
+                        return false;
+                    }
+                }
+                else return false;
             }
         }
 
@@ -98,8 +224,50 @@ namespace FootBallVideos.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message + " error occured in Tournament Update");
-                return false;
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        _logger.Add(ex.InnerException.Message, "Tournament Update", 1);
+                        return false;
+                    }
+                    else
+                    {
+                        _logger.Add(ex.Message, "Tournament Update", 1);
+                        return false;
+                    }
+                }
+                else return false;
+            }
+        }
+
+        public async Task<bool> UpdateAsync(Tournaments item)
+        {
+            try
+            {
+                _context.Tournaments.Attach(item);
+                var entry = _context.Entry(item);
+                entry.Property(e => e.Name).IsModified = true;
+                entry.Property(e => e.NativeId).IsModified = true;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (_logger.DetachAll(_context))
+                {
+                    if (ex.Message.Contains("inner exception"))
+                    {
+                        await _logger.AddAsync(ex.InnerException.Message, "Tournament UpdateAsync", 1);
+                        return false;
+                    }
+                    else
+                    {
+                        await _logger.AddAsync(ex.Message, "Tournament UpdateAsync", 1);
+                        return false;
+                    }
+                }
+                else return false;
             }
         }
 

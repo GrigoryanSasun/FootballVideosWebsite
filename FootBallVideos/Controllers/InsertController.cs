@@ -14,7 +14,7 @@ namespace FootBallVideos.Controllers
     [Route("api/[controller]")]
     public class InsertController : Controller
     {
-        public InsertController(
+        public InsertController(            
             ITeamRepository team, 
             ITournamentRepository tournament, 
             IMatchRepository match, 
@@ -46,8 +46,7 @@ namespace FootBallVideos.Controllers
                 return false;
             }
 
-            Debug.WriteLine("Tournament : " + item.Name + " - Added");
-            return await Tournament.Add(item);
+            return await Tournament.AddAsync(item);
         }
 
         [HttpPost("team", Name = "AddTeam")]
@@ -58,22 +57,18 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-
-            Debug.WriteLine("Team : " + item.Name + " - Added");
-            return await Team.Add(item);
+            return await Team.AddAsync(item);
         }
 
         [HttpPost("season", Name = "AddSeason")]
         [ActionName("Complex")]
-        public async Task<bool> Create([FromBody] Season item)
+        public async Task<bool> Create([FromBody] SeasonAlternate item)
         {
             if (item == null)
             {
                 return false;
             }
-
-            Debug.WriteLine("Season : " + item.Name + " - Added");
-            return await Season.Add(item);
+            return await Season.AddAsync(item.CovertToSeason());
         }
         
         [HttpPost("player", Name = "AddPlayer")]
@@ -84,22 +79,18 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-
-            Debug.WriteLine("Player : " + item.Name + " - Added");
-            return await Player.Add(item);
+            return await Player.AddAsync(item);
         }
 
         [HttpPost("match", Name = "AddMatch")]
         [ActionName("Complex")]
-        public async Task<bool> Create([FromBody] Matches item)
+        public async Task<bool> Create([FromBody] MatchAlternate item)
         {
             if (item == null)
             {
                 return false;
             }
-
-            Debug.WriteLine("Match : " + item.Id + " - Added");
-            return await Match.Add(item);
+            return await Match.AddAsync(item.CovertToMatch());
         }
 
         [HttpPost("map", Name = "AddMap")]
@@ -110,9 +101,7 @@ namespace FootBallVideos.Controllers
             {
                 return false;
             }
-
-            Debug.WriteLine("Map : " + item.Id + " - Added");
-            return await Map.Add(item);
+            return await Map.AddAsync(item);
         }
 
     }

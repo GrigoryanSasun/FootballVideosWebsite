@@ -7,13 +7,18 @@ namespace FootBallVideos.Models
     public interface IPlayersRepository
     {
         IEnumerable<Players> GetAll();
-        int GetByTeamId(int id);
-        Players Find(int key);
-        Task<bool> Add(Players item);
-        bool Remove(int key);
-        bool Update(Players item);
-
         Task<IEnumerable<Players>> GetAllAsync();
-        Task<Players> FindAsync(int key);
+
+        Players Find(int id);
+        Task<Players> FindAsync(int id);
+
+        bool Add(Players item);
+        Task<bool> AddAsync(Players item);
+
+        bool Remove(int id);
+        Task<bool> RemoveAsync(int id);
+
+        bool Update(Players item);
+        Task<bool> UpdateAsync(Players item);
     }
 }

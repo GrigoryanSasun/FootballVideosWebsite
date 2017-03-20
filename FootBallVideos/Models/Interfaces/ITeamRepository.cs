@@ -7,14 +7,21 @@ namespace FootBallVideos.Models
     public interface ITeamRepository
     {
         IEnumerable<Teams> GetAll();
-        IEnumerable<Players> GetPlayers(int id);
-        Teams Find(int id);
-        Task<bool> Add(Teams item);
-        bool Remove(int id);
-        bool Update(Teams item);
-
-        Task<IEnumerable<Players>> GetPlayersAsync(int id);
         Task<IEnumerable<Teams>> GetAllAsync();
-        Task<Teams> FindAsync(int key);
+
+        Teams Find(int id);
+        Task<Teams> FindAsync(int id);
+
+        bool Add(Teams item);
+        Task<bool> AddAsync(Teams item);
+
+        bool Remove(int id);
+        Task<bool> RemoveAsync(int id);
+
+        bool Update(Teams item);
+        Task<bool> UpdateAsync(Teams item);
+
+        IEnumerable<Players> GetPlayers(int id);
+        Task<IEnumerable<Players>> GetPlayersAsync(int id);
     }
 }

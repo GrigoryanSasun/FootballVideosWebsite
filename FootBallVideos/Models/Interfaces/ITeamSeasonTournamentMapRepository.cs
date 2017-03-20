@@ -7,12 +7,19 @@ namespace FootBallVideos.Models
     public interface ITeamSeasonTournamentMapRepository
     {
         IEnumerable<TeamSeasonTournamentMap> GetAll();
-        TeamSeasonTournamentMap Find(int key);
-        Task<bool> Add(TeamSeasonTournamentMap item);
-        bool Remove(int key);
-        bool Update(TeamSeasonTournamentMap item);
-
         Task<IEnumerable<TeamSeasonTournamentMap>> GetAllAsync();
-        Task<TeamSeasonTournamentMap> FindAsync(int key);
+
+        TeamSeasonTournamentMap Find(int id);
+        Task<TeamSeasonTournamentMap> FindAsync(int id);
+
+        bool Add(TeamSeasonTournamentMap item);
+        Task<bool> AddAsync(TeamSeasonTournamentMap item);
+
+        bool Remove(int id);
+        Task<bool> RemoveAsync(int id);
+
+        bool Update(TeamSeasonTournamentMap item);
+        Task<bool> UpdateAsync(TeamSeasonTournamentMap item);
+        
     }
 }
