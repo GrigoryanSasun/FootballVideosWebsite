@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Extensions.Options;
+using FootBallVideos.Elasticsearch;
+
 
 namespace FootBallVideos
 {
@@ -46,7 +48,12 @@ namespace FootBallVideos
             services.AddSingleton<ITournamentRepository, TournamentRepository>();
             services.AddSingleton<ISeasonRepository, SeasonRepository>();
             services.AddSingleton<IMatchRepository, MatchRepository>();
+
             services.AddSingleton<ITeamSeasonTournamentMapRepository, TeamSeasonTournamentMapRepository>();
+
+            services.AddTransient<FootballVideosSearchProvider>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

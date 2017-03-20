@@ -30,7 +30,9 @@
     "Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
     "Microsoft.IdentityModel.Protocols": "2.0.0",
     "Microsoft.EntityFrameworkCore.Design": "1.1.0",
-    "Microsoft.EntityFrameworkCore": "1.1.0"
+    "Microsoft.EntityFrameworkCore": "1.1.0",
+    "NEST": "5.2.0",
+    "ElasticsearchCrud": "2.4.1.1"
   },
 
   "tools": {

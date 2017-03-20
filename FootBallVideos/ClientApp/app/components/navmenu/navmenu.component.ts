@@ -1,6 +1,6 @@
 import { AnimationService } from '../../services/animation.service';
 import { ChangeColorsService } from '../../services/change-colors.service';
-import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
+import { Component } from '@angular/core';
 @Component({
     selector: 'nav-menu',
     template: require('./navmenu.component.pug'),
@@ -13,6 +13,4 @@ export class NavMenuComponent {
         this.changeColorsService = changeColorsService;
         this.changeColorsService.getValue();
     }
-    
-    
 }
