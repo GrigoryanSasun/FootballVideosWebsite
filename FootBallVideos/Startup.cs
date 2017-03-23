@@ -51,6 +51,7 @@ namespace FootBallVideos
             services.AddScoped<IMatchRepository, MatchRepository>();
             services.AddScoped<ITeamSeasonTournamentMapRepository, TeamSeasonTournamentMapRepository>();
             services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
+            services.AddScoped<IVideoRepository, VideoRepository>();
             services.AddScoped<LoggerService>();
             services.AddScoped<FootballWebsiteContext>();
         }
