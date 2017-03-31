@@ -21,12 +21,86 @@ namespace FootBallVideos.Models
 
         public bool Add(Videos item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Videos newItem = item;
+                int teamId = (from q in _context.Teams where q.NativeId == item.TeamId select q.Id).FirstOrDefault();
+                int seasonId = (from q in _context.Season where q.NativeId == item.SeasonId select q.Id).FirstOrDefault();
+                int tournamentId = (from q in _context.Tournaments where q.NativeId == item.TournamentId select q.Id).FirstOrDefault();
+                newItem.TeamId = teamId;
+                newItem.SeasonId = seasonId;
+                newItem.TournamentId = tournamentId;
+                _context.Videos.Add(newItem);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
+                {
+                    if (_logger.DetachAll(_context))
+                    {
+                        if (ex.Message.Contains("inner exception"))
+                        {
+                            _logger.Add(ex.InnerException.Message, "Videos Add", 1);
+                            return false;
+                        }
+                        else
+                        {
+                            _logger.Add(ex.Message, "Videos Add", 1);
+                            return false;
+                        }
+                    }
+                    else return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
         }
 
-        public Task<bool> AddAsync(Videos item)
+        public async Task<bool> AddAsync(Videos item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Videos newItem = item;
+                int playerId = (from q in _context.Players where q.NativeId == item.PlayerId select q.Id).FirstOrDefault();
+                int teamId = (from q in _context.Teams where q.NativeId == item.TeamId select q.Id).FirstOrDefault();
+                int seasonId = (from q in _context.Season where q.NativeId == item.SeasonId select q.Id).FirstOrDefault();
+                int tournamentId = (from q in _context.Tournaments where q.NativeId == item.TournamentId select q.Id).FirstOrDefault();
+                newItem.TeamId = teamId;
+                newItem.SeasonId = seasonId;
+                newItem.TournamentId = tournamentId;
+                newItem.PlayerId = playerId;
+                _context.Videos.Add(newItem);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (!ex.Message.Contains("UNIQUE") && !ex.InnerException.Message.Contains("UNIQUE"))
+                {
+                    if (_logger.DetachAll(_context))
+                    {
+                        if (ex.Message.Contains("inner exception"))
+                        {
+                            await _logger.AddAsync(ex.InnerException.Message, "Videos AddAsync", 1);
+                            return false;
+                        }
+                        else
+                        {
+                            await _logger.AddAsync(ex.Message, "Videos AddAsync", 1);
+                            return false;
+                        }
+                    }
+                    else return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
         }
 
         public Videos Find(int id)

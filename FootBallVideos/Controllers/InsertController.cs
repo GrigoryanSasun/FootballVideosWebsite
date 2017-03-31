@@ -20,7 +20,8 @@ namespace FootBallVideos.Controllers
             IMatchRepository match, 
             IPlayersRepository player, 
             ISeasonRepository season,
-            ITeamSeasonTournamentMapRepository map)
+            ITeamSeasonTournamentMapRepository map,
+            IVideoRepository video)
         {
             Team = team;
             Tournament = tournament;
@@ -28,6 +29,7 @@ namespace FootBallVideos.Controllers
             Player = player;
             Season = season;
             Map = map;
+            Video = video;
         }
 
         public ITeamRepository Team { get; set; }
@@ -36,6 +38,7 @@ namespace FootBallVideos.Controllers
         public IPlayersRepository Player { get; set; }
         public ITournamentRepository Tournament { get; set; }
         public ITeamSeasonTournamentMapRepository Map { get; set; }
+        public IVideoRepository Video { get; set; }
 
         [HttpPost("tournament", Name = "AddTournament")]
         [ActionName("Complex")]
@@ -102,6 +105,17 @@ namespace FootBallVideos.Controllers
                 return false;
             }
             return await Map.AddAsync(item);
+        }
+
+        [HttpPost("video", Name = "AddVideos")]
+        [ActionName("Complex")]
+        public async Task<bool> Create([FromBody] Videos item)
+        {
+            if (item == null)
+            {
+                return false;
+            }
+            return await Video.AddAsync(item);
         }
 
     }
