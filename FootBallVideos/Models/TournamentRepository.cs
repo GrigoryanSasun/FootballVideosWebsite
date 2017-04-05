@@ -26,7 +26,8 @@ namespace FootBallVideos.Models
 
         public async Task<IEnumerable<Tournaments>> GetAllAsync()
         {
-            return await _context.Tournaments.ToListAsync();
+            var tournaments = await _context.Tournaments.ToListAsync();
+            return tournaments;
         }
 
         public bool Add(Tournaments item)

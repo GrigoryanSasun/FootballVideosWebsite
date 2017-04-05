@@ -93,6 +93,11 @@ module.exports = function makeWebpackConfig() {
               loaders: ['awesome-typescript-loader?' + atlOptions, 'angular2-template-loader', '@angularclass/hmr-loader'],
               exclude: [isTest ? /\.(e2e)\.ts$/ : /\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
           },
+          //Support for pug files
+          {
+              test: /\.(pug|jade)$/,
+              use: ['raw-loader', 'pug-html-loader']
+          },
 
           // copy those assets to output
           {

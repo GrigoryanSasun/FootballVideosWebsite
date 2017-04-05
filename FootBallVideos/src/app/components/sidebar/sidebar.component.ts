@@ -5,7 +5,7 @@ import { TeamsService } from '../../teams/teams.service';
 import { Players } from '../../players/players';
 import { PlayersService } from '../../players/players.service';
 import { AnimationService } from '../../services/animation.service';
-import { Component, OnInit, trigger, state, style, transition, animate, Inject } from '@angular/core';
+import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 import { ChangeColorsService } from '../../services/change-colors.service';
 
 @Component({
