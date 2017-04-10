@@ -1,24 +1,18 @@
 const path = require('path');
 const helpers = require('./helpers');
 const webpack = require('webpack');
-const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 const ngcWebpack = require('ngc-webpack');
-const devConfig = require('./webpack.dev');
-const prodConfig = require('./webpack.prod');
 const isDevBuild = process.argv.indexOf('--env.prod') < 0;
 
 const HMR = helpers.hasProcessFlag('hot');
 const AOT = helpers.hasNpmFlag('aot');
 
-console.log("==========Is Dev Build = " + isDevBuild + " ============")
-console.log("==========Is AOT Build = " + AOT + " ============")
-
 let commonConfig = {
     entry: {
-        'main': AOT ? './Client/main.aot.ts' : './Client/main.ts'
+        'main': './Client/main.ts'
     },
     output: {
         path: path.join(__dirname, '../wwwroot', 'dist'),

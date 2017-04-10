@@ -1,11 +1,8 @@
-var webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
-const commonConfig = require('./webpack.config.js');
 const OptimizeJsPlugin = require('optimize-js-plugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = webpackMerge(commonConfig, {
+module.exports = {
     devtool: 'source-map',
     output: {
         filename: '[name].[chunkhash].bundle.js',
@@ -54,4 +51,4 @@ module.exports = webpackMerge(commonConfig, {
             sourceMap: true
         })
     ]
-});
+};

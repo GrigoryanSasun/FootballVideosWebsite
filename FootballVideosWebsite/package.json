@@ -11,7 +11,7 @@
     "clean:dist": "npm run rimraf -- wwwroot/dist",
     "clean:start": "npm start",
     "build:aot": "npm run clean:dist && npm run clean:aot && node node_modules/webpack/bin/webpack.js --config config/webpack.prod.js --env.prod  --progress --profile --bail",
-    "build:prod": "node node_modules/webpack/bin/webpack.js --config config/webpack.prod.js --env.prod",
+    "build:prod": "node node_modules/webpack/bin/webpack.js --env.prod",
     "dev:watch": "set ASPNETCORE_ENVIRONMENT=Development && dotnet watch run",
     "test:watch": "npm run test -- --auto-watch --no-single-run",
     "lint": "npm run tslint \"Client/**/*.ts\"",

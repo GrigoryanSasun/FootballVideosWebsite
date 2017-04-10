@@ -1,12 +1,12 @@
 const path = require('path');
 const webpackMerge = require('webpack-merge');
-const commonConfig = require('./webpack.config.js');
+const commonConfig = require('./webpack.common');
 const webpackMergeDll = webpackMerge.strategy({ plugins: 'replace' });
 const DllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin;
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const helpers = require('./helpers');
 
-module.exports = webpackMerge(commonConfig, {
+module.exports = {
     devtool: 'cheap-module-source-map',
     output: {
         filename: '[name].js',
@@ -57,4 +57,4 @@ module.exports = webpackMerge(commonConfig, {
         ]),
 
     ]
-});
+};

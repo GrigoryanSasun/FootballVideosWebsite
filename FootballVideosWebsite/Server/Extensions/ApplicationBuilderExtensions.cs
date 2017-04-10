@@ -14,8 +14,7 @@ namespace FootballVideosWebsite.Server.Extensions
         {
             app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
             {
-                HotModuleReplacement = true,
-                ConfigFile = "config/webpack.dev.js"
+                HotModuleReplacement = true
             });
             return app;
         }
