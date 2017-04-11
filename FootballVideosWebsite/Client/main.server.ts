@@ -4,6 +4,8 @@ import 'reflect-metadata';
 import { enableProdMode } from '@angular/core';
 import { INITIAL_CONFIG } from '@angular/platform-server';
 import { createServerRenderer } from 'aspnet-prerendering';
+import { APP_BASE_HREF } from '@angular/common';
+import { ORIGIN_URL } from './app/shared/constants/baseurl.constant';
 
 // Grab the (Node) server-specific NgModule
 import { ServerAppModule } from './app/server-app.module';
@@ -22,6 +24,10 @@ export default createServerRenderer(params => {
                 document: '<app></app>', // Our Root application document
                 url: params.url
             }
+        },
+        {
+            provide: ORIGIN_URL,
+            useValue: params.origin
         }
     ];
 

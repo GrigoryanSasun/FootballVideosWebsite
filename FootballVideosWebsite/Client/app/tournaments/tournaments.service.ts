@@ -1,16 +1,17 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 //import { Headers, RequestOptions } from '@angular/http';
 import { Tournaments } from './tournaments';
 import { Teams } from '../teams/teams';
 import 'rxjs/add/operator/toPromise';
+import { ORIGIN_URL } from '../shared/constants/baseurl.constant';
 
 @Injectable()
 export class TournamentsService {
     // URL to web api
-    private tournamentsUrl = '/api/tournament/';
+    private tournamentsUrl = `${this.baseUrl}/api/tournament/`;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, @Inject(ORIGIN_URL) private baseUrl: string) { }
 
     getTournaments(): Promise<Tournaments[]> {
         return this.http.get(this.tournamentsUrl)

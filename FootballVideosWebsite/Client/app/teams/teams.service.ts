@@ -1,15 +1,16 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 //import { Headers, RequestOptions } from '@angular/http';
 import { Teams } from './teams';
 import 'rxjs/add/operator/toPromise';
+import { ORIGIN_URL } from '../shared/constants/baseurl.constant';
 
 @Injectable()
 export class TeamsService {
     // URL to web api
-    private teamsUrl = '/api/team/';
+    private teamsUrl = `${this.baseUrl}/api/team/`;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, @Inject(ORIGIN_URL) private baseUrl: string) { }
 
     getTeams(): Promise<Teams[]> {
         return this.http.get(this.teamsUrl)
