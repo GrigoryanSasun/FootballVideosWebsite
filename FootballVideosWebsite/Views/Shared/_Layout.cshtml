@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FootBallVideos</title>
     <base href="/" />
+
+    @Html.Raw(ViewData["Meta"])
+    @Html.Raw(ViewData["Links"])
+
     <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
     <link id="theme" href="~/Content/themes/default.css" rel="stylesheet" />
+
+    @Html.Raw(ViewData["Styles"])
 </head>
 <body>
     @RenderBody()

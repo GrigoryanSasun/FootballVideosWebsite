@@ -3,7 +3,7 @@ import { ChangeColorsService } from '../../services/change-colors.service';
 @Component({
     selector: 'footer',
     template: require('./footer.component.pug'),
-    styleUrls: ['./footer.component.scss']
+    styles: [require('./footer.component.scss')]
 })
 export class FooterComponent {
     

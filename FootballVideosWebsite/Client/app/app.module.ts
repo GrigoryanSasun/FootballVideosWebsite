@@ -13,7 +13,6 @@ import { DetailsComponent } from './components/details/details.component';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { AnimationService } from './services/animation.service';
 import { ChangeColorsService } from './services/change-colors.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { ElasticSearchService } from './app/services/elasticsearch.service';
 
 @NgModule({
@@ -32,7 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ],
     providers: [
         AnimationService,
-        ChangeColorsService,
+        ChangeColorsService
         //ElasticSearchService,
     ],
     imports: [
@@ -40,7 +39,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         HttpModule,
         JsonpModule,
         InfiniteScrollModule,
-        BrowserAnimationsModule,
         //Ng2CompleterModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -11,7 +11,7 @@ import { ChangeColorsService } from '../../services/change-colors.service';
 @Component({
     selector: 'sidebar',
     template: require('./sidebar.component.pug'),
-    styleUrls: ['./sidebar.component.scss'],
+    styles: [require('./sidebar.component.scss')],
     providers: [TournamentsService, TeamsService, PlayersService],
     animations: [
         trigger('animationVisibleInvisible', [

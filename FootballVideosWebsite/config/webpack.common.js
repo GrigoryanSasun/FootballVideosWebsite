@@ -12,9 +12,10 @@ const AOT = helpers.hasNpmFlag('aot');
 
 let commonConfig = {
     entry: {
-        'main': './Client/main.ts'
+        'main.browser': './Client/main.browser.ts'
     },
     output: {
+        filename: '[name].js',
         path: path.join(__dirname, '../wwwroot', 'dist'),
         publicPath: '/dist/'
     },

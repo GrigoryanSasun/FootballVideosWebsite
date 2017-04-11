@@ -2,7 +2,7 @@ const path = require('path');
 const webpackMerge = require('webpack-merge');
 const commonPartial = require('./config/webpack.common');
 const clientPartial = require('./config/webpack.client');
-//const serverPartial = require('./webpack/webpack.server');
+const serverPartial = require('./config/webpack.server');
 const prodPartial = require('./config/webpack.prod');
 
 module.exports = function (options, webpackOptions) {
@@ -16,6 +16,7 @@ module.exports = function (options, webpackOptions) {
     //         getAotPlugin('server', !!options.aot)
     //     ]
     // });
+    const serverConfig = webpackMerge({}, commonPartial, serverPartial);
 
     let clientConfig;
         
@@ -27,15 +28,7 @@ module.exports = function (options, webpackOptions) {
         clientConfig = webpackMerge({}, commonPartial, clientPartial);
     }
 
-    const configs = [];
-    // if (!options.aot) {
-    //     configs.push(clientConfig, serverConfig);
-    // } else if (options.client) {
-    //     configs.push(clientConfig);
-    // } else if (options.server) {
-    //     configs.push(serverConfig);
-    // }
-    //TODO: Add server config
-    configs.push(clientConfig);
+    const configs = [clientConfig, serverConfig];
+    
     return configs;
 }

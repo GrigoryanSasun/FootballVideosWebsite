@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'nav-menu',
     template: require('./navmenu.component.pug'),
-    styleUrls: ['./navmenu.component.scss'],
+    styles: [require('./navmenu.component.scss')],
 })
 export class NavMenuComponent {
     height = 0;

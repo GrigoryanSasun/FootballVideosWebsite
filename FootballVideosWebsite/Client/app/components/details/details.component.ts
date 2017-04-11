@@ -3,7 +3,7 @@
 @Component({
     selector: 'videodetails',
     template: require('./details.component.pug'),
-    styleUrls: ['./details.component.scss']
+    styles: [require('./details.component.scss')]
 })
 export class DetailsComponent {
 

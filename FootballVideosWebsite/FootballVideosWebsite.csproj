@@ -48,6 +48,7 @@
     <PackageReference Include="Webpack" Version="4.0.0" />
     <PackageReference Include="ElasticsearchCrud" Version="2.4.1.1" />
     <PackageReference Include="NEST" Version="5.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="1.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>

@@ -1,4 +1,4 @@
-import './polyfills';
+import './polyfills/polyfills';
 import './styles/vendor.css';
 
 declare var module: any;
@@ -6,7 +6,7 @@ declare var module: any;
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
 
-import { AppModule } from './app/app.module';
+import { BrowserAppModule } from './app/browser-app.module';
 
 // Enable either Hot Module Reloading or production mode
 /* tslint:disable */
@@ -17,4 +17,4 @@ if (module['hot']) {
     enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(BrowserAppModule);

@@ -1,8 +1,6 @@
 @{ ViewData["Title"] = "Home Page"; }
 
-<app>
-    Loading...
-</app>
+@Html.Raw(ViewData["SpaHtml"])
 
 @section scripts {
     <environment names="Development">
