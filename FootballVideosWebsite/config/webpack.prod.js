@@ -1,6 +1,7 @@
 const OptimizeJsPlugin = require('optimize-js-plugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
     devtool: 'source-map',
@@ -49,6 +50,9 @@ module.exports = {
             beautify: false,
             comments: false,
             sourceMap: true
+        }),
+        new OptimizeCssAssetsPlugin({
+            assetNameRegExp: /\.css$/
         })
     ]
 };
