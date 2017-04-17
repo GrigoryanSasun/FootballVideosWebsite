@@ -1,7 +1,16 @@
+const webpack = require('webpack');
 const OptimizeJsPlugin = require('optimize-js-plugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const DllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin;
+const webpackMerge = require('webpack-merge');
+const webpackMergeDll = webpackMerge.strategy({ plugins: 'replace' });
+const path = require('path');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const thirdParty = require('./third-party');
+const commonConfig = require('./webpack.common');
+const helpers = require('./helpers');
 
 module.exports = {
     devtool: 'source-map',
@@ -11,13 +20,30 @@ module.exports = {
         chunkFilename: '[id].[chunkhash].chunk.js'
     },
     plugins: [
+        new DllBundlesPlugin({
+            bundles: {
+                vendor: thirdParty.polyfills.concat(thirdParty.vendor)
+            },
+            dllDir: path.join(__dirname, '../wwwroot', '/dist'),
+            webpackConfig: webpackMergeDll(commonConfig, {
+                devtool: 'source-map',
+                plugins: [
+                    new UglifyJsPlugin({
+                        beautify: false,
+                        sourceMap: true
+                    })
+                ]
+            })
+        }),
+        new AddAssetHtmlPlugin([
+            { filepath: helpers.root(`wwwroot/dist/${DllBundlesPlugin.resolveFile('vendor')}`) }
+        ]),
         /**
      * Webpack plugin to optimize a JavaScript file for faster initial load
      * by wrapping eagerly-invoked functions.
      *
      * See: https://github.com/vigneshshanmugam/optimize-js-plugin
      */
-
         new OptimizeJsPlugin({
             sourceMap: false
         }),
@@ -48,7 +74,6 @@ module.exports = {
         }),
         new UglifyJsPlugin({
             beautify: false,
-            comments: false,
             sourceMap: true
         }),
         new OptimizeCssAssetsPlugin({

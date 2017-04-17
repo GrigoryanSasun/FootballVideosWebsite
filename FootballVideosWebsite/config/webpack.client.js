@@ -4,6 +4,7 @@ const commonConfig = require('./webpack.common');
 const webpackMergeDll = webpackMerge.strategy({ plugins: 'replace' });
 const DllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin;
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const thirdParty = require('./third-party');
 const helpers = require('./helpers');
 
 module.exports = {
@@ -14,28 +15,8 @@ module.exports = {
     plugins: [
         new DllBundlesPlugin({
             bundles: {
-                polyfills: [
-                    'core-js',
-                    {
-                        name: 'zone.js',
-                        path: 'zone.js/dist/zone.js'
-                    },
-                    {
-                        name: 'zone.js',
-                        path: 'zone.js/dist/long-stack-trace-zone.js'
-                    }
-                ],
-                vendor: [
-                    '@angular/animations',
-                    '@angular/platform-browser',
-                    '@angular/platform-browser-dynamic',
-                    '@angular/core',
-                    '@angular/common',
-                    '@angular/forms',
-                    '@angular/http',
-                    '@angular/router',
-                    'angular2-infinite-scroll'
-                ]
+                polyfills: thirdParty.polyfills,
+                vendor: thirdParty.vendor
             },
             dllDir: path.join(__dirname, '../wwwroot', '/dist'),
             webpackConfig: webpackMergeDll(commonConfig, {
