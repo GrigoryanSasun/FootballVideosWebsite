@@ -5,8 +5,20 @@ const { root } = require('./helpers');
  */
 module.exports = {
     devtool: 'inline-source-map',
+    module: {
+        rules: [
+            {
+                test: /\.css$/, 
+                use: ["css-loader"]
+            },
+            {
+                test: /\.scss$/, 
+                use: ['to-string-loader', 'css-loader', 'sass-loader']
+            }
+        ]
+    },
     resolve: {
-        extensions: ['.ts', '.js', '.json'],
+        extensions: ['.ts', '.js', '.json', '.css', '.scss'],
         // An array of directory names to be resolved to the current directory
         modules: [root('Client'), root('node_modules')],
     },

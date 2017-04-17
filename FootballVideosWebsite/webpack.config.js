@@ -3,6 +3,7 @@ const webpackMerge = require('webpack-merge');
 const commonPartial = require('./config/webpack.common');
 const clientPartial = require('./config/webpack.client');
 const serverPartial = require('./config/webpack.server');
+const clientProdCommon = require('./config/webpack.client-prod.common');
 const prodPartial = require('./config/webpack.prod');
 
 module.exports = function (options, webpackOptions) {
@@ -22,10 +23,10 @@ module.exports = function (options, webpackOptions) {
         
     const isProductionBuild = process.argv.indexOf('--env.prod') >= 0; 
     if (isProductionBuild) {
-        clientConfig = webpackMerge({}, commonPartial, prodPartial);
+        clientConfig = webpackMerge({}, commonPartial, clientProdCommon, prodPartial);
     }
     else {
-        clientConfig = webpackMerge({}, commonPartial, clientPartial);
+        clientConfig = webpackMerge({}, commonPartial, clientProdCommon, clientPartial);
     }
 
     const configs = [clientConfig, serverConfig];

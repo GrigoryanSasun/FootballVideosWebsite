@@ -1,7 +1,6 @@
 const path = require('path');
 const helpers = require('./helpers');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 const ngcWebpack = require('ngc-webpack');
@@ -52,13 +51,6 @@ let commonConfig = {
                     'angular2-template-loader'
                 ]
             },
-            {
-                test: /\.css$/, loader: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: ["css-loader"]
-                })
-            },
-            { test: /\.scss$/, use: ['to-string-loader', 'css-loader', 'sass-loader'] },
             { test: /\.html$/, use: 'html-loader' },
             { test: /\.json$/, use: 'json-loader' },
             { test: /\.(jpg|png|gif)$/, use: 'file-loader' },
@@ -67,7 +59,6 @@ let commonConfig = {
     },
     profile: true,
     plugins: [
-        new ExtractTextPlugin("vendor.css"),
         new webpack.DefinePlugin({
             'process.env': {
                 'ENV': JSON.stringify(isDevBuild ? 'Development' : 'Production')

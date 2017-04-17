@@ -10,9 +10,9 @@
     @Html.Raw(ViewData["Links"])
 
     <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
-    <link id="theme" href="~/Content/themes/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/dist/custom.css" asp-append-version="true" />
 
-    @Html.Raw(ViewData["Styles"])
+    <link id="theme" href="~/Content/themes/default.css" rel="stylesheet" />
 </head>
 <body>
     @RenderBody()

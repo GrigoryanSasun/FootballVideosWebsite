@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 @Component({
     selector: 'contacts',
     template: require('./contacts.component.pug'),
-    styles: [require('./contacts.component.scss')]
+    styles: [String(require('./contacts.component.scss'))]
 })
 export class ContactsComponent {
     public forecasts: WeatherForecast[];

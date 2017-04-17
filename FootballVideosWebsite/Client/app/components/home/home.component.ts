@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'home',
     template: require('./home.component.pug'),
-    styles: [require('./home.component.scss')],
+    styles: [String(require('./home.component.scss'))],
     providers: [],
 })
 export class HomeComponent implements OnInit {
