@@ -10,7 +10,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { AboutUsComponent } from './components/aboutus/about-us.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DetailsComponent } from './components/details/details.component';
-import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AnimationService } from './services/animation.service';
 import { ChangeColorsService } from './services/change-colors.service';
 //import { ElasticSearchService } from './app/services/elasticsearch.service';

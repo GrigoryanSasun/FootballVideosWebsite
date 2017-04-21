@@ -8,7 +8,7 @@ module.exports = {
         '@angular/forms',
         '@angular/http',
         '@angular/router',
-        'angular2-infinite-scroll'
+        'ngx-infinite-scroll'
     ],
     polyfills: [
         'core-js',

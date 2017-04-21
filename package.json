@@ -33,16 +33,16 @@
     "@angular/platform-browser-dynamic": "4.0.1",
     "@angular/platform-server": "4.0.1",
     "@angular/router": "4.0.1",
-    "angular2-infinite-scroll": "^0.3.4",
     "aspnet-prerendering": "2.0.3",
     "aspnet-webpack": "1.0.28",
     "bootstrap": "3.3.7",
     "core-js": "2.4.1",
     "font-awesome": "4.7.0",
     "isomorphic-fetch": "2.2.1",
+    "ngx-infinite-scroll": "^0.4.2",
     "preboot": "4.5.2",
-    "zone.js": "0.8.5",
-    "rxjs": "^5.0.1"
+    "rxjs": "^5.0.1",
+    "zone.js": "0.8.5"
   },
   "devDependencies": {
     "@angular/cli": "1.0.0",
@@ -108,7 +108,7 @@
     "webpack-merge": "4.1.0"
   },
   "engines": {
-    "node" : "6.3.1",
-    "npm" : "3.8.2"
+    "node": "6.3.1",
+    "npm": "3.8.2"
   }
 }
