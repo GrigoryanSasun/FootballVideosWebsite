@@ -15,16 +15,11 @@
     "dev:watch": "set ASPNETCORE_ENVIRONMENT=Development && dotnet watch run",
     "test:watch": "npm run test -- --auto-watch --no-single-run",
     "lint": "npm run tslint \"Client/**/*.ts\"",
-    "postinstall": "npm run webdriver:update",
-    "pree2e": "npm run webdriver:update -- --standalone",
     "e2e": "npm run protractor",
     "e2e:live": "npm-run-all -p -r server:prod:ci e2e:debug",
     "e2e:debug": "protractor --elementExplorer",
     "test": "npm run lint && karma start",
-    "compodoc": "compodoc -p tsconfig.json",
-    "webdriver-manager": "webdriver-manager",
-    "webdriver:start": "npm run webdriver-manager start",
-    "webdriver:update": "webdriver-manager update"
+    "compodoc": "compodoc -p tsconfig.json"
   },
   "dependencies": {
     "@angular/animations": "4.0.1",
@@ -55,7 +50,6 @@
     "@types/hammerjs": "2.0.34",
     "@types/jasmine": "2.5.46",
     "@types/node": "7.0.8",
-    "@types/selenium-webdriver": "3.0.0",
     "@types/source-map": "0.5.0",
     "@types/uglify-js": "2.6.28",
     "@types/webpack": "2.2.12",
@@ -112,5 +106,9 @@
     "webpack-externals-plugin": "1.0.0",
     "webpack-hot-middleware": "2.17.1",
     "webpack-merge": "4.1.0"
+  },
+  "engines": {
+    "node" : "6.3.1",
+    "npm" : "3.8.2"
   }
 }
