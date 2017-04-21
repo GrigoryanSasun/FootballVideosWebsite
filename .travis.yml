@@ -3,5 +3,7 @@ dist: trusty
 sudo: required
 mono: none
 dotnet: 1.0.1
+node_js:
+  - "6.3.1"
 script:
   - ./build.sh --quiet verify
