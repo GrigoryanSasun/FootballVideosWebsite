@@ -16,3 +16,4 @@ deploy:
   provider: heroku
   app: football-videos-website
   api_key: "84a3f505-5bb4-463f-88f4-e285b3321a61"
+  skip_cleanup: true
