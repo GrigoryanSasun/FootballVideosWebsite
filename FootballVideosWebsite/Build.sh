@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-dotnet restore && dotnet build
+dotnet restore ~/FootballVideosWebsite/FootballVideosWebsite.csproj && dotnet build ~/FootballVideosWebsite/FootballVideosWebsite.csproj
