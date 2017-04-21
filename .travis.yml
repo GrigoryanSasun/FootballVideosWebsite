@@ -3,7 +3,12 @@ dist: trusty
 sudo: required
 mono: none
 dotnet: 1.0.1
-node_js:
-  - "6.3.1"
+env:
+  - TRAVIS_NODE_VERSION="6.3.1"
+install:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install $TRAVIS_NODE_VERSION
+  - nvm use $TRAVIS_NODE_VERSION
+  - npm install
 script:
   - ./build.sh --quiet verify
