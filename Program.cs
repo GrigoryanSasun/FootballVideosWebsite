@@ -10,8 +10,10 @@ namespace FootballVideosWebsite
         {
             var config = new ConfigurationBuilder()
                         .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddCommandLine(args)
                         .AddJsonFile("hosting.json", optional: true)
                         .Build();
+
 
 
             var host = new WebHostBuilder()
