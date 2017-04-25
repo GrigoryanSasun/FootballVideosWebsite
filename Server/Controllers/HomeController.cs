@@ -71,7 +71,7 @@ namespace FootballVideosWebsite.Server.Controllers
 
             var info = new System.IO.DirectoryInfo(basePath);
             var file = info.GetFiles()
-                .Where(f => _env.IsDevelopment() ? f.Name == "main.browser.js" : f.Name.StartsWith("main.browser") && !f.Name.EndsWith("bundle.map"));
+                .Where(f => f.Name == "main.browser.js");
             return file.FirstOrDefault().Name;
         }
 

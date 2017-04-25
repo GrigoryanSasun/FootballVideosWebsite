@@ -15,8 +15,7 @@ const helpers = require('./helpers');
 module.exports = {
     devtool: 'source-map',
     output: {
-        filename: '[name].[chunkhash].bundle.js',
-        sourceMapFilename: '[name].[chunkhash].bundle.map',
+        sourceMapFilename: '[name].map',
         chunkFilename: '[id].[chunkhash].chunk.js'
     },
     plugins: [
