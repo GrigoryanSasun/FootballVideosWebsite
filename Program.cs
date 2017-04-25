@@ -15,6 +15,7 @@ namespace FootballVideosWebsite
                         .Build();
 
 
+
             var host = new WebHostBuilder()
                 .CaptureStartupErrors(true)
                 // .UseSetting("detailedErrors", "true")
