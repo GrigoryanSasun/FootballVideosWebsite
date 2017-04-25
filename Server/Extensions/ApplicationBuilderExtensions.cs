@@ -36,6 +36,20 @@ namespace FootballVideosWebsite.Server.Extensions
             return app;
         }
 
+        public static IApplicationBuilder AddProductionMiddlewares(this IApplicationBuilder app)
+        {
+            var env = app.ApplicationServices.GetRequiredService<IHostingEnvironment>();
+            
+            if (env.IsProduction())
+            {
+                app.UseResponseCompression();
+            }
+
+            return app;
+        }
+
+
+
         // public static IApplicationBuilder SetupMigrations(this IApplicationBuilder app)
         // {
         //     // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859

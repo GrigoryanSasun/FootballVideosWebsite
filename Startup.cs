@@ -31,6 +31,11 @@ namespace FootballVideosWebsite
         {
             services.AddOptions();
 
+            if (_hostingEnv.IsProduction())
+            {
+                services.AddGzipCompression();
+            }
+
             services.AddCustomDbContext(Configuration);
 
             services.RegisterCustomServices(Configuration);
@@ -43,6 +48,8 @@ namespace FootballVideosWebsite
         public void Configure(IApplicationBuilder app)
         {
             app.AddDevMiddlewares();
+
+            app.AddProductionMiddlewares();
 
             app.UseStaticFiles();
 

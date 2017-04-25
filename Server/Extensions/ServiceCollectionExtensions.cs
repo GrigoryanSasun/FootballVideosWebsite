@@ -3,10 +3,12 @@ using FootballVideosWebsite.Server.ModelsData;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
 using Newtonsoft.Json;
 using FootballVideosWebsite.Server.Models;
 using FootBallVideos.Models;
 using FootballVideosWebsite.Server.Services;
+using Microsoft.AspNetCore.ResponseCompression;
 
 namespace FootballVideosWebsite.Server.Extensions
 {
@@ -30,7 +32,14 @@ namespace FootballVideosWebsite.Server.Extensions
             services.AddDbContext<FootballWebsiteContext>(options => options.UseSqlServer(configuration.GetConnectionString("FootballWebsiteContext")));
             return services;
         }
-        
+
+        public static IServiceCollection AddGzipCompression(this IServiceCollection services)
+        {
+            services.Configure<GzipCompressionProviderOptions>(options => options.Level = System.IO.Compression.CompressionLevel.Optimal);
+            services.AddResponseCompression();
+            return services;
+        }
+
         public static IServiceCollection RegisterCustomServices(this IServiceCollection services, IConfigurationRoot configuration)
         {
             services.AddScoped<IPlayersRepository, PlayersRepository>();
